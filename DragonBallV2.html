@@ -15,46 +15,18 @@
             <div class="attr-head">
                 <h1>Character</h1>
                 <div><label>Character name: <input name="attr_character_name" type="text" style="width:120px;" /></label></div>
-                <div><label>Tier of Power <input name="attr_tier_of_power" type="text" value="@{hidden_power}" style="width: 30px;" disabled/></label></div>
+                <div><label>Tier of Power:<input name="attr_tier_of_power" type="number" value="floor((@{power_level})/5)+1" style="width: 50px;" disabled="true" /></label></div>
                 <input type="hidden" name="attr_hidden_power" value="[[1d0]]"/>
                 <script type="text/worker">
                     on("change:power_level", function(){
                         getAttrs(["POWER_LEVEL"], function(values){
-                            var powerlist = [5, 10, 15, 20, 25];
-                            var dicelist = ["[[1d4]]", "[[1d6]]", "[[1d8]]", "[[1d10]]", "[[1d10+1d4]]"];
-                            let pl = parseInt(values.POWER_LEVEL)||0;
-                            var changed = false;
-                            for(i=0;i<powerlist.length; i++){
-                                if(powerlist[i]==pl){
-                                    setAttrs({
-                                        "hidden_power":dicelist[i]
-                                    });
-                                    changed=true;
-                                };
-                            };
-                            if(!changed){
-                                if(pl<5){
-                                    setAttrs({
-                                        "hidden_power":"[[1d0]]"
-                                    });
-                                }else if(pl<10){
-                                    setAttrs({
-                                        "hidden_power":"[[1d4]]"
-                                    });
-                                }else if(pl<15){
-                                    setAttrs({
-                                        "hidden_power":"[[1d6]]"
-                                    });
-                                }else if(pl<20){
-                                    setAttrs({
-                                        "hidden_power":"[[1d8]]"
-                                    });
-                                }else if(pl<25){
-                                    setAttrs({
-                                        "hidden_power":"[[1d10]]"
-                                    });
-                                };
-                            };
+                            var dicelist = [0,4,6,8];
+                            var tier = Math.floor(values.POWER_LEVEL/5)+1;
+                            var die = Math.floor((tier-1)/4) + "d10 + " + "1d"+dicelist[(tier-1)%4];
+                            setAttrs({
+                                "hidden_power":die,
+                                "tier_of_power":tier
+                            });
                         });
                     });
                 </script>
@@ -139,16 +111,13 @@
                                     "personality":5
                                 });
                                 setAttrs({
-                                    "potency":2
-                                });
-                                setAttrs({
                                     "scholarship":2
                                 });
                                 setAttrs({
                                     "spirit":5
                                 });
                                 setAttrs({
-                                    "strength":2
+                                    "force":2
                                 });
                                 setAttrs({
                                     "tenacity":4
@@ -167,16 +136,13 @@
                                     "personality":2
                                 });
                                 setAttrs({
-                                    "potency":5
-                                });
-                                setAttrs({
                                     "scholarship":2
                                 });
                                 setAttrs({
                                     "spirit":5
                                 });
                                 setAttrs({
-                                    "strength":2
+                                    "force":2
                                 });
                                 setAttrs({
                                     "tenacity":4
@@ -201,16 +167,13 @@
                                     "personality":2
                                 });
                                 setAttrs({
-                                    "potency":5
-                                });
-                                setAttrs({
                                     "scholarship":2
                                 });
                                 setAttrs({
                                     "spirit":2
                                 });
                                 setAttrs({
-                                    "strength":2
+                                    "force":2
                                 });
                                 setAttrs({
                                     "tenacity":5
@@ -233,16 +196,13 @@
                                     "personality":2
                                 });
                                 setAttrs({
-                                    "potency":2
-                                });
-                                setAttrs({
                                     "scholarship":2
                                 });
                                 setAttrs({
                                     "spirit":4
                                 });
                                 setAttrs({
-                                    "strength":2
+                                    "force":2
                                 });
                                 setAttrs({
                                     "tenacity":5
@@ -261,16 +221,13 @@
                                     "personality":2
                                 });
                                 setAttrs({
-                                    "potency":2
-                                });
-                                setAttrs({
                                     "scholarship":2
                                 });
                                 setAttrs({
                                     "spirit":2
                                 });
                                 setAttrs({
-                                    "strength":5
+                                    "force":5
                                 });
                                 setAttrs({
                                     "tenacity":5
@@ -337,14 +294,6 @@
                     </div>
                 </div>
 
-                <div class="stat-pot">
-                    <h3 class="j-h3">Potency</h3>
-                    <div>
-                        <label class="j-label">Score: <input type="number" name="attr_potency" value="2"/><button class="skill" type="roll" name="roll_potency" value="/r 1d10!10+@{potency_modifier}+@{hidden_power}"></button></label>
-                        <input type="hidden" value="floor(@{potency}/2)" name="attr_potency_modifier">
-                    </div>
-                </div>
-
                 <div class="stat-sch">
                     <h3 class="j-h3">Scholarship</h3>
                     <div>
@@ -362,10 +311,10 @@
                 </div>
 
                 <div class="stat-str">
-                    <h3 class="j-h3">Strength</h3>
+                    <h3 class="j-h3">Force</h3>
                     <div>
-                        <label class="j-label">Score: <input type="number" name="attr_strength" value="2"/><button class="skill" type="roll" name="roll_strength" value="/r 1d10!10+@{strength_modifier}+@{hidden_power}"></button></label>
-                        <input type="hidden" value="floor(@{strength}/2)" name="attr_strength_modifier">
+                        <label class="j-label">Score: <input type="number" name="attr_force" value="2"/><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{hidden_power}"></button></label>
+                        <input type="hidden" value="floor(@{force}/2)" name="attr_force_modifier">
                     </div>
                 </div>
 
@@ -380,7 +329,7 @@
 
             <div class="skill1">
                 <div><label class="skill-label">Acrobatics (Agi): <input type="number" name="attr_acrobatics" value="0"/><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{acrobatics}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Athletics (Str): <input type="number" name="attr_athletics" value="0"/><button class="skill" type="roll" name="roll_strength" value="/r 1d10!10+@{strength_modifier}+@{athletics}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></button></label></div>
+                <div><label class="skill-label">Athletics (Str): <input type="number" name="attr_athletics" value="0"/><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{athletics}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></button></label></div>
                 <div><label class="skill-label">Bluff (Per): <input type="number" name="attr_bluff" value="0"/><button class="skill" type="roll" name="roll_bluff" value="/r 1d10!10+@{personality_modifier}+@{bluff}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
                 <div><label class="skill-label">Clairvoyant (Spi): <input type="number" name="attr_clairvoyant" value="0"/><button class="skill" type="roll" name="roll_clairvoyant" value="/r 1d10!10+@{spirit_modifier}+floor(@{scholarship_modifier}/2)+@{clairvoyant}+@{hidden_power}"></label></div>
                 <div><label class="skill-label">Concealment (Spi): <input type="number" name="attr_concealment" value="0"/><button class="skill" type="roll" name="roll_concealment" value="/r 1d10!10+@{spirit_modifier}+@{concealment}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
@@ -439,18 +388,18 @@
     <div class="basic-attack">
         <div class="basic-attacks-col1">
             <h2 style="color: rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">Name:</h2>
-            <div class="basic-attacks-row"><input type="text" value="Basic Physical" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_physical" value="/em swings a kick at the enemy for [[@{basic_physical_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_physical_wound}d10!10+@{strength_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_physical_ki} ki"></button></div>
-            <div class="basic-attacks-row"><input type="text" value="Sphere Energy Attack" style="width: 100px;" disabled><button class="attack-button" type="roll" name="roll_basic_sphere" value="/em hurls a sphere of energy for [[@{basic_sphere_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_sphere_wound}d10!10+@{potency_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_sphere_ki} ki"></button></div>
+            <div class="basic-attacks-row"><input type="text" value="Basic Physical" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_physical" value="/em swings a kick at the enemy for [[@{basic_physical_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_physical_wound}d10!10+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_physical_ki} ki"></button></div>
+            <div class="basic-attacks-row"><input type="text" value="Sphere Energy Attack" style="width: 100px;" disabled><button class="attack-button" type="roll" name="roll_basic_sphere" value="/em hurls a sphere of energy for [[@{basic_sphere_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_sphere_wound}d10!10+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_sphere_ki} ki"></button></div>
             <div class="basic-attacks-row"><input type="text" value="Incantation" style="width: 100px;" disabled><button class="attack-button" type="roll" name="roll_basic_incantation" value="/em casts an incantation for [[@{basic_incantation_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_incantation_wound}d10!10+@{spirit_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_incantation_ki} ki"></button></div>
             <div class="basic-attacks-row"><input type="text" value="Rapid Fire" style="width: 100px;" disabled><button class="attack-button" type="roll" name="roll_basic_rapid" value="/em fires several energy attacks for [[@{basic_rapid_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[(@{basic_rapid_wound}d10!10)*2+@{hidden_power}+@{global_wound}]] and costing @{basic_rapid_ki} ki"></button></div>
-            <div class="basic-attacks-row"><input type="text" value="Guided" style="width: 100px;" disabled><button class="attack-button" type="roll" name="roll_basic_guided" value="/em a guided blast for [[@{basic_guided_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]] or [[(@{basic_guided_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit})/2]], dealing [[@{basic_guided_wound}d10!10+@{potency_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_guided_ki} ki"></button></div>
-            <div class="basic-attacks-row"><input type="text" value="Kiai" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_kiai" value="/em fires an kiai blast for [[@{basic_kiai_hit}d10d1!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_kiai_wound}d10d1!10+@{potency_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_kiai_ki} ki"></button></div>
-            <div class="basic-attacks-row"><input type="text" value="Energy Focus" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_focus" value="/em focuses their ki into a weapon and strikes for [[@{basic_focus_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_focus_wound}d10!10+@{strength_modifier}+@{potency_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_focus_ki} ki"></button></div>
-            <div class="basic-attacks-row"><input type="text" value="Blast" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_blast" value="/em fires a blast of energy in front of them, 3 feet wide and 3 feet long for [[@{basic_blast_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}@{global_hit}]], dealing [[@{basic_blast_wound}d10!10+@{potency_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_blast_ki} ki"></button></div>
-            <div class="basic-attacks-row"><input type="text" value="Explosion" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_explosion" value="/em fires off an explosion measuring 3 feet by 3 feet for [[@{basic_explosion_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}@{global_hit}]], dealing [[@{basic_explosion_wound}d10!10+@{potency_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_explosion_ki} ki"></button></div>
-            <div class="basic-attacks-row"><input type="text" value="Beam" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_beam" value="/em fires a beam of energy, impeding its target, for [[@{basic_beam_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_beam_wound}d10!10+@{potency_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_beam_ki} ki"></button></div>
+            <div class="basic-attacks-row"><input type="text" value="Guided" style="width: 100px;" disabled><button class="attack-button" type="roll" name="roll_basic_guided" value="/em a guided blast for [[@{basic_guided_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]] or [[(@{basic_guided_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit})/2]], dealing [[@{basic_guided_wound}d10!10+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_guided_ki} ki"></button></div>
+            <div class="basic-attacks-row"><input type="text" value="Kiai" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_kiai" value="/em fires an kiai blast for [[@{basic_kiai_hit}d10d1!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_kiai_wound}d10d1!10+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_kiai_ki} ki"></button></div>
+            <div class="basic-attacks-row"><input type="text" value="Energy Focus" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_focus" value="/em focuses their ki into a weapon and strikes for [[@{basic_focus_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_focus_wound}d10!10+@{force_modifier}+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_focus_ki} ki"></button></div>
+            <div class="basic-attacks-row"><input type="text" value="Blast" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_blast" value="/em fires a blast of energy in front of them, 3 feet wide and 3 feet long for [[@{basic_blast_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}@{global_hit}]], dealing [[@{basic_blast_wound}d10!10+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_blast_ki} ki"></button></div>
+            <div class="basic-attacks-row"><input type="text" value="Explosion" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_explosion" value="/em fires off an explosion measuring 3 feet by 3 feet for [[@{basic_explosion_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}@{global_hit}]], dealing [[@{basic_explosion_wound}d10!10+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_explosion_ki} ki"></button></div>
+            <div class="basic-attacks-row"><input type="text" value="Beam" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_beam" value="/em fires a beam of energy, impeding its target, for [[@{basic_beam_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_beam_wound}d10!10+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_beam_ki} ki"></button></div>
             <div class="basic-attacks-row"><input type="text" value="Combination" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_combination" value="/em attcks with a flurry of blows for [[@{basic_combination_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_combination_wound}d10!10+@{hidden_power}+@{global_wound}]] and costing @{basic_combination_ki} ki"></button></div>
-            <div class="basic-attacks-row"><input type="text" value="Powered" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_powered" value="/em empowers themselves with ki energy and strikes for [[@{basic_powered_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_powered_wound}d10!10+@{strength_modifier}+@{potency_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_powered_ki} ki"></button></div>
+            <div class="basic-attacks-row"><input type="text" value="Powered" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_powered" value="/em empowers themselves with ki energy and strikes for [[@{basic_powered_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_powered_wound}d10!10+@{force_modifier}+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_powered_ki} ki"></button></div>
         </div>
         <div class="basic-attacks-col2">
             <h2 style="color: rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">To Hit Die:</h2>
@@ -525,7 +474,7 @@
                     <div class="ccol2"><input type="number" name="attr_custom_attack_ki" value="0"></div>
                     <div class="ccol3"><input type="number" name="attr_custom_attack_technique" value="0" ></div>  
                     <div class="ccol4"><input type="text" name="attr_custom_attack_hit" value="0" style="width: 50px;"></div>
-                    <div class="ccol5"><input type="text" name="attr_custom_attack_wound" value="0" style="width: 50px;"><button class="attack-button" type="roll" name="roll_custom_attack" value="/em @{custom_attack_name} for [[@{custom_attack_hit}+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{custom_attack_wound}+@{hidden_power}+@{global_wound}+?{What ability are you using?|Strength,@{strength_modifier} | Potency,@{potency_modifier} |Spirit,@{spirit_modifier} | Balistic, 0}+@{global_wound}]] and costing @{custom_attack_ki} ki"></button></div>
+                    <div class="ccol5"><input type="text" name="attr_custom_attack_wound" value="0" style="width: 50px;"><button class="attack-button" type="roll" name="roll_custom_attack" value="/em @{custom_attack_name} for [[@{custom_attack_hit}+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{custom_attack_wound}+@{hidden_power}+@{global_wound}+?{What ability are you using?|force,@{force_modifier} | Spirit,@{spirit_modifier} | Balistic, 0}+@{global_wound}]] and costing @{custom_attack_ki} ki"></button></div>
                 </div>
             </fieldset>
         </div>
@@ -533,17 +482,17 @@
 </div>
 
 <div class='abilities'>
-    <h1 style="color: #F5F5F5;">Abilities</h1>
-    <h2 style="color: #F5F5F5;">Karma: <input type="number" name="attr_karma" max="10" value="5"></h2>
+    <h1>Abilities</h1>
+    <h2>Karma: <input type="number" name="attr_karma" max="10" value="5"></h2>
     <div style="border: 3px solid seagreen;">
-        <h2 style="color: #F5F5F5;">Z Soul: <input type="text" name="attr_z_soul"></h2>
-        <h2 style="color: #F5F5F5;">Z Soul: <input type="text" name="attr_z_soul2"></h2>
-        <h2 style="color: #F5F5F5;">Z Soul: <input type="text" name="attr_z_soul3"></h2>
+        <h2>Z Soul: <input type="text" name="attr_z_soul"></h2>
+        <h2>Z Soul: <input type="text" name="attr_z_soul2"></h2>
+        <h2>Z Soul: <input type="text" name="attr_z_soul3"></h2>
     </div>
     <br>
 
     <div style="border: 3px solid seagreen; border-collapse: collapse;">
-        <h2 style="color: white; border: 1px solid seagreen;">Equipment</h2>
+        <h2 style="border: 1px solid seagreen;">Equipment</h2>
         <fieldset class="repeating_equipment" >
             <div class="equipmentTable">
                 <div style="grid-area: gear1;"><h3 style="color: seagreen;">Name: <input type="text" name="attr_gear_name" style="width: 150px;"></h3></div>
@@ -555,7 +504,7 @@
 
     <br>
 
-    <h2 style="color: #F5F5F5;">Talents and Abilities</h2>
+    <h2>Talents and Abilities</h2>
     <div style="border: 3px solid seagreen;">
         <fieldset class="repeating_talents">
             <div style="display: grid; grid-template-areas: 'talent talent_description'; justify-content: space-between; border: 1px solid seagreen;">
@@ -584,7 +533,6 @@
             <div style="grid-area: ta; border-right: 1px solid silver; border-bottom: 1px solid silver;"><h3 style="color: silver;">Agi:</h3></div>
             <div style="grid-area: ti; border-right: 1px solid silver; border-bottom: 1px solid silver;"><h3 style="color: silver;">Ins:</h3></div>
             <div style="grid-area: tpe; border-right: 1px solid silver; border-bottom: 1px solid silver;"><h3 style="color: silver;">Per:</h3></div>
-            <div style="grid-area: tpo; border-right: 1px solid silver; border-bottom: 1px solid silver;"><h3 style="color: silver;">Pot:</h3></div>
             <div style="grid-area: tsc; border-right: 1px solid silver; border-bottom: 1px solid silver;"><h3 style="color: silver;">Sch:</h3></div>
             <div style="grid-area: tsp; border-right: 1px solid silver; border-bottom: 1px solid silver;"><h3 style="color: silver;">Spi:</h3></div>
             <div style="grid-area: tst; border-right: 1px solid silver; border-bottom: 1px solid silver;"><h3 style="color: silver;">Str:</h3></div>
@@ -598,7 +546,6 @@
                     <div class="tagi"><input type="number" name="attr_transformation_agi" value="0"></div>
                     <div class="tins"><input type="number" name="attr_transformation_ins" value="0"></div>
                     <div class="tper"><input type="number" name="attr_transformation_per" value="0"></div>
-                    <div class="tpot"><input type="number" name="attr_transformation_pot" value="0"></div>
                     <div class="tsch"><input type="number" name="attr_transformation_sch" value="0"></div>
                     <div class="tspi"><input type="number" name="attr_transformation_spi" value="0"></div>
                     <div class="tstr"><input type="number" name="attr_transformation_str" value="0"></div>
@@ -621,7 +568,7 @@
 
     /*
     on("change:transformation_on", function(){
-        getAttrs(["TRANSFORMATION_ON", "repeating_transformationstable_TRANSFORMATION_AGI", "repeating_transformationstable_TRANSFORMATION_INS", "repeating_transformationstable_TRANSFORMATION_PER", "repeating_transformationstable_TRANSFORMATION_POT", "repeating_transformationstable_TRANSFORMATION_SCH", "repeating_transformationstable_TRANSFORMATION_SPI", "repeating_transformationstable_TRANSFORMATION_STR", "repeating_transformationstable_TRANSFORMATION_TEN", "AGILITY", "INSIGHT", "PERSONALITY", "POTENCY", "SCHOLARSHIP", "SPIRIT", "STRENGTH", "TENACITY"], function(values){
+        getAttrs(["TRANSFORMATION_ON", "repeating_transformationstable_TRANSFORMATION_AGI", "repeating_transformationstable_TRANSFORMATION_INS", "repeating_transformationstable_TRANSFORMATION_PER", "repeating_transformationstable_TRANSFORMATION_POT", "repeating_transformationstable_TRANSFORMATION_SCH", "repeating_transformationstable_TRANSFORMATION_SPI", "repeating_transformationstable_TRANSFORMATION_STR", "repeating_transformationstable_TRANSFORMATION_TEN", "AGILITY", "INSIGHT", "PERSONALITY", "SCHOLARSHIP", "SPIRIT", "force", "TENACITY"], function(values){
             var on = values.TRANSFORMATION_ON;
             console.log("checkbox " + on);
             
@@ -640,11 +587,6 @@
             console.log("per " + per);
             console.log("hper " +hper);
 
-            var pot = values.repeating_transformationstable_TRANSFORMATION_POT;
-            var hpot = values.POTENCY;
-            console.log("pot " + pot);
-            console.log("hpot " + hpot);
-
             var sch = values.repeating_transformationstable_TRANSFORMATION_SCH;
             var hsch = values.SCHOLARSHIP;
             console.log("sch " + sch);
@@ -656,7 +598,7 @@
             console.log("hspi " + hspi);
             
             var str = values.repeating_transformationstable_TRANSFORMATION_STR;
-            var hstr = values.STRENGTH;
+            var hstr = values.force;
             console.log("str " + str);
             console.log("hstr" + hstr);
             
@@ -682,11 +624,6 @@
                     "personality":hper
                 });
 
-                hpot = hpot-pot;
-                setAttrs({
-                    "potency":hpot
-                });
-
                 hsch = hsch-sch;
                 setAttrs({
                     "scholarship":hsch
@@ -699,7 +636,7 @@
 
                 hstr = hstr-str;
                 setAttrs({
-                    "strength":hstr
+                    "force":hstr
                 });
 
                 hten = hten-ten;
@@ -722,11 +659,6 @@
                     "personality":hper
                 });
 
-                hpot = hpot+pot;
-                setAttrs({
-                    "potency":hpot
-                });
-
                 hsch = hsch+sch;
                 setAttrs({
                     "scholarship":hsch
@@ -739,7 +671,7 @@
 
                 hstr = hstr+str;
                 setAttrs({
-                    "strength":hstr
+                    "force":hstr
                 });
 
                 hten = hten + ten;

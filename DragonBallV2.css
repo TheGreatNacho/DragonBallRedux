@@ -33,10 +33,9 @@
 }
 
 .sheet-abilities{
-    background-image: url(https://i.pinimg.com/564x/72/f0/30/72f0303e2a534937e94d4390269d13d4.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #0A0A0A;
+    background-color: rgb(255,255,255);
     text-align: center;
 }
 
@@ -309,17 +308,15 @@ button[type="roll"].sheet-attack-button{
 }
 
 .sheet-attacks{
-    background-image: url(https://i.pinimg.com/564x/cf/db/99/cfdb99728dfe48c17957810e9c65f23a.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgb(38, 44, 58);
+    background-color: rgb(255, 255, 255);
     text-align: center;
 }
 
 .sheet-character{
-    background-image: url(https://i.pinimg.com/564x/90/77/29/9077291c252a3177ae7f138c7ad718aa.jpg);
     background-position: center;
-    background-color: rgb(237, 109, 0);
+    background-color: rgb(255, 255, 255);
     background-repeat: no-repeat;
     text-align: center;
 }
