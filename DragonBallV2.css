@@ -369,7 +369,7 @@ button[type="roll"].sheet-skill{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px inset darkred;
+    border: 1px inset darkgray;
 }
 
 .sheet-stat-pot{
@@ -378,7 +378,7 @@ button[type="roll"].sheet-skill{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px inset darkred;
+    border: 1px inset darkgray;
 }
 
 .sheet-stat-per{
@@ -387,7 +387,7 @@ button[type="roll"].sheet-skill{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px inset darkred;
+    border: 1px inset darkgray;
 }
 
 .sheet-stat-spi{
@@ -396,7 +396,7 @@ button[type="roll"].sheet-skill{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px inset darkred;
+    border: 1px inset darkgray;
 }
 
 .sheet-stat-str{
@@ -405,7 +405,7 @@ button[type="roll"].sheet-skill{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px inset darkred;
+    border: 1px inset darkgray;
 }
 
 .sheet-stat-sch{
@@ -414,7 +414,7 @@ button[type="roll"].sheet-skill{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px inset darkred;
+    border: 1px inset darkgray;
 }
 
 .sheet-stat-agi{
@@ -423,7 +423,7 @@ button[type="roll"].sheet-skill{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px inset darkred;
+    border: 1px inset darkgray;
 }
 
 .sheet-stat-ins{
@@ -432,7 +432,7 @@ button[type="roll"].sheet-skill{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px inset darkred;
+    border: 1px inset darkgray;
 }
 
 .sheet-all-stats{
@@ -448,7 +448,7 @@ button[type="roll"].sheet-skill{
 
 .sheet-stats{
     display: grid;
-    border: 2px solid darkred;
+    border: 2px solid darkgray;
     grid-template-areas: 
     'all-stats skill1 skill2';
 }
