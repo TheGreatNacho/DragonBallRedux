@@ -362,13 +362,13 @@
 
 
 <div class='attacks'>
-    <h1 style="color: rgb(185, 102, 0);">Attacks</h1>
-    <h2 style="color: rgb(185, 102, 0);">Technique Points <input type="number" name="attr_technique_points" value="0"/></h2>
-    <h2 style="color: rgb(185, 102, 0);">Soak <input type="number" name="attr_soak" value="0"/>/<input type="number" name="attr_soak_max" value="@{hidden_soak}+@{soak_modifier}"  disabled> Modifier: <input type="number" name="attr_soak_modifier" value="0"/></h2>
-    <h2 style="color: rgb(185, 102, 0);">Dodge <input type="number" name="attr_dodge_modifier" value="0"/><button class="attack-button" type="roll" name="roll_dodge" value="/r 1d10!10+@{dodge_modifier}+@{agility_modifier}"></button></h2>
+    <h1>Attacks</h1>
+    <h2>Technique Points <input type="number" name="attr_technique_points" value="0"/></h2>
+    <h2>Soak <input type="number" name="attr_soak" value="0"/>/<input type="number" name="attr_soak_max" value="@{hidden_soak}+@{soak_modifier}"  disabled> Modifier: <input type="number" name="attr_soak_modifier" value="0"/></h2>
+    <h2>Dodge <input type="number" name="attr_dodge_modifier" value="0"/><button class="attack-button" type="roll" name="roll_dodge" value="/r 1d10!10+@{dodge_modifier}+@{agility_modifier}"></button></h2>
     <input type="hidden" name="attr_hidden_soak" value="0">
-    <div style="display: flex;"><h2 style="color: rgb(185, 102, 0);">Hit Modifier: <input type="number" name="attr_global_hit" value="0"></h2><h2 style="color: rgb(185, 102, 0);">Wound Modifier: <input type="number" name="attr_global_wound" value="0"></h2></div>
-    <div class="saves"><label style="color: rgb(185, 102, 0); grid-area: save1;">Cognitive save: <button class="attack-button" type="roll" name="roll_cognitive" value="/r 1d10!10+@{insight_modifier}"></button></label><label style="color: rgb(185, 102, 0); grid-area: save2;">Corporeal Save: <button class="attack-button" type="roll" name="roll_corporeal" value="/r 1d10!10+@{tenacity_modifier}"></button></label><label style="color: rgb(185, 102, 0); grid-area: save3;">Impulsive Save: <button class="attack-button" type="roll" name="roll_impulsive" value="/r 1d10!10+@{agility_modifier}"></button></label><label style="color: rgb(185, 102, 0); grid-area: save4;">Morale Save: <button class="attack-button" type="roll" name="roll_morale" value="/r 1d10!10+@{personality_modifier}"></button></label></div>
+    <div style="display: flex;"><h2>Hit Modifier: <input type="number" name="attr_global_hit" value="0"></h2><h2>Wound Modifier: <input type="number" name="attr_global_wound" value="0"></h2></div>
+    <div class="saves"><label style="grid-area: save1;">Cognitive save: <button class="attack-button" type="roll" name="roll_cognitive" value="/r 1d10!10+@{insight_modifier}"></button></label><label style="grid-area: save2;">Corporeal Save: <button class="attack-button" type="roll" name="roll_corporeal" value="/r 1d10!10+@{tenacity_modifier}"></button></label><label style="grid-area: save3;">Impulsive Save: <button class="attack-button" type="roll" name="roll_impulsive" value="/r 1d10!10+@{agility_modifier}"></button></label><label style="grid-area: save4;">Morale Save: <button class="attack-button" type="roll" name="roll_morale" value="/r 1d10!10+@{personality_modifier}"></button></label></div>
     <script type="text/worker">
         on("change:tenacity, sheet:opened", function(){
             getAttrs(["TENACITY_MODIFIER"], function(values){
@@ -387,7 +387,7 @@
     
     <div class="basic-attack">
         <div class="basic-attacks-col1">
-            <h2 style="color: rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">Name:</h2>
+            <h2 style="border: 1px solid darkgray">Name:</h2>
             <div class="basic-attacks-row"><input type="text" value="Basic Physical" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_physical" value="/em swings a kick at the enemy for [[@{basic_physical_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_physical_wound}d10!10+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_physical_ki} ki"></button></div>
             <div class="basic-attacks-row"><input type="text" value="Sphere Energy Attack" style="width: 100px;" disabled><button class="attack-button" type="roll" name="roll_basic_sphere" value="/em hurls a sphere of energy for [[@{basic_sphere_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_sphere_wound}d10!10+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_sphere_ki} ki"></button></div>
             <div class="basic-attacks-row"><input type="text" value="Incantation" style="width: 100px;" disabled><button class="attack-button" type="roll" name="roll_basic_incantation" value="/em casts an incantation for [[@{basic_incantation_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_incantation_wound}d10!10+@{spirit_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_incantation_ki} ki"></button></div>
@@ -402,7 +402,7 @@
             <div class="basic-attacks-row"><input type="text" value="Powered" style="width: 100px;" disabled> <button class="attack-button" type="roll" name="roll_basic_powered" value="/em empowers themselves with ki energy and strikes for [[@{basic_powered_hit}d10!10+@{hidden_power}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{basic_powered_wound}d10!10+@{force_modifier}+@{force_modifier}+@{hidden_power}+@{global_wound}]] and costing @{basic_powered_ki} ki"></button></div>
         </div>
         <div class="basic-attacks-col2">
-            <h2 style="color: rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">To Hit Die:</h2>
+            <h2 style="border: 1px solid darkgray;">To Hit Die:</h2>
             <div class="basic-attacks-row"><input type="number" value="1" name="attr_basic_physical_hit"></div>
             <div class="basic-attacks-row"><input type="number" value="1" name="attr_basic_sphere_hit"></div>
             <div class="basic-attacks-row"><input type="number" value="1" name="attr_basic_incantation_hit"></div>
@@ -417,7 +417,7 @@
             <div class="basic-attacks-row"><input type="number" value="1" name="attr_basic_powered_hit"></div>
         </div>
         <div class="basic-attacks-col3">
-            <h2 style="color: rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">To Wound Die:</h2>
+            <h2 style="border: 1px solid darkgray;">To Wound Die:</h2>
             <div class="basic-attacks-row"><input type="number" value="1" name="attr_basic_physical_wound"></div>
             <div class="basic-attacks-row"><input type="number" value="1" name="attr_basic_sphere_wound"></div>
             <div class="basic-attacks-row"><input type="number" value="1" name="attr_basic_incantation_wound"></div>
@@ -432,7 +432,7 @@
             <div class="basic-attacks-row"><input type="number" value="1" name="attr_basic_powered_wound"></div>
         </div>
         <div class="basic-attacks-col4">
-            <h2 style="color:rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">Ki Cost:</h2>
+            <h2 style="border: 1px solid darkgray;">Ki Cost:</h2>
             <div class="basic-attacks-row"><input type="number" value="2" name="attr_basic_physical_ki"></div>
             <div class="basic-attacks-row"><input type="number" value="2" name="attr_basic_sphere_ki"></div>
             <div class="basic-attacks-row"><input type="number" value="2" name="attr_basic_incantation_ki"></div>
@@ -451,19 +451,19 @@
     <div class="custom-attacks">
         <div class="custom-attacks-top">
             <div class="custom-attacks-hcol1">
-                <h2 style="color:rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">Name:</h2>
+                <h2 style="border: 1px solid darkgray;">Name:</h2>
             </div>
             <div class="custom-attacks-hcol2">
-                <h2 style="color:rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">Ki Cost:</h2>
+                <h2 style="border: 1px solid darkgray;">Ki Cost:</h2>
             </div>
             <div class="custom-attacks-hcol3">
-                <h2 style="color:rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">TP Cost:</h2>
+                <h2 style="border: 1px solid darkgray;">TP Cost:</h2>
             </div>
             <div class="custom-attacks-hcol4">
-                <h2 style="color:rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">Roll:</h2>
+                <h2 style="border: 1px solid darkgray;">Roll:</h2>
             </div>
             <div class="custom-attacks-hcol5">
-                <h2 style="color:rgb(202, 111, 0); border: 1px solid rgb(156, 155, 155);">To Wound:</h2>
+                <h2 style="border: 1px solid darkgray;">To Wound:</h2>
             </div>
         </div>
 
@@ -484,20 +484,20 @@
 <div class='abilities'>
     <h1>Abilities</h1>
     <h2>Karma: <input type="number" name="attr_karma" max="10" value="5"></h2>
-    <div style="border: 3px solid seagreen;">
+    <div style="border: 3px solid darkgray;">
         <h2>Z Soul: <input type="text" name="attr_z_soul"></h2>
         <h2>Z Soul: <input type="text" name="attr_z_soul2"></h2>
         <h2>Z Soul: <input type="text" name="attr_z_soul3"></h2>
     </div>
     <br>
 
-    <div style="border: 3px solid seagreen; border-collapse: collapse;">
-        <h2 style="border: 1px solid seagreen;">Equipment</h2>
+    <div style="border: 3px solid darkgray; border-collapse: collapse;">
+        <h2 style="border: 1px solid darkgray;">Equipment</h2>
         <fieldset class="repeating_equipment" >
             <div class="equipmentTable">
-                <div style="grid-area: gear1;"><h3 style="color: seagreen;">Name: <input type="text" name="attr_gear_name" style="width: 150px;"></h3></div>
-                <div style="grid-area: gear2;"><h3 style="color: seagreen;">Name: <input type="text" name="attr_gear_name2" style="width: 150px;"></h3></div>
-                <div style="grid-area: gear3;"><h3 style="color: seagreen;">Name: <input type="text" name="attr_gear_name3" style="width: 150px;"></h3></div>
+                <div style="grid-area: gear1;"><h3 style="color: darkgray;">Name: <input type="text" name="attr_gear_name" style="width: 150px;"></h3></div>
+                <div style="grid-area: gear2;"><h3 style="color: darkgray;">Name: <input type="text" name="attr_gear_name2" style="width: 150px;"></h3></div>
+                <div style="grid-area: gear3;"><h3 style="color: darkgray;">Name: <input type="text" name="attr_gear_name3" style="width: 150px;"></h3></div>
             </div>
         </fieldset>
     </div>
@@ -505,7 +505,7 @@
     <br>
 
     <h2>Talents and Abilities</h2>
-    <div style="border: 3px solid seagreen;">
+    <div style="border: 3px solid darkgray;">
         <fieldset class="repeating_talents">
             <div style="display: grid; grid-template-areas: 'talent talent_description'; justify-content: space-between; border: 1px solid seagreen;">
                 <br>
@@ -523,9 +523,9 @@
 </div>
 
 <div class='transformations'>
-    <h1 style="color: lightseagreen;">Transformations</h1>
-    <h2 style="color: lightseagreen;">Stress Test<button class="stress-button" name="roll_stress_test" type="roll" value="/em [[1d10!10 + @{power_level}]]"></button></h2>
-    <h2 style="color: lightseagreen;">Training Roll <input type="number" min="1" value="1" name="attr_intensity"><button class="stress-button" name="roll_training" type="roll" value="/em puts their body on the line in training, attempt [[@{intensity}d10!10+@{agility_modifier}+@{tenacity_modifier}+@{insight_modifier}+@{personality_modifier}]]>[[?{Condition Range? |Very Easy, 10*@{intensity}+floor(@{power_level}/5)*5|Easy, 20*@{intensity}+floor(@{power_level}/5)*5|Medium, 30*@{intensity}+floor(@{power_level}/5)*5|Hard, 40*@{intensity}+floor(@{power_level}/5)*5|Very Hard, 50*@{intensity}+floor(@{power_level}/5)*5|Nearly Impossible, 60*@{intensity}+floor(@{power_level}/5)*5}]] gaining [[@{power_level}*@{intensity}]] xp"></button></h2>
+    <h1>Transformations</h1>
+    <h2>Stress Test<button class="stress-button" name="roll_stress_test" type="roll" value="/em [[1d10!10 + @{power_level}]]"></button></h2>
+    <h2>Training Roll <input type="number" min="1" value="1" name="attr_intensity"><button class="stress-button" name="roll_training" type="roll" value="/em puts their body on the line in training, attempt [[@{intensity}d10!10+@{agility_modifier}+@{tenacity_modifier}+@{insight_modifier}+@{personality_modifier}]]>[[?{Condition Range? |Very Easy, 10*@{intensity}+floor(@{power_level}/5)*5|Easy, 20*@{intensity}+floor(@{power_level}/5)*5|Medium, 30*@{intensity}+floor(@{power_level}/5)*5|Hard, 40*@{intensity}+floor(@{power_level}/5)*5|Very Hard, 50*@{intensity}+floor(@{power_level}/5)*5|Nearly Impossible, 60*@{intensity}+floor(@{power_level}/5)*5}]] gaining [[@{power_level}*@{intensity}]] xp"></button></h2>
     <div class="transformations-page">
         <div class="transformations-top">
             <div style="grid-area: tn; border-right: 1px solid silver; border-bottom: 1px solid silver;"><h3 style="color: silver;">Name:</h3></div>
