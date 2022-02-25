@@ -48,47 +48,47 @@
                 </div>
                 <div><label>Subrace:<input type="text" name="attr_subrace" style="width:100px;" value=""/></label></div>
                 <script type="text/worker">
-                    on("change:race", function(){
+
+                    on("change:race", function(){                
                         getAttrs(["RACE"], function(values){
                             var race = values.RACE;
-                            if(race == "arcosian"){
-                                setAttrs({
-                                    "subrace":"Arcosian"
-                                });
-                            }else{
-                                if(race == "android"){
+                            
+                            switch (race){
+                                case "android":
                                     setAttrs({
                                         "subrace":"Artificial Construct, Cybernetic Organism, Bio-Engineered"
                                     });
-                                }else{
-                                    if(race == "human"){
-                                        setAttrs({
-                                            "subrace":"Earthling, Beast-men"
-                                        });
-                                    }else{
-                                        if(race == "namekians"){
-                                            setAttrs({
-                                                "subrace":"Warrior, Priest"
-                                            });
-                                        }else{
-                                            if(race == "majin"){
-                                                setAttrs({
-                                                    "subrace":"Majin"
-                                                });
-                                            }else{
-                                                if(race == "saiyan"){
-                                                    setAttrs({
-                                                        "subrace":"Full Blood, Half-Blood"
-                                                    });
-                                                }else{
-                                                    setAttrs({
-                                                         "subrace":"Kaio, Makaio"
-                                                    })
-                                                } 
-                                            };
-                                        };
-                                    };
-                                };
+                                    break;
+                                case "arcosian":
+                                    setAttrs({
+                                        "subrace":"Arcosian"
+                                    });
+                                    break;
+                                case "human":
+                                    setAttrs({
+                                        "subrace":"Earthling, Beast-men"
+                                    });
+                                    break;
+                                case "namekians":
+                                    setAttrs({
+                                        "subrace":"Warrior, Priest"
+                                    });
+                                    break;
+                                case "majin":
+                                    setAttrs({
+                                        "subrace":"Majin"
+                                    });
+                                    break;
+                                case "saiyan":
+                                    setAttrs({
+                                        "subrace":"Full Blood, Half-Blood"
+                                    });
+                                    break;
+                                case "shinjin":
+                                    setAttrs({
+                                        "subrace":"Kaio, Makaio"
+                                    });
+                                    break;
                             };
                         });
                     });
@@ -97,54 +97,29 @@
                         getAttrs(["SUBRACE", "RACE"], function(values){
                             var subrace = values.SUBRACE;
                             var race = values.RACE;
+                            
+                            // Will not set stats back to default if swiched to another race (from shinjin), only the stats listed will change
+                            // Will perhaps impliment racial_agility racial_insight etc. to be changed instead
                             if(subrace == "Majin"){
                                 setAttrs({
-                                    "hp_modifier":3
-                                });
-                                setAttrs({
-                                    "agility":2
-                                });
-                                setAttrs({
-                                    "insight":2
-                                });
-                                setAttrs({
-                                    "personality":5
-                                });
-                                setAttrs({
-                                    "scholarship":2
-                                });
-                                setAttrs({
-                                    "spirit":5
-                                });
-                                setAttrs({
-                                    "force":2
-                                });
-                                setAttrs({
+                                    "hp_modifier":3,
+                                    "agility":2,
+                                    "insight":2,
+                                    "personality":5,
+                                    "scholarship":2,
+                                    "spirit":5,
+                                    "force":2,
                                     "tenacity":4
                                 });
                             }else if(subrace == "Arcosian"){
                                 setAttrs({
-                                    "hp_modifier":3
-                                });
-                                setAttrs({
-                                    "agility":2
-                                });
-                                setAttrs({
-                                    "insight":2
-                                });
-                                setAttrs({
-                                    "personality":2
-                                });
-                                setAttrs({
-                                    "scholarship":2
-                                });
-                                setAttrs({
-                                    "spirit":5
-                                });
-                                setAttrs({
-                                    "force":2
-                                });
-                                setAttrs({
+                                    "hp_modifier":3,
+                                    "agility":2,
+                                    "insight":2,
+                                    "personality":2,
+                                    "scholarship":2,
+                                    "spirit":5,
+                                    "force":2,
                                     "tenacity":4
                                 });
                             }else if(race == "android"){
@@ -158,24 +133,12 @@
                                     });
                                 }
                                 setAttrs({
-                                    "agility":2
-                                });
-                                setAttrs({
-                                    "insight":2
-                                });
-                                setAttrs({
-                                    "personality":2
-                                });
-                                setAttrs({
-                                    "scholarship":2
-                                });
-                                setAttrs({
-                                    "spirit":2
-                                });
-                                setAttrs({
-                                    "force":2
-                                });
-                                setAttrs({
+                                    "agility":2,
+                                    "insight":2,
+                                    "personality":2,
+                                    "scholarship":2,
+                                    "spirit":2,
+                                    "force":2,
                                     "tenacity":5
                                 });
                             }else if(race == "human"){
@@ -184,52 +147,24 @@
                                 });
                             }else if(race == "namekians"){
                                 setAttrs({
-                                    "hp_modifier":4
-                                });
-                                setAttrs({
-                                    "agility":2
-                                });
-                                setAttrs({
-                                    "insight":5
-                                });
-                                setAttrs({
-                                    "personality":2
-                                });
-                                setAttrs({
-                                    "scholarship":2
-                                });
-                                setAttrs({
-                                    "spirit":4
-                                });
-                                setAttrs({
-                                    "force":2
-                                });
-                                setAttrs({
+                                    "hp_modifier":4,
+                                    "agility":2,
+                                    "insight":5,
+                                    "personality":2,
+                                    "scholarship":2,
+                                    "spirit":4,
+                                    "force":2,
                                     "tenacity":5
                                 });
                             }else if(race == "saiyan"){
                                 setAttrs({
-                                    "hp_modifier":3
-                                });
-                                setAttrs({
-                                    "agility":4
-                                });
-                                setAttrs({
-                                    "insight":2
-                                });
-                                setAttrs({
-                                    "personality":2
-                                });
-                                setAttrs({
-                                    "scholarship":2
-                                });
-                                setAttrs({
-                                    "spirit":2
-                                });
-                                setAttrs({
-                                    "force":5
-                                });
-                                setAttrs({
+                                    "hp_modifier":3,
+                                    "agility":4,
+                                    "insight":2,
+                                    "personality":2,
+                                    "scholarship":2,
+                                    "spirit":2,
+                                    "force":5,
                                     "tenacity":5
                                 });
                             }else if(race == "shinjin"){
