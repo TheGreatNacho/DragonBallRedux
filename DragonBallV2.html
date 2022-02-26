@@ -206,87 +206,88 @@
         <div class="stats">
             <div class="all-stats">
                 <div class="stat-agi">
-                    <h3 class="j-h3">Agility</h3>
+                    <button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{hidden_power}"><h3 class="j-h3">Agility</h3></button>
+                    
                     <div>
-                        <label class="j-label">Score: <input type="number" name="attr_agility" value="2"/><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{hidden_power}"></button></label>
+                        <label class="j-label">Score: <input type="number" name="attr_agility" value="2"/></label>
                         <input type="hidden" value="floor(@{agility}/2)" name="attr_agility_modifier">
                     </div>
                 </div>
 
                 <div class="stat-str">
-                    <h3 class="j-h3">Force</h3>
+                    <button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{hidden_power}"><h3 class="j-h3">Force</h3></button>
                     <div>
-                        <label class="j-label">Score: <input type="number" name="attr_force" value="2"/><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{hidden_power}"></button></label>
+                        <label class="j-label">Score: <input type="number" name="attr_force" value="2"/></label>
                         <input type="hidden" value="floor(@{force}/2)" name="attr_force_modifier">
                     </div>
                 </div>
 
                 <div class="stat-ten">
-                    <h3 class="j-h3">Tenacity</h3>
+                    <button class="skill" type="roll" name="roll_tenacity" value="/r 1d10!10+@{tenacity_modifier}+@{hidden_power}"><h3 class="j-h3">Tenacity</h3></button>
                     <div>
-                        <label class="j-label">Score: <input type="number" name="attr_tenacity" value="2"/><button class="skill" type="roll" name="roll_tenacity" value="/r 1d10!10+@{tenacity_modifier}+@{hidden_power}"></button></label>
+                        <label class="j-label">Score: <input type="number" name="attr_tenacity" value="2"/></label>
                         <input type="hidden" value="floor(@{tenacity}/2)" name="attr_tenacity_modifier">
                     </div>
                 </div>
 
                 <div class="stat-sch">
-                    <h3 class="j-h3">Scholarship</h3>
+                    <button class="skill" type="roll" name="roll_scholarship" value="/r 1d10!10+@{scholarship_modifier}+@{hidden_power}"><h3 class="j-h3">Scholarship</h3></button>
                     <div>
-                        <label class="j-label">Score: <input type="number" name="attr_scholarship" value="2"/><button class="skill" type="roll" name="roll_scholarship" value="/r 1d10!10+@{scholarship_modifier}+@{hidden_power}"></button></label>
+                        <label class="j-label">Score: <input type="number" name="attr_scholarship" value="2"/></label>
                         <input type="hidden" value="floor(@{scholarship}/2)" name="attr_scholarship_modifier">
                     </div>
                 </div>
 
                 <div class="stat-ins">
-                    <h3 class="j-h3">Insight</h3>
+                    <button class="skill" type="roll" name="roll_insight" value="/r 1d10!10+@{insight_modifier}+@{hidden_power}"><h3 class="j-h3">Insight</h3></button>
                     <div>
-                        <label class="j-label">Score: <input type="number" name="attr_insight" value="2"/><button class="skill" type="roll" name="roll_insight" value="/r 1d10!10+@{insight_modifier}+@{hidden_power}"></button></label>
+                        <label class="j-label">Score: <input type="number" name="attr_insight" value="2"/></label>
                         <input type="hidden" value="floor(@{insight}/2)" name="attr_insight_modifier"> 
                     </div>
                 </div>
 
                 <div class="stat-spi">
-                    <h3 class="j-h3">Spirit</h3>
+                    <button class="skill" type="roll" name="roll_spirit" value="/r 1d10!10+@{spirit_modifier}+@{hidden_power}"><h3 class="j-h3">Spirit</h3></button>
                     <div>
-                        <label class="j-label">Score: <input type="number" name="attr_spirit" value="2"/><button class="skill" type="roll" name="roll_spirit" value="/r 1d10!10+@{spirit_modifier}+@{hidden_power}"></button></label>
+                        <label class="j-label">Score: <input type="number" name="attr_spirit" value="2"/></label>
                         <input type="hidden" value="floor(@{spirit}/2)" name="attr_spirit_modifier">
                     </div>
                 </div>
 
                 <div class="stat-per">
-                    <h3 class="j-h3">Personality</h3>
+                    <button class="skill" type="roll" name="roll_personality" value="/r 1d10!10+@{personality_modifier}+@{hidden_power}"><h3 class="j-h3">Personality</h3></button>
                     <div>
-                        <label class="j-label">Score: <input type="number" name="attr_personality" value="2"/><button class="skill" type="roll" name="roll_personality" value="/r 1d10!10+@{personality_modifier}+@{hidden_power}"></button></label>
+                        <label class="j-label">Score: <input type="number" name="attr_personality" value="2"/></label>
                         <input type="hidden" value="floor(@{personality}/2)" name="attr_personality_modifier">
                     </div>
                 </div>
             </div>
 
             <div class="skill1">
-                <div><label class="skill-label">Acrobatics (AG): <input type="number" name="attr_acrobatics" value="0"/><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{acrobatics}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Athletics (FO): <input type="number" name="attr_athletics" value="0"/><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{athletics}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></button></label></div>
-                <div><label class="skill-label">Bluff (PE): <input type="number" name="attr_bluff" value="0"/><button class="skill" type="roll" name="roll_bluff" value="/r 1d10!10+@{personality_modifier}+@{bluff}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Clairvoyant (SP): <input type="number" name="attr_clairvoyant" value="0"/><button class="skill" type="roll" name="roll_clairvoyant" value="/r 1d10!10+@{spirit_modifier}+floor(@{scholarship_modifier}/2)+@{clairvoyant}+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Concealment (SP): <input type="number" name="attr_concealment" value="0"/><button class="skill" type="roll" name="roll_concealment" value="/r 1d10!10+@{spirit_modifier}+@{concealment}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Craft (SC): <input type="number" name="attr_craft" value="0"/><button class="skill" type="roll" name="roll_craft" value="/r 1d10!10+@{scholarship_modifier}+@{craft}+floor(@{scholarship_modifier})+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Creature Handling (IN): <input type="number" name="attr_creature_handling" value="0"/><button class="skill" type="roll" name="roll_creature_handling" value="/r 1d10!10+@{insight_modifier}+@{creature_handling}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Intimidate (PE): <input type="number" name="attr_intimidate" value="0"/><button class="skill" type="roll" name="roll_intimidate" value="/r 1d10!10+@{personality_modifier}+@{intimidate}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Investigation (SC): <input type="number" name="attr_investigation" value="0"/><button class="skill" type="roll" name="roll_investigation" value="/r 1d10!10+@{scholarship_modifier}+@{investigation}+floor(@{scholarship_modifier})+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Knowledge (SC): <input type="number" name="attr_knowledge" value="0"/><button class="skill" type="roll" name="roll_knowledge" value="/r 1d10!10+@{scholarship_modifier}+@{knowledge}+floor(@{scholarship_modifier})+@{hidden_power}"></label></div>
+                <div><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{acrobatics}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Acrobatics (AG):</button><input type="number" name="attr_acrobatics" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{athletics}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Athletics (FO):</button><input type="number" name="attr_athletics" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_bluff" value="/r 1d10!10+@{personality_modifier}+@{bluff}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Bluff (PE):</button><input type="number" name="attr_bluff" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_clairvoyant" value="/r 1d10!10+@{spirit_modifier}+floor(@{scholarship_modifier}/2)+@{clairvoyant}+@{hidden_power}">Clairvoyant (SP):</button><input type="number" name="attr_clairvoyant" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_concealment" value="/r 1d10!10+@{spirit_modifier}+@{concealment}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Concealment (SP):</button><input type="number" name="attr_concealment" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_craft" value="/r 1d10!10+@{scholarship_modifier}+@{craft}+floor(@{scholarship_modifier})+@{hidden_power}">Craft (SC):</button><input type="number" name="attr_craft" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_creature_handling" value="/r 1d10!10+@{insight_modifier}+@{creature_handling}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Creature Handling (IN):</button><input type="number" name="attr_creature_handling" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_intimidate" value="/r 1d10!10+@{personality_modifier}+@{intimidate}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Intimidate (PE):</button><input type="number" name="attr_intimidate" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_investigation" value="/r 1d10!10+@{scholarship_modifier}+@{investigation}+floor(@{scholarship_modifier})+@{hidden_power}">Investigation (SC):</button><input type="number" name="attr_investigation" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_knowledge" value="/r 1d10!10+@{scholarship_modifier}+@{knowledge}+floor(@{scholarship_modifier})+@{hidden_power}">Knowledge (SC):</button><input type="number" name="attr_knowledge" value="0"/></div>
             </div>
 
             <div class="skill2">
-                <div><label class="skill-label">Medicine (SC): <input type="number" name="attr_medicine" value="0"/><button class="skill" type="roll" name="roll_medicine" value="/r 1d10!10+@{scholarship_modifier}+@{medicine}+floor(@{scholarship_modifier})+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Perception (IN): <input type="number" name="attr_perception" value="0"/><button class="skill" type="roll" name="roll_perception" value="/r 1d10!10+@{insight_modifier}+@{perception}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Performance (PE): <input type="number" name="attr_performance" value="0"/><button class="skill" type="roll" name="roll_performance" value="/r 1d10!10+@{personality_modifier}+@{performance}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Persuasion (PE): <input type="number" name="attr_persuasion" value="0"/><button class="skill" type="roll" name="roll_persuasion" value="/r 1d10!10+@{personality_modifier}+@{persuasion}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Pilot (AG): <input type="number" name="attr_pilot" value="0"/><button class="skill" type="roll" name="roll_pilot" value="/r 1d10!10+@{agility_modifier}+@{pilot}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></button></label></div>
-                <div><label class="skill-label">Profession (SC): <input type="number" name="attr_profession" value="0"/><button class="skill" type="roll" name="roll_profession" value="/r 1d10!10+@{scholarship_modifier}+@{profession}+floor(@{scholarship_modifier})+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Science (SC): <input type="number" name="attr_science" value="0"/><button class="skill" type="roll" name="roll_science" value="/r 1d10!10+@{scholarship_modifier}+@{science}+floor(@{scholarship_modifier})+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Stealth (AG): <input type="number" name="attr_stealth" value="0"/><button class="skill" type="roll" name="roll_stealth" value="/r 1d10!10+@{agility_modifier}+@{stealth)+floor(@{scholarship_modifier}/2)}+@{hidden_power}"></button></label></div>
-                <div><label class="skill-label">Survival (IN): <input type="number" name="attr_survival" value="0"/><button class="skill" type="roll" name="roll_survival" value="/r 1d10!10+@{insight_modifier}+@{survival}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
-                <div><label class="skill-label">Thievery (AG): <input type="number" name="attr_thievery" value="0"/><button class="skill" type="roll" name="roll_thievery" value="/r 1d10!10+@{agility_modifier}+@{thievery}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></button></label></div>
-                <div><label class="skill-label">Use Magic (SP): <input type="number" name="attr_use_magic" value="0"/><button class="skill" type="roll" name="roll_use_magic" value="/r 1d10!10+@{spirit_modifier}+@{use_magic}+floor(@{scholarship_modifier}/2)+@{hidden_power}"></label></div>
+                <div><button class="skill" type="roll" name="roll_medicine" value="/r 1d10!10+@{scholarship_modifier}+@{medicine}+floor(@{scholarship_modifier})+@{hidden_power}">Medicine (SC):</button><input type="number" name="attr_medicine" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_perception" value="/r 1d10!10+@{insight_modifier}+@{perception}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Perception (IN):</button><input type="number" name="attr_perception" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_performance" value="/r 1d10!10+@{personality_modifier}+@{performance}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Performance (PE):</button><input type="number" name="attr_performance" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_persuasion" value="/r 1d10!10+@{personality_modifier}+@{persuasion}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Persuasion (PE):</button><input type="number" name="attr_persuasion" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_pilot" value="/r 1d10!10+@{agility_modifier}+@{pilot}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Pilot (AG):</button><input type="number" name="attr_pilot" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_profession" value="/r 1d10!10+@{scholarship_modifier}+@{profession}+floor(@{scholarship_modifier})+@{hidden_power}">Profession (SC):</button><input type="number" name="attr_profession" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_science" value="/r 1d10!10+@{scholarship_modifier}+@{science}+floor(@{scholarship_modifier})+@{hidden_power}">Science (SC):</button><input type="number" name="attr_science" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_stealth" value="/r 1d10!10+@{agility_modifier}+@{stealth)+floor(@{scholarship_modifier}/2)}+@{hidden_power}">Stealth (AG):</button><input type="number" name="attr_stealth" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_survival" value="/r 1d10!10+@{insight_modifier}+@{survival}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Survival (IN):</button><input type="number" name="attr_survival" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_thievery" value="/r 1d10!10+@{agility_modifier}+@{thievery}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Thievery (AG):</button><input type="number" name="attr_thievery" value="0"/></div>
+                <div><button class="skill" type="roll" name="roll_use_magic" value="/r 1d10!10+@{spirit_modifier}+@{use_magic}+floor(@{scholarship_modifier}/2)+@{hidden_power}">Use Magic (SP):</button><input type="number" name="attr_use_magic" value="0"/></div>
             </div>
             
         </div>

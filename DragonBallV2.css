@@ -342,6 +342,9 @@ button[type="roll"].sheet-attack-button{
 .sheet-skill-label{
     color: black;
 }
+.sheet-skill-label:hover{
+    cursor: pointer;
+}
 
 button[type="roll"].sheet-skill:before{
     content: ' ';
@@ -352,14 +355,11 @@ button[type="roll"].sheet-skill:hover{
   }
 
 button[type="roll"].sheet-skill{
-    background-image: url(https://i.pinimg.com/564x/c4/79/b1/c479b192840cbf0bebedd912fde8b53f.jpg);
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    width: 20px;
-    height: 20px;
-    border-style: none;
+    font-size: 13px;
+    /*border-style: none;*/
     background-color: transparent;
     margin-left: 5px;
+    
 }
 
 .sheet-stat-ten{
