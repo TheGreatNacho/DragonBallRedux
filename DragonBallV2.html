@@ -671,8 +671,34 @@
     */
 
     function parseNumber(value){
-        
-        return 1;
+        var result = 0;
+        var token = 0;
+        const numberRegex = /^([0-9]*)/g;
+        const tierRegex = /^(\([tT]\))/g;
+        while (value.length>0){
+            var match = value.match(numberRegex);
+            if (match != null && match[0] != ''){
+                /* Number detected - Take the shot */
+                value = value.substring(match[0].length);
+                result += +match[0];
+                continue;
+            }
+            match = value.match(tierRegex);
+            if (match != null && match[0] != ''){
+                /* Tier detected - Take the shot */
+                value = value.substring(match[0].length);
+                var tier = 1;
+                getAttrs([
+                    "tier_of_power"
+                ], function(values){
+                    tier = +values.tier_of_power;
+                });
+                result *= tier;
+                continue;
+            }
+            value = value.substring(1);
+        }
+        return result;
     }
 
     on("change:repeating_transformations:active", function(){
