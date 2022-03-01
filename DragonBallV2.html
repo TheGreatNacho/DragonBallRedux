@@ -17,20 +17,7 @@
                 <div><label>Character name: <input name="attr_character_name" type="text" style="width:120px;" /></label></div>
                 <div><label>Tier of Power:<input name="attr_tier_of_power" type="number" value="floor((@{power_level})/5)+1" style="width: 50px;" disabled="true" /></label></div>
                 <input type="hidden" name="attr_power_die" value="[[1d0]]"/>
-                <script type="text/worker">
-                    on("change:power_level", function(){
-                        getAttrs(["POWER_LEVEL"], function(values){
-                            var dicelist = [0,4,6,8];
-                            var tier = Math.floor(values.POWER_LEVEL/5)+1;
-                            var die = Math.floor((tier-1)/4) + "d10 + " + "1d"+dicelist[(tier-1)%4];
-                            var ki_pool = 26 + ((values.POWER_LEVEL-1)*12);
-                            setAttrs({
-                                "power_die":die,
-                                "tier_of_power":tier
-                            });
-                        });
-                    });
-                </script>
+                
             </div>
 
             <div class="attr-top">
@@ -48,155 +35,6 @@
                     </label>
                 </div>
                 <div><label>Subrace:<input type="text" name="attr_subrace" style="width:100px;" value=""/></label></div>
-                <script type="text/worker">
-
-                    on("change:race", function(){                
-                        getAttrs(["RACE"], function(values){
-                            var race = values.RACE;
-                            console.log("Why doesn't this work?");
-                            
-                            switch (race){
-                                case "android":
-                                    setAttrs({
-                                        "subrace":"Artificial Construct, Cybernetic Organism, Bio-Engineered"
-                                    });
-                                    break;
-                                case "arcosian":
-                                    setAttrs({
-                                        "subrace":"Arcosian"
-                                    });
-                                    break;
-                                case "human":
-                                    setAttrs({
-                                        "subrace":"Earthling, Beast-men"
-                                    });
-                                    break;
-                                case "namekians":
-                                    setAttrs({
-                                        "subrace":"Warrior, Priest"
-                                    });
-                                    break;
-                                case "majin":
-                                    setAttrs({
-                                        "subrace":"Majin"
-                                    });
-                                    break;
-                                case "saiyan":
-                                    setAttrs({
-                                        "subrace":"Full Blood, Half-Blood"
-                                    });
-                                    break;
-                                case "shinjin":
-                                    setAttrs({
-                                        "subrace":"Kaio, Makaio"
-                                    });
-                                    break;
-                            };
-                        });
-                    });
-
-                    on("change:subrace", function(){
-                        getAttrs(["SUBRACE", "RACE"], function(values){
-                            var subrace = values.SUBRACE;
-                            var race = values.RACE;
-                            
-                            if(race == "android"){
-                                if(subrace == "Bio-Engineered"){
-                                    setAttrs({
-                                        "hp_modifier":5
-                                    });
-                                }else{
-                                    setAttrs({
-                                        "hp_modifier":4
-                                    });
-                                }
-                                setAttrs({
-                                    "agility_racial":0,
-                                    "force_racial":3,
-                                    "tenacity_racial":3,
-                                    "scholarship_racial":0,
-                                    "insight_racial":2,
-                                    "spirit_racial":0,
-                                    "personality_racial":0,
-                                });
-                            }else if(subrace == "Arcosian"){
-                                setAttrs({
-                                    "hp_modifier":3,
-                                    "agility_racial":3,
-                                    "force_racial":2,
-                                    "tenacity_racial":3,
-                                    "scholarship_racial":0,
-                                    "insight_racial":0,
-                                    "spirit_racial":0,
-                                    "personality_racial":0,
-                                });
-                            }else if(race == "human"){
-                                setAttrs({
-                                    "hp_modifier":4,
-                                    "agility_racial":0,
-                                    "force_racial":0,
-                                    "tenacity_racial":0,
-                                    "scholarship_racial":0,
-                                    "insight_racial":0,
-                                    "spirit_racial":0,
-                                    "personality_racial":0,
-                                });
-                            }else if(race == "namekians"){
-                                setAttrs({
-                                    "hp_modifier":4,
-                                    "agility_racial":0,
-                                    "force_racial":0,
-                                    "tenacity_racial":3,
-                                    "scholarship_racial":0,
-                                    "insight_racial":3,
-                                    "spirit_racial":0,
-                                    "personality_racial":0,
-                                });
-                            }else if(subrace == "Majin"){
-                                setAttrs({
-                                    "hp_modifier":3,
-                                    "agility_racial":0,
-                                    "force_racial":0,
-                                    "tenacity_racial":2,
-                                    "scholarship_racial":0,
-                                    "insight_racial":0,
-                                    "spirit_racial":0,
-                                    "personality_racial":3,
-                                });
-                            }else if(race == "saiyan"){
-                                setAttrs({
-                                    "hp_modifier":4,
-                                    "agility_racial":2,
-                                    "force_racial":3,
-                                    "tenacity_racial":3,
-                                    "scholarship_racial":0,
-                                    "insight_racial":0,
-                                    "spirit_racial":0,
-                                    "personality_racial":0,
-                                });
-                            }else if(race == "shinjin"){
-                                if(subrace == "Kaio"){
-                                    setAttrs({
-                                        "hp_modifier":5
-                                    });
-                                }else{
-                                    setAttrs({
-                                        "hp_modifier":4
-                                    });
-                                }
-                                setAttrs({
-                                    "agility_racial":0,
-                                    "force_racial":0,
-                                    "tenacity_racial":0,
-                                    "scholarship_racial":0,
-                                    "insight_racial":3,
-                                    "spirit_racial":0,
-                                    "personality_racial":0,
-                                });
-                            }
-                        });
-                    });
-                </script>
                 <input type="hidden" name="attr_hp_modifier" value="0"/>
                 <div><label>HP: <input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button class="skill" name="roll_health" type="roll" value="/r 1d10+@{hp_modifier}+@{tenacity_modifier}"></button></label></div>
                 
@@ -226,7 +64,7 @@
                     <div class="abilityTotal"><p>TOTAL</p></div>
 
                     
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{power_die}"><h3 class="j-h3">Agility</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_tfmodifier}+@{power_die}"><h3 class="j-h3">Agility</h3></button></div>
                     <div class="abilityMod"><input type="number" name="attr_agility_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_agility_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_agility_ranks" value="2" /></div>
@@ -234,7 +72,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_agility" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_agility_tf">
                     
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{power_die}"><h3 class="j-h3">Force</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_tfmodifier}+@{power_die}"><h3 class="j-h3">Force</h3></button></div>
                     <div ass="abilityMod"><input type="number" name="attr_force_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_force_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRaclnks"><input type="number" name="attr_force_ranks" value="2" /></div>
@@ -242,7 +80,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_force" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_force_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_tenacity" value="/r 1d10!10+@{tenacity_modifier}+@{power_die}"><h3 class="j-h3">Tenacity</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_tenacity" value="/r 1d10!10+@{tenacity_tfmodifier}+@{power_die}"><h3 class="j-h3">Tenacity</h3></button></div>
                     <div class="abilityMod"><input type="number" name="attr_tenacity_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_tenacity_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_tenacity_ranks" value="2" /></div>
@@ -250,7 +88,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_tenacity" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_tenacity_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_scholarship" value="/r 1d10!10+@{scholarship_modifier}+@{power_die}"><h3 class="j-h3">Scholarship</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_scholarship" value="/r 1d10!10+@{scholarship_tfmodifier}+@{power_die}"><h3 class="j-h3">Scholarship</h3></button></div>
                     <div class="abilityMod"><input type="number" name="attr_scholarship_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_scholarship_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_scholarship_ranks" value="2" /></div>
@@ -258,7 +96,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_scholarship" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_scholarship_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_insight" value="/r 1d10!10+@{insight_modifier}+@{power_die}"><h3 class="j-h3">Insight</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_insight" value="/r 1d10!10+@{insight_tfmodifier}+@{power_die}"><h3 class="j-h3">Insight</h3></button></div>
                     <div class="abilityMod"><input type="number" name="attr_insight_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_insight_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_insight_ranks" value="2" /></div>
@@ -266,7 +104,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_insight" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_insight_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_spirit" value="/r 1d10!10+@{spirit_modifier}+@{power_die}"><h3 class="j-h3">Spirit</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_spirit" value="/r 1d10!10+@{spirit_tfmodifier}+@{power_die}"><h3 class="j-h3">Spirit</h3></button></div>
                     <div class="abilityMod"><input type="number" name="attr_spirit_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_spirit_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_spirit_ranks" value="2" /></div>
@@ -274,202 +112,14 @@
                     <div class="abilityTotal"><input type="number" name="attr_spirit" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_spirit_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_personality" value="/r 1d10!10+@{personality_modifier}+@{power_die}"><h3 class="j-h3">Personality</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_personality" value="/r 1d10!10+@{personality_tfmodifier}+@{power_die}"><h3 class="j-h3">Personality</h3></button></div>
                     <div class="abilityMod"><input type="number" name="attr_personality_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_personality_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_personality_ranks" value="2" /></div>
                     <div class="abilityRacial"><input type="number" name="attr_personality_racial" value="0" /></div>
                     <div class="abilityTotal"><input type="number" name="attr_personality" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_personality_tf">
-
-                    <script type="text/worker">
-                        function update_agility(){
-                            getAttrs(["agility_ranks", "agility_racial", "agility_tf"], function(values){
-                                var agility = +values.agility_ranks + +values.agility_racial;
-                                setAttrs({
-                                    "agility":agility,
-                                    "agility_modifier":(Math.floor(agility/2)),
-                                    "agility_tfmodifier":(Math.floor(agility/2) + +values.agility_tf)
-                                });
-                            });
-                        }
-
-                        function update_force(){
-                            getAttrs(["force_ranks", "force_racial", "force_tf"], function(values){
-                                var force = +values.force_ranks + +values.force_racial;
-                                setAttrs({
-                                    "force":force,
-                                    "force_modifier":(Math.floor(force/2)),
-                                    "force_tfmodifier":(Math.floor(force/2) + +values.force_tf)
-                                });
-                            });
-                        }
-                        
-                        function update_tenacity(){
-                            getAttrs(["tenacity_ranks", "tenacity_racial", "tenacity_tf"], function(values){
-                                var tenacity = +values.tenacity_ranks + +values.tenacity_racial;
-                                setAttrs({
-                                    "tenacity":tenacity,
-                                    "tenacity_modifier":(Math.floor(tenacity/2)),
-                                    "tenacity_tfmodifier":(Math.floor(tenacity/2) + +values.tenacity_tf)
-                                });
-                            });
-                        }
-                        
-                        function update_scholarship(){
-                            getAttrs(["scholarship_ranks", "scholarship_racial", "scholarship_tf"], function(values){
-                                var scholarship = +values.scholarship_ranks + +values.scholarship_racial;
-                                setAttrs({
-                                    "scholarship":scholarship,
-                                    "scholarship_modifier":(Math.floor(scholarship/2)),
-                                    "scholarship_tfmodifier":(Math.floor(scholarship/2) + +values.scholarship_tf)
-                                });
-                            });
-                        }
-
-                        function update_insight(){
-                            getAttrs(["insight_ranks", "insight_racial", "insight_tf"], function(values){
-                                var insight = +values.insight_ranks + +values.insight_racial;
-                                setAttrs({
-                                    "insight":insight,
-                                    "insight_modifier":(Math.floor(insight/2)),
-                                    "insight_tfmodifier":(Math.floor(insight/2) + +values.insight_tf)
-                                });
-                            });
-                        }
-
-                        function update_spirit(){
-                            getAttrs(["spirit_ranks", "spirit_racial", "spirit_tf"], function(values){
-                                var spirit = +values.spirit_ranks + +values.spirit_racial;
-                                setAttrs({
-                                    "spirit":spirit,
-                                    "spirit_modifier":(Math.floor(spirit/2)),
-                                    "spirit_tfmodifier":(Math.floor(spirit/2) + +values.spirit_tf)
-                                });
-                            });
-                        }
-
-                        function update_personality(){
-                            getAttrs(["personality_ranks", "personality_racial", "personality_tf"], function(values){
-                                var personality = +values.personality_ranks + +values.personality_racial;
-                                setAttrs({
-                                    "personality":personality,
-                                    "personality_modifier":(Math.floor(personality/2)),
-                                    "personality_tfmodifier":(Math.floor(personality/2) + +values.personality_tf)
-                                });
-                            });
-                        }
-
-                        
-
-                        on("change:agility_ranks", function(){                
-                            update_agility();
-                        });
-                        on("change:agility_racial", function(){
-                            update_agility();
-                        });
-
-                        on("change:force_ranks", function(){                
-                            update_force();
-                        });
-                        on("change:force_racial", function(){
-                            update_force();
-                        });
-                        
-                        on("change:tenacity_ranks", function(){                
-                            update_tenacity();
-                        });
-                        on("change:tenacity_racial", function(){
-                            update_tenacity();
-                        });
-                        
-                        on("change:scholarship_ranks", function(){                
-                            update_scholarship();
-                        });
-                        on("change:scholarship_racial", function(){
-                            update_scholarship();
-                        });
-                        
-                        on("change:insight_ranks", function(){                
-                            update_insight();
-                        });
-                        on("change:insight_racial", function(){
-                            update_insight();
-                        });
-                        
-                        on("change:spirit_ranks", function(){                
-                            update_spirit();
-                        });
-                        on("change:spirit_racial", function(){
-                            update_spirit();
-                        });
-                        
-                        on("change:personality_ranks", function(){                
-                            update_personality();
-                        });
-                        on("change:personality_racial", function(){
-                            update_personality();
-                        });
-                    </script>
                 </div>
-            <!--
-                <div class="stat-agi">
-                    <button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{power_die}"><h3 class="j-h3">Agility</h3></button>
-                    
-                    <div>
-                        <label class="j-label">Score: <input type="number" name="attr_agility" value="2"/></label>
-                        <input type="hidden" value="floor(@{agility}/2)" name="attr_agility_modifier">
-                    </div>
-                </div>
-
-                <div class="stat-str">
-                    <button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{power_die}"><h3 class="j-h3">Force</h3></button>
-                    <div>
-                        <label class="j-label">Score: <input type="number" name="attr_force" value="2"/></label>
-                        <input type="hidden" value="floor(@{force}/2)" name="attr_force_modifier">
-                    </div>
-                </div>
-
-                <div class="stat-ten">
-                    <button class="skill" type="roll" name="roll_tenacity" value="/r 1d10!10+@{tenacity_modifier}+@{power_die}"><h3 class="j-h3">Tenacity</h3></button>
-                    <div>
-                        <label class="j-label">Score: <input type="number" name="attr_tenacity" value="2"/></label>
-                        <input type="hidden" value="floor(@{tenacity}/2)" name="attr_tenacity_modifier">
-                    </div>
-                </div>
-
-                <div class="stat-sch">
-                    <button class="skill" type="roll" name="roll_scholarship" value="/r 1d10!10+@{scholarship_modifier}+@{power_die}"><h3 class="j-h3">Scholarship</h3></button>
-                    <div>
-                        <label class="j-label">Score: <input type="number" name="attr_scholarship" value="2"/></label>
-                        <input type="hidden" value="floor(@{scholarship}/2)" name="attr_scholarship_modifier">
-                    </div>
-                </div>
-
-                <div class="stat-ins">
-                    <button class="skill" type="roll" name="roll_insight" value="/r 1d10!10+@{insight_modifier}+@{power_die}"><h3 class="j-h3">Insight</h3></button>
-                    <div>
-                        <label class="j-label">Score: <input type="number" name="attr_insight" value="2"/></label>
-                        <input type="hidden" value="floor(@{insight}/2)" name="attr_insight_modifier"> 
-                    </div>
-                </div>
-
-                <div class="stat-spi">
-                    <button class="skill" type="roll" name="roll_spirit" value="/r 1d10!10+@{spirit_modifier}+@{power_die}"><h3 class="j-h3">Spirit</h3></button>
-                    <div>
-                        <label class="j-label">Score: <input type="number" name="attr_spirit" value="2"/></label>
-                        <input type="hidden" value="floor(@{spirit}/2)" name="attr_spirit_modifier">
-                    </div>
-                </div>
-
-                <div class="stat-per">
-                    <button class="skill" type="roll" name="roll_personality" value="/r 1d10!10+@{personality_modifier}+@{power_die}"><h3 class="j-h3">Personality</h3></button>
-                    <div>
-                        <label class="j-label">Score: <input type="number" name="attr_personality" value="2"/></label>
-                        <input type="hidden" value="floor(@{personality}/2)" name="attr_personality_modifier">
-                    </div>
-                </div>
-            -->
             </div>
 
             <div class="skill1">
@@ -514,22 +164,7 @@
     <input type="hidden" name="attr_hidden_soak" value="0">
     <div style="display: flex;"><h2>Hit Modifier: <input type="number" name="attr_global_hit" value="0"></h2><h2>Wound Modifier: <input type="number" name="attr_global_wound" value="0"></h2></div>
     <div class="saves"><label style="grid-area: save1;">Cognitive save: <button class="attack-button" type="roll" name="roll_cognitive" value="/r 1d10!10+@{insight_modifier}"></button></label><label style="grid-area: save2;">Corporeal Save: <button class="attack-button" type="roll" name="roll_corporeal" value="/r 1d10!10+@{tenacity_modifier}"></button></label><label style="grid-area: save3;">Impulsive Save: <button class="attack-button" type="roll" name="roll_impulsive" value="/r 1d10!10+@{agility_modifier}"></button></label><label style="grid-area: save4;">Morale Save: <button class="attack-button" type="roll" name="roll_morale" value="/r 1d10!10+@{personality_modifier}"></button></label></div>
-    <script type="text/worker">
-        on("change:tenacity, sheet:opened", function(){
-            getAttrs(["TENACITY_MODIFIER"], function(values){
-                var ten = values.TENACITY_MODIFIER;
-                if(ten == 1){
-                    setAttrs({
-                        "hidden_soak":2
-                }else{
-                    setAttrs({
-                        "hidden_soak":ten
-                    });
-                };
-            });
-        });
-    </script>
-    
+
     <div class="basic-attack">
         <div class="basic-attacks-col1">
             <h2 style="border: 1px solid darkgray">Name:</h2>
@@ -675,26 +310,26 @@
         <div class="transformations-top">
             <div style="grid-area: tn; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>Name:</h3></div>
             <!--<div style="grid-area: tty; border-right: 1px solid silver;"><h3 style="color: silver;">Type:</h3></div>-->
-            <div style="grid-area: ta; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>Agi:</h3></div>
-            <div style="grid-area: ti; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>Ins:</h3></div>
-            <div style="grid-area: tpe; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>Per:</h3></div>
-            <div style="grid-area: tsc; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>Sch:</h3></div>
-            <div style="grid-area: tsp; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>Spi:</h3></div>
-            <div style="grid-area: tst; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>For:</h3></div>
-            <div style="grid-area: tte;"><h3>Ten:</h3></div>
+            <div style="grid-area: tag; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>AG:</h3></div>
+            <div style="grid-area: tfo; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>FO:</h3></div>
+            <div style="grid-area: tte; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>TE:</h3></div>
+            <div style="grid-area: tsc; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>SC:</h3></div>
+            <div style="grid-area: tin; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>IN:</h3></div>
+            <div style="grid-area: tsp; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>SP:</h3></div>
+            <div style="grid-area: tpe; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>PE:</h3></div>
         </div>
 
         <div class="transformations-bot">
-            <fieldset class="repeating_transformationstable">
+            <fieldset class="repeating_transformations">
                 <div class="transformations-table" style="border-top: none;">
-                    <div class="tname"><input type="text" name="attr_transformation_name" style="width: 80px;"><input type="checkbox" name="attr_transformation_on" value="1"></div>
-                    <div class="tagi"><input type="number" name="attr_transformation_agi" value="0"></div>
-                    <div class="tins"><input type="number" name="attr_transformation_ins" value="0"></div>
-                    <div class="tper"><input type="number" name="attr_transformation_per" value="0"></div>
-                    <div class="tsch"><input type="number" name="attr_transformation_sch" value="0"></div>
-                    <div class="tspi"><input type="number" name="attr_transformation_spi" value="0"></div>
-                    <div class="tfor"><input type="number" name="attr_transformation_for" value="0"></div>
-                    <div class="tten"><input type="number" name="attr_transformation_ten" value="0"></div>
+                    <div class="tname"><input type="text" name="attr_name" style = "width: 80px;"><input type="checkbox" name="attr_active" value="1"></div>
+                    <div class="tagi"><input type="text" name="attr_agility" style = "width: 80px;" value="0"></div>
+                    <div class="tfor"><input type="text" name="attr_force" style = "width: 80px;" value="0"></div>
+                    <div class="tten"><input type="text" name="attr_tenacity" style = "width: 80px;" value="0"></div>
+                    <div class="tsch"><input type="text" name="attr_scholarship" style = "width: 80px;" value="0"></div>
+                    <div class="tins"><input type="text" name="attr_insight" style = "width: 80px;" value="0"></div>
+                    <div class="tspi"><input type="text" name="attr_spirit" style = "width: 80px;" value="0"></div>
+                    <div class="tper"><input type="text" name="attr_personality" style = "width: 80px;" value="0"></div>
                 </div>
             </fieldset>
         </div>
@@ -702,6 +337,8 @@
 </div>
 
 <script type="text/worker">
+    
+
     const buttonlist = ["attributes","attacks","abilities","transformations"];
     buttonlist.forEach(button => {
         on(`clicked:${button}`, function() {
@@ -712,119 +349,399 @@
     });
 
     /*
-    on("change:transformation_on", function(){
-        getAttrs(["TRANSFORMATION_ON", "repeating_transformationstable_TRANSFORMATION_AGI", "repeating_transformationstable_TRANSFORMATION_INS", "repeating_transformationstable_TRANSFORMATION_PER", "repeating_transformationstable_TRANSFORMATION_POT", "repeating_transformationstable_TRANSFORMATION_SCH", "repeating_transformationstable_TRANSFORMATION_SPI", "repeating_transformationstable_TRANSFORMATION_FOR", "repeating_transformationstable_TRANSFORMATION_TEN", "AGILITY", "INSIGHT", "PERSONALITY", "SCHOLARSHIP", "SPIRIT", "force", "TENACITY"], function(values){
-            var on = values.TRANSFORMATION_ON;
-            console.log("checkbox " + on);
+        Powerlevel logic
+    */
+    on("change:power_level", function(){
+        getAttrs(["POWER_LEVEL"], function(values){
+            var dicelist = [0,4,6,8];
+            var tier = Math.floor(values.POWER_LEVEL/5)+1;
+            var d10s = Math.floor((tier-1)/4);
+            var die = "";
+            if (d10s > 0){
+                die += Math.floor((tier-1)/4) + "d10 + ";
+            }
+            die += "1d"+dicelist[(tier-1)%4];
+            var ki_pool = 26 + ((values.POWER_LEVEL-1)*12);
+            setAttrs({
+                "power_die":die,
+                "tier_of_power":tier
+            });
+        });
+    });
+
+    /*
+        Race logic
+    */
+    on("change:race", function(){                
+        getAttrs(["RACE"], function(values){
+            var race = values.RACE;
             
-            var agi = values.repeating_transformationstable_TRANSFORMATION_AGI;
-            var hagi = values.AGILITY;
-            console.log("agi " + agi);
-            console.log("hagi " + hagi);
+            switch (race){
+                case "android":
+                    setAttrs({
+                        "subrace":"Artificial Construct, Cybernetic Organism, Bio-Engineered"
+                    });
+                    break;
+                case "arcosian":
+                    setAttrs({
+                        "subrace":"Arcosian"
+                    });
+                    break;
+                case "human":
+                    setAttrs({
+                        "subrace":"Earthling, Beast-men"
+                    });
+                    break;
+                case "namekians":
+                    setAttrs({
+                        "subrace":"Warrior, Priest"
+                    });
+                    break;
+                case "majin":
+                    setAttrs({
+                        "subrace":"Majin"
+                    });
+                    break;
+                case "saiyan":
+                    setAttrs({
+                        "subrace":"Full Blood, Half-Blood"
+                    });
+                    break;
+                case "shinjin":
+                    setAttrs({
+                        "subrace":"Kaio, Makaio"
+                    });
+                    break;
+            };
+        });
+    });
+
+    on("change:subrace", function(){
+        getAttrs(["SUBRACE", "RACE"], function(values){
+            var subrace = values.SUBRACE;
+            var race = values.RACE;
             
-            var ins = values.repeating_transformationstable_TRANSFORMATION_INS;
-            var hins = values.INSIGHT;
-            console.log("ins " +  ins);
-            console.log("hins " + hins);
-
-            var per = values.repeating_transformationstable_TRANSFORMATION_PER;
-            var hper = values.PERSONALITY;
-            console.log("per " + per);
-            console.log("hper " +hper);
-
-            var sch = values.repeating_transformationstable_TRANSFORMATION_SCH;
-            var hsch = values.SCHOLARSHIP;
-            console.log("sch " + sch);
-            console.log("hsch" + hsch);
-            
-            var spi = values.repeating_transformationstable_TRANSFORMATION_SPI;
-            var hspi = values.SPIRIT;
-            console.log("spi " + spi);
-            console.log("hspi " + hspi);
-            
-            var str = values.repeating_transformationstable_TRANSFORMATION_FOR;
-            var hstr = values.force;
-            console.log("str " + str);
-            console.log("hstr" + hstr);
-            
-            var ten = values.repeating_transformationstable_TRANSFORMATION_TEN;
-            var hten = values.TENACITY;
-            console.log("ten " + ten);
-            console.log("hten " + hten);
-            
-
-            if(on==0){
-                hagi = hagi-agi;
+            if(race == "android"){
+                if(subrace == "Bio-Engineered"){
+                    setAttrs({
+                        "hp_modifier":5
+                    });
+                }else{
+                    setAttrs({
+                        "hp_modifier":4
+                    });
+                }
                 setAttrs({
-                    "agility": hagi
+                    "agility_racial":0,
+                    "force_racial":3,
+                    "tenacity_racial":3,
+                    "scholarship_racial":0,
+                    "insight_racial":2,
+                    "spirit_racial":0,
+                    "personality_racial":0,
                 });
-
-                hins = hins-ins;
+            }else if(subrace == "Arcosian"){
                 setAttrs({
-                    "insight": hins
+                    "hp_modifier":3,
+                    "agility_racial":3,
+                    "force_racial":2,
+                    "tenacity_racial":3,
+                    "scholarship_racial":0,
+                    "insight_racial":0,
+                    "spirit_racial":0,
+                    "personality_racial":0,
                 });
-                
-                hper = hper-per;
+            }else if(race == "human"){
                 setAttrs({
-                    "personality":hper
+                    "hp_modifier":4,
+                    "agility_racial":0,
+                    "force_racial":0,
+                    "tenacity_racial":0,
+                    "scholarship_racial":0,
+                    "insight_racial":0,
+                    "spirit_racial":0,
+                    "personality_racial":0,
                 });
-
-                hsch = hsch-sch;
+            }else if(race == "namekians"){
                 setAttrs({
-                    "scholarship":hsch
+                    "hp_modifier":4,
+                    "agility_racial":0,
+                    "force_racial":0,
+                    "tenacity_racial":3,
+                    "scholarship_racial":0,
+                    "insight_racial":3,
+                    "spirit_racial":0,
+                    "personality_racial":0,
                 });
-
-                hspi = hspi-spi;
+            }else if(subrace == "Majin"){
                 setAttrs({
-                    "spirit":hspi
+                    "hp_modifier":3,
+                    "agility_racial":0,
+                    "force_racial":0,
+                    "tenacity_racial":2,
+                    "scholarship_racial":0,
+                    "insight_racial":0,
+                    "spirit_racial":0,
+                    "personality_racial":3,
                 });
-
-                hstr = hstr-str;
+            }else if(race == "saiyan"){
                 setAttrs({
-                    "force":hstr
+                    "hp_modifier":4,
+                    "agility_racial":2,
+                    "force_racial":3,
+                    "tenacity_racial":3,
+                    "scholarship_racial":0,
+                    "insight_racial":0,
+                    "spirit_racial":0,
+                    "personality_racial":0,
                 });
-
-                hten = hten-ten;
+            }else if(race == "shinjin"){
+                if(subrace == "Kaio"){
+                    setAttrs({
+                        "hp_modifier":5
+                    });
+                }else{
+                    setAttrs({
+                        "hp_modifier":4
+                    });
+                }
                 setAttrs({
-                    "tenacity":hten
-                });
-            }else if(on == 1){
-                hagi = hagi+agi;
-                setAttrs({
-                    "agility": hagi
-                });
-
-                hins = hins+ins;
-                setAttrs({
-                    "insight": hins
-                });
-                
-                hper = hper+per;
-                setAttrs({
-                    "personality":hper
-                });
-
-                hsch = hsch+sch;
-                setAttrs({
-                    "scholarship":hsch
-                });
-
-                hspi = hspi+spi;
-                setAttrs({
-                    "spirit":hspi
-                });
-
-                hstr = hstr+str;
-                setAttrs({
-                    "force":hstr
-                });
-
-                hten = hten + ten;
-                setAttrs({
-                    "tenacity":hten
+                    "agility_racial":0,
+                    "force_racial":0,
+                    "tenacity_racial":0,
+                    "scholarship_racial":0,
+                    "insight_racial":3,
+                    "spirit_racial":0,
+                    "personality_racial":0,
                 });
             }
         });
     });
+
+    /*
+    Ability Logic
     */
+
+    function update_agility(){
+        getAttrs(["agility_ranks", "agility_racial", "agility_tf"], function(values){
+            var agility = +values.agility_ranks + +values.agility_racial;
+            setAttrs({
+                "agility":agility,
+                "agility_modifier":(Math.floor(agility/2)),
+                "agility_tfmodifier":(Math.floor(agility/2) + +values.agility_tf)
+            });
+        });
+    }
+
+    function update_force(){
+        getAttrs(["force_ranks", "force_racial", "force_tf"], function(values){
+            var force = +values.force_ranks + +values.force_racial;
+            setAttrs({
+                "force":force,
+                "force_modifier":(Math.floor(force/2)),
+                "force_tfmodifier":(Math.floor(force/2) + +values.force_tf)
+            });
+        });
+    }
+    
+    function update_tenacity(){
+        getAttrs(["tenacity_ranks", "tenacity_racial", "tenacity_tf"], function(values){
+            var tenacity = +values.tenacity_ranks + +values.tenacity_racial;
+            setAttrs({
+                "tenacity":tenacity,
+                "tenacity_modifier":(Math.floor(tenacity/2)),
+                "tenacity_tfmodifier":(Math.floor(tenacity/2) + +values.tenacity_tf)
+            });
+        });
+    }
+    
+    function update_scholarship(){
+        getAttrs(["scholarship_ranks", "scholarship_racial", "scholarship_tf"], function(values){
+            var scholarship = +values.scholarship_ranks + +values.scholarship_racial;
+            setAttrs({
+                "scholarship":scholarship,
+                "scholarship_modifier":(Math.floor(scholarship/2)),
+                "scholarship_tfmodifier":(Math.floor(scholarship/2) + +values.scholarship_tf)
+            });
+        });
+    }
+
+    function update_insight(){
+        getAttrs(["insight_ranks", "insight_racial", "insight_tf"], function(values){
+            var insight = +values.insight_ranks + +values.insight_racial;
+            setAttrs({
+                "insight":insight,
+                "insight_modifier":(Math.floor(insight/2)),
+                "insight_tfmodifier":(Math.floor(insight/2) + +values.insight_tf)
+            });
+        });
+    }
+
+    function update_spirit(){
+        getAttrs(["spirit_ranks", "spirit_racial", "spirit_tf"], function(values){
+            var spirit = +values.spirit_ranks + +values.spirit_racial;
+            setAttrs({
+                "spirit":spirit,
+                "spirit_modifier":(Math.floor(spirit/2)),
+                "spirit_tfmodifier":(Math.floor(spirit/2) + +values.spirit_tf)
+            });
+        });
+    }
+
+    function update_personality(){
+        getAttrs(["personality_ranks", "personality_racial", "personality_tf"], function(values){
+            var personality = +values.personality_ranks + +values.personality_racial;
+            setAttrs({
+                "personality":personality,
+                "personality_modifier":(Math.floor(personality/2)),
+                "personality_tfmodifier":(Math.floor(personality/2) + +values.personality_tf)
+            });
+        });
+    }
+
+    on("change:agility_ranks", function(){                
+        update_agility();
+    });
+    on("change:agility_racial", function(){
+        update_agility();
+    });
+
+    on("change:force_ranks", function(){                
+        update_force();
+    });
+    on("change:force_racial", function(){
+        update_force();
+    });
+    
+    on("change:tenacity_ranks", function(){                
+        update_tenacity();
+    });
+    on("change:tenacity_racial", function(){
+        update_tenacity();
+    });
+    
+    on("change:scholarship_ranks", function(){                
+        update_scholarship();
+    });
+    on("change:scholarship_racial", function(){
+        update_scholarship();
+    });
+    
+    on("change:insight_ranks", function(){                
+        update_insight();
+    });
+    on("change:insight_racial", function(){
+        update_insight();
+    });
+    
+    on("change:spirit_ranks", function(){                
+        update_spirit();
+    });
+    on("change:spirit_racial", function(){
+        update_spirit();
+    });
+    
+    on("change:personality_ranks", function(){                
+        update_personality();
+    });
+    on("change:personality_racial", function(){
+        update_personality();
+    });
+
+    /*
+        Hidden soak logic
+    */
+    on("change:tenacity, sheet:opened", function(){
+        getAttrs(["TENACITY_MODIFIER"], function(values){
+            var ten = values.TENACITY_MODIFIER;
+            if(ten == 1){
+                setAttrs({
+                    "hidden_soak":2
+                });
+            }else{
+                setAttrs({
+                    "hidden_soak":ten
+                });
+            };
+        });
+    });
+
+    /*
+        Transformation logic
+    */
+
+    function parseNumber(value){
+        
+        return 1;
+    }
+
+    on("change:repeating_transformations:active", function(){
+        getAttrs([
+            "repeating_transformations_active",
+            "repeating_transformations_agility",
+            "repeating_transformations_force",
+            "repeating_transformations_tenacity",
+            "repeating_transformations_scholarship",
+            "repeating_transformations_insight",
+            "repeating_transformations_spirit",
+            "repeating_transformations_personality",
+            "agility_tf",
+            "force_tf",
+            "tenacity_tf",
+            "scholarship_tf",
+            "insight_tf",
+            "spirit_tf",
+            "personality_tf",
+        ], function(values){
+            var on = values.repeating_transformations_active;
+            /*
+                rp_ defines repeating abilities
+                tf_ defines hidden transformation modifier
+            */
+            var rp_agility = parseNumber(values.repeating_transformations_agility);
+            var rp_force = parseNumber(values.repeating_transformations_force);
+            var rp_tenacity = parseNumber(values.repeating_transformations_tenacity);
+            var rp_scholarship = parseNumber(values.repeating_transformations_scholarship);
+            var rp_insight = parseNumber(values.repeating_transformations_insight);
+            var rp_spirit = parseNumber(values.repeating_transformations_spirit);
+            var rp_personality = parseNumber(values.repeating_transformations_personality);
+            
+            var tf_agility = values.agility_tf;
+            var tf_force = values.force_tf;
+            var tf_tenacity = values.tenacity_tf;
+            var tf_scholarship = values.scholarship_tf;
+            var tf_insight = values.insight_tf;
+            var tf_spirit = values.spirit_tf;
+            var tf_personality = values.personality_tf;
+            if (+on){
+                setAttrs({
+                    "agility_tf":(+tf_agility + +rp_agility),
+                    "force_tf":(+tf_force + +rp_force),
+                    "tenacity_tf":(+tf_tenacity + +rp_tenacity),
+                    "scholarship_tf":(+tf_scholarship + +rp_scholarship),
+                    "insight_tf":(+tf_insight + +rp_insight),
+                    "spirit_tf":(+tf_spirit + +rp_spirit),
+                    "personality_tf":(+tf_personality + +rp_personality),
+                });
+            }else{
+                setAttrs({
+                    "agility_tf":(+tf_agility - +rp_agility),
+                    "force_tf":(+tf_force - +rp_force),
+                    "tenacity_tf":(+tf_tenacity - +rp_tenacity),
+                    "scholarship_tf":(+tf_scholarship - +rp_scholarship),
+                    "insight_tf":(+tf_insight - +rp_insight),
+                    "spirit_tf":(+tf_spirit - +rp_spirit),
+                    "personality_tf":(+tf_personality - +rp_personality),
+                });
+            }
+            update_agility();
+            update_force();
+            update_tenacity();
+            update_scholarship();
+            update_insight();
+            update_spirit();
+            update_personality();
+        });
+    });
+    
 </script>
