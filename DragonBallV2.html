@@ -39,12 +39,12 @@
                 <div><label>HP: <input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button class="skill" name="roll_health" type="roll" value="/r 1d10+@{hp_modifier}+@{tenacity_modifier}"></button></label></div>
                 
                 <div><label>Power Level: <input type="number" name="attr_power_level" value="1" /></label></div>
-                <div><label>Initiative:  <input type="number" name="attr_init_mod" value="0" style="width:50px;"/><button class="skill" type="roll" value="/r 1d10!10+floor(@{agility}/2)+@{init_mod} &{tracker}"></button> </label></div>
+                <div><label>Initiative:  <input type="number" name="attr_init_mod" value="0" style="width:50px;"/><button class="skill" type="roll" value="/r 1d10!10+floor(@{agility_tfmodifier}/2)+@{init_mod} &{tracker}"></button> </label></div>
             </div>
             
             <div class="attr-bot">
-                <div><label>Ki Pool:  <input type="number" name="attr_ki" value="0" /> / <input type="number" name="attr_ki_max" value="(26+((@{power_level}-1)*12))" disabled="true" /> </label></div>
-                <div><label>Capacity Rate: <input type="checkbox" name="attr_power_up" value="1"/>  <input type="number" name="attr_capacity" value="0"/> / <input type="number" name="attr_influx_max" value="(14+((@{power_level}-1)*6))" disabled="true" /></label></div>
+                <div><label>Ki Pool:  <input type="number" name="attr_ki" value="0" /> / <input type="number" name="attr_ki_max" value="26" readonly /> </label></div>
+                <div><label>Capacity Rate: <input type="checkbox" name="attr_power_up" value="1"/>  <input type="number" name="attr_capacity" value="0"/> / <input type="number" name="attr_capacity_max" value="14" readonly /></label></div>
                 <div><label>Zeni: <input type="number" name="attr_zeni" value="0"/></label></div>
                 <div><label>XP: <input type="number" name="attr_xp" value = "0"/> </label></div>
                 <div><label>TXP: <input type="number" name="attr_txp" value="0"/></label></div>
@@ -55,7 +55,7 @@
 
         <div class="stats">
             <div class="all-stats">
-                <div class="abilityTable">
+                <div class="ability-table">
                     <div class="abilityName"><p>NAME</p></div>
                     <div class="abilityMod"><p>MOD</p></div>
                     <div class="abilityTrans"><p>TF MOD</p></div>
@@ -64,7 +64,7 @@
                     <div class="abilityTotal"><p>TOTAL</p></div>
 
                     
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_tfmodifier}+@{power_die}"><h3 class="j-h3">Agility</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_tfmodifier}+@{power_die}">Agility</button></div>
                     <div class="abilityMod"><input type="number" name="attr_agility_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_agility_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_agility_ranks" value="2" /></div>
@@ -72,7 +72,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_agility" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_agility_tf">
                     
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_tfmodifier}+@{power_die}"><h3 class="j-h3">Force</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_tfmodifier}+@{power_die}">Force</button></div>
                     <div ass="abilityMod"><input type="number" name="attr_force_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_force_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRaclnks"><input type="number" name="attr_force_ranks" value="2" /></div>
@@ -80,7 +80,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_force" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_force_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_tenacity" value="/r 1d10!10+@{tenacity_tfmodifier}+@{power_die}"><h3 class="j-h3">Tenacity</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_tenacity" value="/r 1d10!10+@{tenacity_tfmodifier}+@{power_die}">Tenacity</button></div>
                     <div class="abilityMod"><input type="number" name="attr_tenacity_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_tenacity_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_tenacity_ranks" value="2" /></div>
@@ -88,7 +88,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_tenacity" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_tenacity_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_scholarship" value="/r 1d10!10+@{scholarship_tfmodifier}+@{power_die}"><h3 class="j-h3">Scholarship</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_scholarship" value="/r 1d10!10+@{scholarship_tfmodifier}+@{power_die}">Scholarship</button></div>
                     <div class="abilityMod"><input type="number" name="attr_scholarship_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_scholarship_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_scholarship_ranks" value="2" /></div>
@@ -96,7 +96,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_scholarship" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_scholarship_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_insight" value="/r 1d10!10+@{insight_tfmodifier}+@{power_die}"><h3 class="j-h3">Insight</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_insight" value="/r 1d10!10+@{insight_tfmodifier}+@{power_die}">Insight</button></div>
                     <div class="abilityMod"><input type="number" name="attr_insight_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_insight_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_insight_ranks" value="2" /></div>
@@ -104,7 +104,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_insight" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_insight_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_spirit" value="/r 1d10!10+@{spirit_tfmodifier}+@{power_die}"><h3 class="j-h3">Spirit</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_spirit" value="/r 1d10!10+@{spirit_tfmodifier}+@{power_die}">Spirit</button></div>
                     <div class="abilityMod"><input type="number" name="attr_spirit_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_spirit_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_spirit_ranks" value="2" /></div>
@@ -112,7 +112,7 @@
                     <div class="abilityTotal"><input type="number" name="attr_spirit" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_spirit_tf">
 
-                    <div class="abilityName"><button class="skill" type="roll" name="roll_personality" value="/r 1d10!10+@{personality_tfmodifier}+@{power_die}"><h3 class="j-h3">Personality</h3></button></div>
+                    <div class="abilityName"><button class="skill" type="roll" name="roll_personality" value="/r 1d10!10+@{personality_tfmodifier}+@{power_die}">Personality</button></div>
                     <div class="abilityMod"><input type="number" name="attr_personality_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_personality_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_personality_ranks" value="2" /></div>
@@ -120,8 +120,70 @@
                     <div class="abilityTotal"><input type="number" name="attr_personality" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_personality_tf">
                 </div>
-            </div>
+                <div class="save-table">
+                    <!--Impulsive (Agility), Corporeal (Tenacity), Cognitive (Insight), Morale (Personality)-->
+                    <div class="save-name"><p>NAME</p></div>
+                    <div class="save-proficiency"><p>PROFICIENCY</p></div>
+                    <div class="save-misc"><p>MISC</p></div>
+                    <div class="save-total"><p>TOTAL</p></div>
 
+                    <div class="save-name"><button class="skill" type="roll" name="roll_impulsive" value="/r 1d10!10+@{impulsive}+@{power_die}">Impulsive</button></div>
+                    <div class="save-proficiency">
+                        <select name="attr_impulsive_proficiency">
+                            <option value="0">No Proficiency</option>
+                            <option value="2">Experienced</option>
+                            <option value="4">Trained</option>
+                            <option value="6">Qualified</option>
+                            <option value="8">Specialist</option>
+                            <option value="10">Expert</option>
+                        </select>
+                    </div>
+                    <div class="save-misc"><input type="number" name="attr_impulsive_misc" value="0" /></div>
+                    <div class="save-total"><input type="number" name="attr_impulsive" value="[[@{agility_modifier} + @{impulsive_proficiency} + @{impulsive_misc}]]" disabled="true" /></div>
+                
+                    <div class="save-name"><button class="skill" type="roll" name="roll_corporeal" value="/r 1d10!10+@{corporeal}+@{power_die}">Corporeal</button></div>
+                    <div class="save-proficiency">
+                        <select name="attr_corporeal_proficiency">
+                            <option value="0">No Proficiency</option>
+                            <option value="2">Experienced</option>
+                            <option value="4">Trained</option>
+                            <option value="6">Qualified</option>
+                            <option value="8">Specialist</option>
+                            <option value="10">Expert</option>
+                        </select>
+                    </div>
+                    <div class="save-misc"><input type="number" name="attr_corporeal_misc" value="0" /></div>
+                    <div class="save-total"><input type="number" name="attr_corporeal" value="[[@{tenacity_modifier} + @{corporeal_proficiency} + @{corporeal_misc}]]" disabled="true" /></div>
+                    
+                    <div class="save-name"><button class="skill" type="roll" name="roll_cognitive" value="/r 1d10!10+@{cognitive}+@{power_die}">Cognitive</button></div>
+                    <div class="save-proficiency">
+                        <select name="attr_cognitive_proficiency">
+                            <option value="0">No Proficiency</option>
+                            <option value="2">Experienced</option>
+                            <option value="4">Trained</option>
+                            <option value="6">Qualified</option>
+                            <option value="8">Specialist</option>
+                            <option value="10">Expert</option>
+                        </select>
+                    </div>
+                    <div class="save-misc"><input type="number" name="attr_cognitive_misc" value="0" /></div>
+                    <div class="save-total"><input type="number" name="attr_cognitive" value="[[@{insight_modifier} + @{cognitive_proficiency} + @{cognitive_misc}]]" disabled="true" /></div>
+                
+                    <div class="save-name"><button class="skill" type="roll" name="roll_morale" value="/r 1d10!10+@{morale}+@{power_die}">Morale</button></div>
+                    <div class="save-proficiency">
+                        <select name="attr_morale_proficiency">
+                            <option value="0">No Proficiency</option>
+                            <option value="2">Experienced</option>
+                            <option value="4">Trained</option>
+                            <option value="6">Qualified</option>
+                            <option value="8">Specialist</option>
+                            <option value="10">Expert</option>
+                        </select>
+                    </div>
+                    <div class="save-misc"><input type="number" name="attr_morale_misc" value="0" /></div>
+                    <div class="save-total"><input type="number" name="attr_morale" value="[[@{personality_modifier} + @{morale_proficiency} + @{morale_misc}]]" disabled="true" /></div>
+                </div>
+            </div>
             <div class="skill1">
                 <div><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{acrobatics}+floor(@{scholarship_modifier}/2)+@{power_die}">Acrobatics (AG):</button><input type="number" name="attr_acrobatics" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{athletics}+floor(@{scholarship_modifier}/2)+@{power_die}">Athletics (FO):</button><input type="number" name="attr_athletics" value="0"/></div>
@@ -148,7 +210,8 @@
                 <div><button class="skill" type="roll" name="roll_thievery" value="/r 1d10!10+@{agility_modifier}+@{thievery}+floor(@{scholarship_modifier}/2)+@{power_die}">Thievery (AG):</button><input type="number" name="attr_thievery" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_use_magic" value="/r 1d10!10+@{spirit_modifier}+@{use_magic}+floor(@{scholarship_modifier}/2)+@{power_die}">Use Magic (SP):</button><input type="number" name="attr_use_magic" value="0"/></div>
             </div>
-            
+
+
         </div>
     </div>
 </div>
@@ -163,8 +226,7 @@
     <h2>Dodge <input type="number" name="attr_dodge_modifier" value="0"/><button class="attack-button" type="roll" name="roll_dodge" value="/r 1d10!10+@{dodge_modifier}+@{agility_modifier}"></button></h2>
     <input type="hidden" name="attr_hidden_soak" value="0">
     <div style="display: flex;"><h2>Hit Modifier: <input type="number" name="attr_global_hit" value="0"></h2><h2>Wound Modifier: <input type="number" name="attr_global_wound" value="0"></h2></div>
-    <div class="saves"><label style="grid-area: save1;">Cognitive save: <button class="attack-button" type="roll" name="roll_cognitive" value="/r 1d10!10+@{insight_modifier}"></button></label><label style="grid-area: save2;">Corporeal Save: <button class="attack-button" type="roll" name="roll_corporeal" value="/r 1d10!10+@{tenacity_modifier}"></button></label><label style="grid-area: save3;">Impulsive Save: <button class="attack-button" type="roll" name="roll_impulsive" value="/r 1d10!10+@{agility_modifier}"></button></label><label style="grid-area: save4;">Morale Save: <button class="attack-button" type="roll" name="roll_morale" value="/r 1d10!10+@{personality_modifier}"></button></label></div>
-
+    
     <div class="basic-attack">
         <div class="basic-attacks-col1">
             <h2 style="border: 1px solid darkgray">Name:</h2>
@@ -322,14 +384,14 @@
         <div class="transformations-bot">
             <fieldset class="repeating_transformations">
                 <div class="transformations-table" style="border-top: none;">
-                    <div class="tname"><input type="text" name="attr_name" style = "width: 80px;"><input type="checkbox" name="attr_active" value="1"></div>
-                    <div class="tagi"><input type="text" name="attr_agility" style = "width: 80px;" value="0"></div>
-                    <div class="tfor"><input type="text" name="attr_force" style = "width: 80px;" value="0"></div>
-                    <div class="tten"><input type="text" name="attr_tenacity" style = "width: 80px;" value="0"></div>
-                    <div class="tsch"><input type="text" name="attr_scholarship" style = "width: 80px;" value="0"></div>
-                    <div class="tins"><input type="text" name="attr_insight" style = "width: 80px;" value="0"></div>
-                    <div class="tspi"><input type="text" name="attr_spirit" style = "width: 80px;" value="0"></div>
-                    <div class="tper"><input type="text" name="attr_personality" style = "width: 80px;" value="0"></div>
+                    <div class="tname"><input type="text" name="attr_name" style = "width: 100px;"><input type="checkbox" name="attr_active" value="1"></div>
+                    <div class="tagi"><input type="text" name="attr_agility" style = "width: 60px;" value="0"></div>
+                    <div class="tfor"><input type="text" name="attr_force" style = "width: 60px;" value="0"></div>
+                    <div class="tten"><input type="text" name="attr_tenacity" style = "width: 60px;" value="0"></div>
+                    <div class="tsch"><input type="text" name="attr_scholarship" style = "width: 60px;" value="0"></div>
+                    <div class="tins"><input type="text" name="attr_insight" style = "width: 60px;" value="0"></div>
+                    <div class="tspi"><input type="text" name="attr_spirit" style = "width: 60px;" value="0"></div>
+                    <div class="tper"><input type="text" name="attr_personality" style = "width: 60px;" value="0"></div>
                 </div>
             </fieldset>
         </div>
@@ -361,10 +423,13 @@
                 die += Math.floor((tier-1)/4) + "d10 + ";
             }
             die += "1d"+dicelist[(tier-1)%4];
+            var capacity = 14 + ((values.POWER_LEVEL-1)*6);
             var ki_pool = 26 + ((values.POWER_LEVEL-1)*12);
             setAttrs({
                 "power_die":die,
-                "tier_of_power":tier
+                "tier_of_power":tier,
+                "ki_max":ki_pool,
+                "capacity_max": capacity
             });
         });
     });
@@ -521,77 +586,72 @@
     /*
     Ability Logic
     */
+    function update_stats(){
+        /* This may be considered an abomination by some */
+        getAttrs([
+        "agility_ranks",
+        "agility_racial",
+        "agility_tf",
 
-    function update_agility(){
-        getAttrs(["agility_ranks", "agility_racial", "agility_tf"], function(values){
+        "force_ranks",
+        "force_racial",
+        "force_tf",
+
+        "tenacity_ranks",
+        "tenacity_racial",
+        "tenacity_tf",
+
+        "scholarship_ranks",
+        "scholarship_racial",
+        "scholarship_tf",
+
+        "insight_ranks",
+        "insight_racial",
+        "insight_tf",
+
+        "spirit_ranks",
+        "spirit_racial",
+        "spirit_tf",
+
+        "personality_ranks",
+        "personality_racial",
+        "personality_tf",
+
+        "impulsive_misc",
+        "impulsive_proficiency"
+        ], function(values){
             var agility = +values.agility_ranks + +values.agility_racial;
+            var force = +values.force_ranks + +values.force_racial;
+            var tenacity = +values.tenacity_ranks + +values.tenacity_racial;
+            var scholarship = +values.scholarship_ranks + +values.scholarship_racial;
+            var insight = +values.insight_ranks + +values.insight_racial;
+            var spirit = +values.spirit_ranks + +values.spirit_racial;
+            var personality = +values.personality_ranks + +values.personality_racial;
             setAttrs({
                 "agility":agility,
                 "agility_modifier":(Math.floor(agility/2)),
-                "agility_tfmodifier":(Math.floor(agility/2) + +values.agility_tf)
-            });
-        });
-    }
+                "agility_tfmodifier":(Math.floor(agility/2) + +values.agility_tf),
 
-    function update_force(){
-        getAttrs(["force_ranks", "force_racial", "force_tf"], function(values){
-            var force = +values.force_ranks + +values.force_racial;
-            setAttrs({
                 "force":force,
                 "force_modifier":(Math.floor(force/2)),
-                "force_tfmodifier":(Math.floor(force/2) + +values.force_tf)
-            });
-        });
-    }
-    
-    function update_tenacity(){
-        getAttrs(["tenacity_ranks", "tenacity_racial", "tenacity_tf"], function(values){
-            var tenacity = +values.tenacity_ranks + +values.tenacity_racial;
-            setAttrs({
+                "force_tfmodifier":(Math.floor(force/2) + +values.force_tf),
+                
                 "tenacity":tenacity,
                 "tenacity_modifier":(Math.floor(tenacity/2)),
-                "tenacity_tfmodifier":(Math.floor(tenacity/2) + +values.tenacity_tf)
-            });
-        });
-    }
-    
-    function update_scholarship(){
-        getAttrs(["scholarship_ranks", "scholarship_racial", "scholarship_tf"], function(values){
-            var scholarship = +values.scholarship_ranks + +values.scholarship_racial;
-            setAttrs({
+                "tenacity_tfmodifier":(Math.floor(tenacity/2) + +values.tenacity_tf),
+                
                 "scholarship":scholarship,
                 "scholarship_modifier":(Math.floor(scholarship/2)),
-                "scholarship_tfmodifier":(Math.floor(scholarship/2) + +values.scholarship_tf)
-            });
-        });
-    }
-
-    function update_insight(){
-        getAttrs(["insight_ranks", "insight_racial", "insight_tf"], function(values){
-            var insight = +values.insight_ranks + +values.insight_racial;
-            setAttrs({
+                "scholarship_tfmodifier":(Math.floor(scholarship/2) + +values.scholarship_tf),
+                
                 "insight":insight,
                 "insight_modifier":(Math.floor(insight/2)),
-                "insight_tfmodifier":(Math.floor(insight/2) + +values.insight_tf)
-            });
-        });
-    }
-
-    function update_spirit(){
-        getAttrs(["spirit_ranks", "spirit_racial", "spirit_tf"], function(values){
-            var spirit = +values.spirit_ranks + +values.spirit_racial;
-            setAttrs({
+                "insight_tfmodifier":(Math.floor(insight/2) + +values.insight_tf),
+                
                 "spirit":spirit,
                 "spirit_modifier":(Math.floor(spirit/2)),
-                "spirit_tfmodifier":(Math.floor(spirit/2) + +values.spirit_tf)
-            });
-        });
-    }
-
-    function update_personality(){
-        getAttrs(["personality_ranks", "personality_racial", "personality_tf"], function(values){
-            var personality = +values.personality_ranks + +values.personality_racial;
-            setAttrs({
+                "spirit_tfmodifier":(Math.floor(spirit/2) + +values.spirit_tf),
+                
                 "personality":personality,
                 "personality_modifier":(Math.floor(personality/2)),
                 "personality_tfmodifier":(Math.floor(personality/2) + +values.personality_tf)
@@ -600,52 +660,52 @@
     }
 
     on("change:agility_ranks", function(){                
-        update_agility();
+        update_stats();
     });
     on("change:agility_racial", function(){
-        update_agility();
+        update_stats();
     });
 
     on("change:force_ranks", function(){                
-        update_force();
+        update_stats();
     });
     on("change:force_racial", function(){
-        update_force();
+        update_stats();
     });
     
     on("change:tenacity_ranks", function(){                
-        update_tenacity();
+        update_stats();
     });
     on("change:tenacity_racial", function(){
-        update_tenacity();
+        update_stats();
     });
     
     on("change:scholarship_ranks", function(){                
-        update_scholarship();
+        update_stats();
     });
     on("change:scholarship_racial", function(){
-        update_scholarship();
+        update_stats();
     });
     
     on("change:insight_ranks", function(){                
-        update_insight();
+        update_stats();
     });
     on("change:insight_racial", function(){
-        update_insight();
+        update_stats();
     });
     
     on("change:spirit_ranks", function(){                
-        update_spirit();
+        update_stats();
     });
     on("change:spirit_racial", function(){
-        update_spirit();
+        update_stats();
     });
     
     on("change:personality_ranks", function(){                
-        update_personality();
+        update_stats();
     });
     on("change:personality_racial", function(){
-        update_personality();
+        update_stats();
     });
 
     /*
@@ -760,13 +820,7 @@
                     "personality_tf":(+tf_personality - +rp_personality),
                 });
             }
-            update_agility();
-            update_force();
-            update_tenacity();
-            update_scholarship();
-            update_insight();
-            update_spirit();
-            update_personality();
+            update_stats();
         });
     });
     

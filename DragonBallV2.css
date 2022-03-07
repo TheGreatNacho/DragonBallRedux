@@ -15,30 +15,18 @@
 	display: none;
 }
 
-.sheet-abilityTable{
+.sheet-ability-table{
     display:grid;
     border-style: none;
     grid-template-areas:
     'abilityName abilityMod abilityTrans abilityRanks abilityRacial abilityTotal';
 }
 
-.sheet-abilityName{
-    grid-area: 'abilityName';
-}
-.sheet-abilityMod{
-    grid-area: 'abilityMod';
-}
-.sheet-abilityTrans{
-    grid-area: 'abilityTrans';
-}
-.sheet-abilityRanks{
-    grid-area: 'abilityRanks';
-}
-.sheet-abilityRacial{
-    grid-area: 'abilityRacial';
-}
-.sheet-abilityTotal{
-    grid-area: 'abilityTotal';
+.sheet-save-table{
+    border-top: 1px inset darkgray;
+    grid-template-areas:
+    'save-name save-profieciency save-misc save-total';
+    display:grid;
 }
 
 /* show the selected tab */
@@ -69,7 +57,7 @@
     border: 2px solid silver;
     justify-content: space-around;
     grid-template-areas: 
-    'tname tagi tins tper tsch tspi tstr tten';
+    'tname tagi tfor tten tsch tins tspi tper';
 }
 
 .sheet-tten{
@@ -462,13 +450,8 @@ button[type="roll"].sheet-skill{
 
 .sheet-all-stats{
     grid-area: all-stats;
-}
-
-.sheet-all-skills{
-    grid-area: all-skills;
-    display: grid;
-    grid-template-areas: 
-    'skill1' 'skill2';
+    border: 1px solid darkgray;
+    display:grid;
 }
 
 .sheet-stats{
