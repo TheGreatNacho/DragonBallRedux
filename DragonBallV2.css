@@ -410,13 +410,21 @@ button[type="roll"].sheet-attack-button{
     padding-left: 6px;
     border: 1px inset darkgray;
 }
-.repeating_knowledge,
+.charsheet .repcontainer[data-groupname=repeating_knowledge],
+.charsheet .repcontainer[data-groupname=repeating_profession],
+.sheet-skill-table{
+    width:100%;
+}
+.charsheet .repcontainer[data-groupname=repeating_knowledge]>div,
+.charsheet .repcontainer[data-groupname=repeating_profession]>div,
 .sheet-skill-table{
     display:grid;
     grid-template-areas:
     'skill-name skill-profieciency skill-misc ability-mod skill-total';
 }
-
+.sheet-skill-table>p{
+    font-size:10px;
+}
 .sheet-skill-label{
     color: black;
 }
@@ -426,16 +434,77 @@ button[type="roll"].sheet-attack-button{
 
 button[type="roll"].sheet-skill:hover{
     background-position: 0;
-  }
+    color:red;
+}
 
 button[type="roll"].sheet-skill{
+    font-size: 10px;
+    border-style: none;
+    background-color: transparent;
+    margin-left: 5px;
+    width:100px;
+    background: none;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+button[type="roll"].sheet-ability:hover{
+    background-position: 0;
+    color:red;
+}
+
+button[type="roll"].sheet-ability{
     font-size: 13px;
     /*border-style: none;*/
     background-color: transparent;
-    margin-left: 5px;
-    
+    width:80px;
+    background: none;
+    background-image: none;
+    border: none;
+    box-shadow:none;
 }
 
+.sheet-skill-number{
+    width:45px !important;
+    height:20px !important;
+    font-size:10px;
+}
+
+.sheet-proficiency-select{
+    margin:2px;
+    font-size:10px;
+    width:100px;
+    height:20px;
+}
+/*
+might try something like this later
+pulled from pathfinder sheet
+.sheet-skills>.repcontrol>.repcontrol_add:before{
+    content: '&';
+    font-family: pictos;
+    color: black;
+    display: inline-block;
+}
+
+.sheet-skills>.repcontrol>.repcontrol_add{
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 13px;
+    padding: 3px;
+    height: 12px;
+    width: 12px;
+    line-height: 12px;
+}
+.sheet-skills>.repcontrol>.repcontrol_edit{
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 13px;
+    padding: 3px;
+    height: 12px;
+    width: 12px;
+    line-height: 12px;
+}
+*/
 .sheet-all-stats{
     grid-area: all-stats;
     border: 1px solid darkgray;
