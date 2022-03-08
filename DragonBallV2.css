@@ -60,12 +60,17 @@
     'tname tagi tfor tten tsch tins tspi tper';
 }
 
-.sheet-tten{
-    grid-area: tten;
+
+.sheet-tagi{
+    grid-area: tagi;
 }
 
-.sheet-tstr{
+.sheet-tfor{
     grid-area: tfor;
+}
+
+.sheet-tten{
+    grid-area: tten;
 }
 
 .sheet-tspi{
@@ -76,20 +81,12 @@
     grid-area: tsch;
 }
 
-.sheet-tpot{
-    grid-area: tpot;
-}
-
 .sheet-tper{
     grid-area: tper;
 }
 
 .sheet-tins{
     grid-area: tins;
-}
-
-.sheet-tagi{
-    grid-area: tagi;
 }
 
 .sheet-ttype{
@@ -333,49 +330,6 @@ button[type="roll"].sheet-attack-button{
     text-align: center;
 }
 
-.sheet-skill2{
-    grid-area: skill2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 6px;
-    border: 1px inset darkgray;
-}
-
-.sheet-skill1{
-    grid-area: skill1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 6px;
-    border: 1px inset darkgray;
-}
-
-.sheet-skill-label{
-    color: black;
-}
-.sheet-skill-label:hover{
-    cursor: pointer;
-}
-
-button[type="roll"].sheet-skill:before{
-    content: ' ';
-  }
-  
-button[type="roll"].sheet-skill:hover{
-    background-position: 0;
-  }
-
-button[type="roll"].sheet-skill{
-    font-size: 13px;
-    /*border-style: none;*/
-    background-color: transparent;
-    margin-left: 5px;
-    
-}
-
 .sheet-stat-ten{
     display: flex;
     grid-area: stat-ten;
@@ -447,6 +401,40 @@ button[type="roll"].sheet-skill{
     align-items: center;
     border: 1px inset darkgray;
 }
+.sheet-skills{
+    grid-area: skills;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 6px;
+    border: 1px inset darkgray;
+}
+.repeating_knowledge,
+.sheet-skill-table{
+    display:grid;
+    grid-template-areas:
+    'skill-name skill-profieciency skill-misc ability-mod skill-total';
+}
+
+.sheet-skill-label{
+    color: black;
+}
+.sheet-skill-label:hover{
+    cursor: pointer;
+}
+
+button[type="roll"].sheet-skill:hover{
+    background-position: 0;
+  }
+
+button[type="roll"].sheet-skill{
+    font-size: 13px;
+    /*border-style: none;*/
+    background-color: transparent;
+    margin-left: 5px;
+    
+}
 
 .sheet-all-stats{
     grid-area: all-stats;
@@ -458,7 +446,7 @@ button[type="roll"].sheet-skill{
     display: grid;
     border: 2px solid darkgray;
     grid-template-areas: 
-    'all-stats skill1 skill2';
+    'all-stats skills';
 }
 
 .sheet-attr-head{

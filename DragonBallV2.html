@@ -184,7 +184,187 @@
                     <div class="save-total"><input type="number" name="attr_morale" value="[[@{personality_modifier} + @{morale_proficiency} + @{morale_misc}]]" disabled="true" /></div>
                 </div>
             </div>
-            <div class="skill1">
+            <div class="skills">
+                <label style="text-align:center;">SKILLS</label>
+                <div class="skill-table">
+                    <p style="padding:5px;">SKILL</p>
+                    <p style="padding:5px;">PROFICIENCY</p>
+                    <p style="padding:5px;">MISC</p>
+                    <p style="padding:5px;">ABILITY</p>
+                    <p style="padding:5px;">TOTAL</p>
+
+                    <button class="skill" type="roll" name="roll_acrobatics" value="/r 1d10!10+@{acrobatics}+@{power_die}">Acrobatics</button>
+                    <select name="attr_acrobatics_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_acrobatics_misc" value="0" />
+                    <input type="number" name="attr_acrobatics_mod" value="(@{agility_modifier})" disabled="true" />
+                    <input type="number" name="attr_acrobatics" value="(@{agility_modifier}+@{acrobatics_proficiency}+@{acrobatics_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_athletics" value="/r 1d10!10+@{athletics}+@{power_die}">Athletics</button>
+                    <select name="attr_athletics_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_athletics_misc" value="0" />
+                    <input type="number" name="attr_athletics_mod" value="(@{force_modifier})" disabled="true" />
+                    <input type="number" name="attr_athletics" value="(@{force_modifier}+@{athletics_proficiency}+@{athletics_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_bluff" value="/r 1d10!10+@{bluff}+@{power_die}">Bluff</button>
+                    <select name="attr_bluff_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_bluff_misc" value="0" />
+                    <input type="number" name="attr_bluff_mod" value="(@{personality_modifier})" disabled="true" />
+                    <input type="number" name="attr_bluff" value="(@{personality_modifier}+@{bluff_proficiency}+@{bluff_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_clairvoyant" value="/r 1d10!10+@{clairvoyant}+@{power_die}">Clairvoyant</button>
+                    <select name="attr_clairvoyant_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_clairvoyant_misc" value="0" />
+                    <input type="number" name="attr_clairvoyant_mod" value="(@{spirit_modifier})" disabled="true" />
+                    <input type="number" name="attr_clairvoyant" value="(@{spirit_modifier}+@{clairvoyant_proficiency}+@{clairvoyant_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_concealment" value="/r 1d10!10+@{concealment}+@{power_die}">Concealment</button>
+                    <select name="attr_concealment_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_concealment_misc" value="0" />
+                    <input type="number" name="attr_concealment_mod" value="(@{spirit_modifier})" disabled="true" />
+                    <input type="number" name="attr_concealment" value="(@{spirit_modifier}+@{concealment_proficiency}+@{concealment_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_craft_weapon" value="/r 1d10!10+@{craft_weapon}+@{power_die}">Craft (Weapon)</button>
+                    <select name="attr_craft_weapon_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_craft_weapon_misc" value="0" />
+                    <input type="number" name="attr_craft_weapon_mod" value="(@{scholarship_modifier})" disabled="true" />
+                    <input type="number" name="attr_craft_weapon" value="(@{scholarship_modifier}+@{craft_weapon_proficiency}+@{craft_weapon_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_craft_apparel" value="/r 1d10!10+@{craft_apparel}+@{power_die}">Craft (Apparel)</button>
+                    <select name="attr_craft_apparel_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_craft_apparel_misc" value="0" />
+                    <input type="number" name="attr_craft_apparel_mod" value="(@{scholarship_modifier})" disabled="true" />
+                    <input type="number" name="attr_craft_apparel" value="(@{scholarship_modifier}+@{craft_apparel_proficiency}+@{craft_apparel_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_craft_basicitem" value="/r 1d10!10+@{craft_basicitem}+@{power_die}">Craft (Basic Item)</button>
+                    <select name="attr_craft_basicitem_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_craft_basicitem_misc" value="0" />
+                    <input type="number" name="attr_craft_basicitem_mod" value="(@{scholarship_modifier})" disabled="true" />
+                    <input type="number" name="attr_craft_basicitem" value="(@{scholarship_modifier}+@{craft_basicitem_proficiency}+@{craft_basicitem_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_craft_vehicle" value="/r 1d10!10+@{craft_vehicle}+@{power_die}">Craft (Vehicle)</button>
+                    <select name="attr_craft_vehicle_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_craft_vehicle_misc" value="0" />
+                    <input type="number" name="attr_craft_vehicle_mod" value="(@{scholarship_modifier})" disabled="true" />
+                    <input type="number" name="attr_craft_vehicle" value="(@{scholarship_modifier}+@{craft_vehicle_proficiency}+@{craft_vehicle_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_creature_handling" value="/r 1d10!10+@{creature_handling}+@{power_die}">Creature Handling</button>
+                    <select name="attr_creature_handling_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_creature_handling_misc" value="0" />
+                    <input type="number" name="attr_creature_handling_mod" value="(@{insight_modifier})" disabled="true" />
+                    <input type="number" name="attr_creature_handling" value="(@{insight_modifier}+@{creature_handling_proficiency}+@{creature_handling_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_intimidate" value="/r 1d10!10+@{intimidate}+@{power_die}">Intimidate</button>
+                    <select name="attr_intimidate_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_intimidate_misc" value="0" />
+                    <input type="number" name="attr_intimidate_mod" value="(@{personality_modifier})" disabled="true" />
+                    <input type="number" name="attr_intimidate" value="(@{personality_modifier}+@{intimidate_proficiency}+@{intimidate_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+
+                    <button class="skill" type="roll" name="roll_investigation" value="/r 1d10!10+@{investigation}+@{power_die}">Investigation</button>
+                    <select name="attr_investigation_proficiency" style="width:120px;">
+                        <option value="0">No Proficiency</option>
+                        <option value="2">Experienced</option>
+                        <option value="4">Trained</option>
+                        <option value="6">Qualified</option>
+                        <option value="8">Specialist</option>
+                        <option value="10">Expert</option>
+                    </select>
+                    <input type="number" name="attr_investigation_misc" value="0" />
+                    <input type="number" name="attr_investigation_mod" value="(@{scholarship_modifier})" disabled="true" />
+                    <input type="number" name="attr_investigation" value="(@{scholarship_modifier}+@{investigation_proficiency}+@{investigation_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+                    <fieldset class="repeating_knowledge">
+                        <button class="skill" type="roll" name="roll_knowledge" value="/r 1d10!10+@{knowledge}+@{power_die}">Knowledge</button>
+                        <select name="attr_knowledge_proficiency" style="width:120px;">
+                            <option value="0">No Proficiency</option>
+                            <option value="2">Experienced</option>
+                            <option value="4">Trained</option>
+                            <option value="6">Qualified</option>
+                            <option value="8">Specialist</option>
+                            <option value="10">Expert</option>
+                        </select>
+                        <input type="number" name="attr_knowledge_misc" value="0" />
+                        <input type="number" name="attr_knowledge_mod" value="(@{scholarship_modifier})" disabled="true" />
+                        <input type="number" name="attr_knowledge" value="(@{scholarship_modifier}+@{knowledge_proficiency}+@{knowledge_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
+                    </fieldset>
+
+                </div>
+                <!--
                 <div><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{acrobatics}+floor(@{scholarship_modifier}/2)+@{power_die}">Acrobatics (AG):</button><input type="number" name="attr_acrobatics" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{athletics}+floor(@{scholarship_modifier}/2)+@{power_die}">Athletics (FO):</button><input type="number" name="attr_athletics" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_bluff" value="/r 1d10!10+@{personality_modifier}+@{bluff}+floor(@{scholarship_modifier}/2)+@{power_die}">Bluff (PE):</button><input type="number" name="attr_bluff" value="0"/></div>
@@ -195,9 +375,6 @@
                 <div><button class="skill" type="roll" name="roll_intimidate" value="/r 1d10!10+@{personality_modifier}+@{intimidate}+floor(@{scholarship_modifier}/2)+@{power_die}">Intimidate (PE):</button><input type="number" name="attr_intimidate" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_investigation" value="/r 1d10!10+@{scholarship_modifier}+@{investigation}+floor(@{scholarship_modifier})+@{power_die}">Investigation (SC):</button><input type="number" name="attr_investigation" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_knowledge" value="/r 1d10!10+@{scholarship_modifier}+@{knowledge}+floor(@{scholarship_modifier})+@{power_die}">Knowledge (SC):</button><input type="number" name="attr_knowledge" value="0"/></div>
-            </div>
-
-            <div class="skill2">
                 <div><button class="skill" type="roll" name="roll_medicine" value="/r 1d10!10+@{scholarship_modifier}+@{medicine}+floor(@{scholarship_modifier})+@{power_die}">Medicine (SC):</button><input type="number" name="attr_medicine" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_perception" value="/r 1d10!10+@{insight_modifier}+@{perception}+floor(@{scholarship_modifier}/2)+@{power_die}">Perception (IN):</button><input type="number" name="attr_perception" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_performance" value="/r 1d10!10+@{personality_modifier}+@{performance}+floor(@{scholarship_modifier}/2)+@{power_die}">Performance (PE):</button><input type="number" name="attr_performance" value="0"/></div>
@@ -209,6 +386,7 @@
                 <div><button class="skill" type="roll" name="roll_survival" value="/r 1d10!10+@{insight_modifier}+@{survival}+floor(@{scholarship_modifier}/2)+@{power_die}">Survival (IN):</button><input type="number" name="attr_survival" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_thievery" value="/r 1d10!10+@{agility_modifier}+@{thievery}+floor(@{scholarship_modifier}/2)+@{power_die}">Thievery (AG):</button><input type="number" name="attr_thievery" value="0"/></div>
                 <div><button class="skill" type="roll" name="roll_use_magic" value="/r 1d10!10+@{spirit_modifier}+@{use_magic}+floor(@{scholarship_modifier}/2)+@{power_die}">Use Magic (SP):</button><input type="number" name="attr_use_magic" value="0"/></div>
+                -->
             </div>
 
 
