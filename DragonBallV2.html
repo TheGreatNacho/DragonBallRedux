@@ -5,6 +5,7 @@
     <button type="action" name="act_attacks" >Attacks</button>
     <button type="action" name="act_abilities">Abilities</button>
     <button type="action" name="act_transformations">Transformations</button>
+    <button type="action" name="act_settings">Settings</button>
 </div>
 <input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab'  value='attributes'  />
 <br>
@@ -689,7 +690,7 @@
 
 <div class='transformations'>
     <h1>Transformations</h1>
-    <h2>Stress Test<button class="stress-button" name="roll_stress_test" type="roll" value="/em [[1d10!10 + @{power_level}]]"></button></h2>
+    <h2>Stress Test<button class="stress-button" name="roll_stress_test" type="roll" value="/em [[1d10 + @{power_level} + floor(@{personality_modifier}/2)]]"></button></h2>
     <h2>Training Roll <input type="number" min="1" value="1" name="attr_intensity"><button class="stress-button" name="roll_training" type="roll" value="/em puts their body on the line in training, attempt [[@{intensity}d10!10+@{agility_modifier}+@{tenacity_modifier}+@{insight_modifier}+@{personality_modifier}]]>[[?{Condition Range? |Very Easy, 10*@{intensity}+floor(@{power_level}/5)*5|Easy, 20*@{intensity}+floor(@{power_level}/5)*5|Medium, 30*@{intensity}+floor(@{power_level}/5)*5|Hard, 40*@{intensity}+floor(@{power_level}/5)*5|Very Hard, 50*@{intensity}+floor(@{power_level}/5)*5|Nearly Impossible, 60*@{intensity}+floor(@{power_level}/5)*5}]] gaining [[@{power_level}*@{intensity}]] xp"></button></h2>
     <div class="transformations-page">
         <div class="transformations-top">
@@ -721,10 +722,14 @@
     </div>
 </div>
 
+<div class='settings'>
+    <h1>Settings</h1>
+</div>
+
 <script type="text/worker">
     
 
-    const buttonlist = ["attributes","attacks","abilities","transformations"];
+    const buttonlist = ["attributes","attacks","abilities","transformations", "settings"];
     buttonlist.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({

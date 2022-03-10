@@ -11,7 +11,8 @@
 .sheet-attributes,
 .sheet-attacks,
 .sheet-abilities,
-.sheet-transformations {
+.sheet-transformations,
+.sheet-settings {
 	display: none;
 }
 
@@ -33,7 +34,8 @@
 .sheet-tabstoggle[value="attributes"] ~ div.sheet-attributes,
 .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks,
 .sheet-tabstoggle[value="abilities"] ~ div.sheet-abilities,
-.sheet-tabstoggle[value="transformations"] ~ div.sheet-transformations {
+.sheet-tabstoggle[value="transformations"] ~ div.sheet-transformations,
+.sheet-tabstoggle[value="settings"] ~ div.sheet-settings {
 	display: block;
 }
 
