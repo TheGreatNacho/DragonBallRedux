@@ -51,7 +51,6 @@
     background-color: white;
     text-align: center;
 }
-
 .sheet-transformations-table{
     display: grid;
     border: 2px solid silver;
@@ -547,6 +546,80 @@ pulled from pathfinder sheet
     'attr-head'
     'attr-top'
     'attr-bottom';
+}
+.sheet-talent-table{
+    display: grid;
+    grid-template-areas:
+    'name short_desc short_desc'
+    'long_desc long_desc long_desc';
+    border: 1px solid darkgray;
+}
+
+.sheet-showhidebox ~ .sheet-talent-verbose{
+    display:none;
+}
+
+.sheet-showhidebox ~ .sheet-talent-simple{
+    display:none;
+}
+
+.sheet-showhidebox:checked ~ .sheet-talent-verbose{
+    display:grid;
+}
+
+.sheet-showhidebox:not(:checked) ~ .sheet-talent-simple{
+    display:flex;
+}
+
+.sheet-talent-name{
+    grid-area: name;
+    display: grid;
+    grid-template-rows:auto;
+    grid-template-columns: 26px auto;
+    width:100%;
+}
+.sheet-talent-short-desc{
+    grid-area: short_desc;
+    width:100%;
+}
+.sheet-talent-long-desc{
+    grid-area: long_desc;
+    font-size:10px;
+    resize:vertical;
+    margin: 5px;
+    min-height:13px;
+}
+
+.sheet-auto-expand {
+	position: relative;
+	cursor: text;
+	word-wrap: break-word;
+}
+.sheet-auto-expand span {
+	visibility: hidden;
+	white-space: pre-wrap;
+	display: block;
+}
+.sheet-auto-expand textarea {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	margin: 0;
+	overflow: hidden;
+	resize: none;
+    min-height:18px;
+	height: 100%;
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	letter-spacing: inherit;
+	padding: inherit;
+	text-align: inherit;
+	text-transform: inherit;
 }
 
 .sheet-j-label{

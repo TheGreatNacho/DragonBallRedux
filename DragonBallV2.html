@@ -73,7 +73,7 @@
                     <input type="hidden" value="0" name="attr_agility_tf">
                     
                     <div class="abilityName"><button class="ability" type="roll" name="roll_force" value="/r 1d10!10+@{force_tfmodifier}+@{power_die}">Force</button></div>
-                    <div ass="abilityMod"><input type="number" name="attr_force_modifier" value="1" readonly /></div>
+                    <div class="abilityMod"><input type="number" name="attr_force_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_force_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRaclnks"><input type="number" name="attr_force_ranks" value="2" /></div>
                     <div class="abilityRacial"><input type="number" name="attr_force_racial" value="0" /></div>
@@ -526,29 +526,6 @@
                     <input class="skill-number" type="number" name="attr_use_magic_mod" value="(@{spirit_modifier})" disabled="true" />
                     <input class="skill-number" type="number" name="attr_use_magic" value="(@{spirit_modifier}+@{use_magic_proficiency}+@{use_magic_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
                 </div>
-                <!--
-                <div><button class="skill" type="roll" name="roll_agility" value="/r 1d10!10+@{agility_modifier}+@{acrobatics}+floor(@{scholarship_modifier}/2)+@{power_die}">Acrobatics (AG):</button><input type="number" name="attr_acrobatics" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_force" value="/r 1d10!10+@{force_modifier}+@{athletics}+floor(@{scholarship_modifier}/2)+@{power_die}">Athletics (FO):</button><input type="number" name="attr_athletics" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_bluff" value="/r 1d10!10+@{personality_modifier}+@{bluff}+floor(@{scholarship_modifier}/2)+@{power_die}">Bluff (PE):</button><input type="number" name="attr_bluff" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_clairvoyant" value="/r 1d10!10+@{spirit_modifier}+floor(@{scholarship_modifier}/2)+@{clairvoyant}+@{power_die}">Clairvoyant (SP):</button><input type="number" name="attr_clairvoyant" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_concealment" value="/r 1d10!10+@{spirit_modifier}+@{concealment}+floor(@{scholarship_modifier}/2)+@{power_die}">Concealment (SP):</button><input type="number" name="attr_concealment" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_craft" value="/r 1d10!10+@{scholarship_modifier}+@{craft}+floor(@{scholarship_modifier})+@{power_die}">Craft (SC):</button><input type="number" name="attr_craft" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_creature_handling" value="/r 1d10!10+@{insight_modifier}+@{creature_handling}+floor(@{scholarship_modifier}/2)+@{power_die}">Creature Handling (IN):</button><input type="number" name="attr_creature_handling" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_intimidate" value="/r 1d10!10+@{personality_modifier}+@{intimidate}+floor(@{scholarship_modifier}/2)+@{power_die}">Intimidate (PE):</button><input type="number" name="attr_intimidate" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_investigation" value="/r 1d10!10+@{scholarship_modifier}+@{investigation}+floor(@{scholarship_modifier})+@{power_die}">Investigation (SC):</button><input type="number" name="attr_investigation" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_knowledge" value="/r 1d10!10+@{scholarship_modifier}+@{knowledge}+floor(@{scholarship_modifier})+@{power_die}">Knowledge (SC):</button><input type="number" name="attr_knowledge" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_medicine" value="/r 1d10!10+@{scholarship_modifier}+@{medicine}+floor(@{scholarship_modifier})+@{power_die}">Medicine (SC):</button><input type="number" name="attr_medicine" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_perception" value="/r 1d10!10+@{insight_modifier}+@{perception}+floor(@{scholarship_modifier}/2)+@{power_die}">Perception (IN):</button><input type="number" name="attr_perception" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_performance" value="/r 1d10!10+@{personality_modifier}+@{performance}+floor(@{scholarship_modifier}/2)+@{power_die}">Performance (PE):</button><input type="number" name="attr_performance" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_persuasion" value="/r 1d10!10+@{personality_modifier}+@{persuasion}+floor(@{scholarship_modifier}/2)+@{power_die}">Persuasion (PE):</button><input type="number" name="attr_persuasion" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_pilot" value="/r 1d10!10+@{agility_modifier}+@{pilot}+floor(@{scholarship_modifier}/2)+@{power_die}">Pilot (AG):</button><input type="number" name="attr_pilot" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_profession" value="/r 1d10!10+@{scholarship_modifier}+@{profession}+floor(@{scholarship_modifier})+@{power_die}">Profession (SC):</button><input type="number" name="attr_profession" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_science" value="/r 1d10!10+@{scholarship_modifier}+@{science}+floor(@{scholarship_modifier})+@{power_die}">Science (SC):</button><input type="number" name="attr_science" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_stealth" value="/r 1d10!10+@{agility_modifier}+@{stealth)+floor(@{scholarship_modifier}/2)}+@{power_die}">Stealth (AG):</button><input type="number" name="attr_stealth" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_survival" value="/r 1d10!10+@{insight_modifier}+@{survival}+floor(@{scholarship_modifier}/2)+@{power_die}">Survival (IN):</button><input type="number" name="attr_survival" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_thievery" value="/r 1d10!10+@{agility_modifier}+@{thievery}+floor(@{scholarship_modifier}/2)+@{power_die}">Thievery (AG):</button><input type="number" name="attr_thievery" value="0"/></div>
-                <div><button class="skill" type="roll" name="roll_use_magic" value="/r 1d10!10+@{spirit_modifier}+@{use_magic}+floor(@{scholarship_modifier}/2)+@{power_die}">Use Magic (SP):</button><input type="number" name="attr_use_magic" value="0"/></div>
-                -->
             </div>
 
 
@@ -663,6 +640,8 @@
     </div>
 </div>
 
+
+
 <div class='abilities'>
     <h1>Abilities</h1>
     <h2>Karma: <input type="number" name="attr_karma" max="10" value="5"></h2>
@@ -689,20 +668,24 @@
     <h2>Talents and Abilities</h2>
     <div style="border: 3px solid darkgray;">
         <fieldset class="repeating_talents">
-            <div style="display: grid; grid-template-areas: 'talent talent_description'; justify-content: space-between; border: 1px solid seagreen;">
-                <br>
-                <select style="grid-area: talent;" name="attr_talent" style="width: 20%;">
-                    <option value="attribute_addition">Attribute Addition</option>
-                    <option value="skill_proficiency">Skill Proficiency</option>
-                    <option value="technique_points">Technique Points</option>
-                    <option value="talent_addition">Talent Addition</option>
-                    <option value="mixture_aptitudes">Mixture Aptitudes</option>
-                </select>
-                <input type="text" name="attr_talent_description" style="width: 40%; grid-area: talent_description;">
+            <input class="showhidebox" type="checkbox" name="attr_toggle-show" value="1" />
+            <div class="talent-table talent-verbose">
+                <input class="talent-name" type="text" name="attr_name" style="width:100%"; placeholder="Name"/>
+                <input class="talent-short-desc" type="text" name="attr_short_description" placeholder="Short Description"/>
+                <div class="auto-expand talent-long-desc">
+	                <span name="attr_description"></span>
+                    <textarea name="attr_description" rows="5" placeholder="Description"></textarea>
+                </div>
+            </div>
+            <div class="talent-simple">
+                <button type="roll" name="roll_talent" value="&{template:default} {{name=@{name}}} {{description=@{description}}}"><b><span name="attr_name"></span></b></button><br>
+                <span name="attr_short_description"></span>
             </div>
         </fieldset>
     </div>
 </div>
+
+
 
 <div class='transformations'>
     <h1>Transformations</h1>
@@ -1065,39 +1048,35 @@
             };
         });
     });
-
     /*
         Transformation logic
     */
 
-    function parseNumber(value){
+    function parseNumber(value, tier){
         var result = 0;
         var token = 0;
-        const numberRegex = /^([0-9]*)/g;
+        const numberRegex = /^([\-0-9]*)/g;
         const tierRegex = /^(\([tT]\))/g;
         while (value.length>0){
             var match = value.match(numberRegex);
             if (match != null && match[0] != ''){
                 /* Number detected - Take the shot */
                 value = value.substring(match[0].length);
-                result += +match[0];
+                result += parseInt(match[0]);
                 continue;
             }
             match = value.match(tierRegex);
             if (match != null && match[0] != ''){
+                console.log("tier of power detected");
                 /* Tier detected - Take the shot */
                 value = value.substring(match[0].length);
-                var tier = 1;
-                getAttrs([
-                    "tier_of_power"
-                ], function(values){
-                    tier = +values.tier_of_power;
-                });
                 result *= tier;
+                console.log(result + " " + tier);
                 continue;
             }
             value = value.substring(1);
         }
+        console.log(result);
         return result;
     }
 
@@ -1118,19 +1097,20 @@
             "insight_tf",
             "spirit_tf",
             "personality_tf",
+            "tier_of_power"
         ], function(values){
             var on = values.repeating_transformations_active;
             /*
                 rp_ defines repeating abilities
                 tf_ defines hidden transformation modifier
             */
-            var rp_agility = parseNumber(values.repeating_transformations_agility);
-            var rp_force = parseNumber(values.repeating_transformations_force);
-            var rp_tenacity = parseNumber(values.repeating_transformations_tenacity);
-            var rp_scholarship = parseNumber(values.repeating_transformations_scholarship);
-            var rp_insight = parseNumber(values.repeating_transformations_insight);
-            var rp_spirit = parseNumber(values.repeating_transformations_spirit);
-            var rp_personality = parseNumber(values.repeating_transformations_personality);
+            var rp_agility = parseNumber(values.repeating_transformations_agility, parseInt(values.tier_of_power));
+            var rp_force = parseNumber(values.repeating_transformations_force, parseInt(values.tier_of_power));
+            var rp_tenacity = parseNumber(values.repeating_transformations_tenacity, parseInt(values.tier_of_power));
+            var rp_scholarship = parseNumber(values.repeating_transformations_scholarship, parseInt(values.tier_of_power));
+            var rp_insight = parseNumber(values.repeating_transformations_insight, parseInt(values.tier_of_power));
+            var rp_spirit = parseNumber(values.repeating_transformations_spirit, parseInt(values.tier_of_power));
+            var rp_personality = parseNumber(values.repeating_transformations_personality, parseInt(values.tier_of_power));
             
             var tf_agility = values.agility_tf;
             var tf_force = values.force_tf;
