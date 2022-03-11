@@ -32,6 +32,8 @@
                         <option value="majin">Majin</option>
                         <option value="saiyan">Saiyan</option>
                         <option value="shinjin">Shinjin</option>
+                        <option value="tuffle">Tuffle</option>
+                        <option value="custom">Custom</option>
                     </select>
                     </label>
                 </div>
@@ -723,7 +725,10 @@
 </div>
 
 <div class='settings'>
-    <h1>Settings</h1>
+    <div class="attr-head">
+        <h1>Settings</h1>
+    </div>
+    <div><button type="action" name="act_recalc_stats">Recalculate Stats</button></div>
 </div>
 
 <script type="text/worker">
@@ -803,6 +808,16 @@
                 case "shinjin":
                     setAttrs({
                         "subrace":"Kaio, Makaio"
+                    });
+                    break;
+                case "tuffle":
+                    setAttrs({
+                        "subrace":""
+                    });
+                    break;
+                case "custom":
+                    setAttrs({
+                        "subrace":""
                     });
                     break;
             };
@@ -904,6 +919,28 @@
                     "tenacity_racial":0,
                     "scholarship_racial":0,
                     "insight_racial":3,
+                    "spirit_racial":0,
+                    "personality_racial":0,
+                });
+            }else if(race == "tuffle"){
+                setAttrs({
+                    "hp_modifier":4,
+                    "agility_racial":0,
+                    "force_racial":0,
+                    "tenacity_racial":3,
+                    "scholarship_racial":2,
+                    "insight_racial":3,
+                    "spirit_racial":0,
+                    "personality_racial":0,
+                });
+            }else if(race == "custom"){
+                setAttrs({
+                    "hp_modifier":4,
+                    "agility_racial":0,
+                    "force_racial":0,
+                    "tenacity_racial":0,
+                    "scholarship_racial":0,
+                    "insight_racial":0,
                     "spirit_racial":0,
                     "personality_racial":0,
                 });
@@ -1076,12 +1113,10 @@
                 /* Tier detected - Take the shot */
                 value = value.substring(match[0].length);
                 result *= tier;
-                console.log(result + " " + tier);
                 continue;
             }
             value = value.substring(1);
         }
-        console.log(result);
         return result;
     }
 
@@ -1147,6 +1182,19 @@
             }
             update_stats();
         });
+    });
+
+    on("clicked:recalc_stats", function(){
+        setAttrs({
+            "agility_tf":0,
+            "force_tf":0,
+            "tenacity_tf":0,
+            "scholarship_tf":0,
+            "insight_tf":0,
+            "spirit_tf":0,
+            "personality_tf":0
+        });
+        update_stats();
     });
     
 </script>
