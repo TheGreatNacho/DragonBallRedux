@@ -8,6 +8,15 @@
     background-repeat: no-repeat;
     text-align: center;
 }
+.sheet-select-btn{
+    border-radius: 8px;
+    background-color: dimgray;
+    color: white;
+}
+.sheet-select-btn:hover{
+    background-color: darkgray;
+    color: white;
+}
 .sheet-attributes,
 .sheet-attacks,
 .sheet-abilities,
