@@ -26,7 +26,7 @@
 .sheet-save-table{
     border-top: 1px inset darkgray;
     grid-template-areas:
-    'save-name save-profieciency save-misc save-total';
+    'save-name save-misc save-total';
     display:grid;
 }
 
