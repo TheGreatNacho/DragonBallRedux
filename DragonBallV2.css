@@ -313,8 +313,83 @@ button[type="roll"].sheet-attack-button{
 .sheet-basic-attack{
     display: grid;
     grid-template-areas: 
-    'col1 col2 col3 col4';
-    border: 3px solid rgb(156, 155, 155);
+    'category-head name-head misc-strike-head strike-head misc-wound-head wound-head ki-cost-head'
+    'physical physical-content physical-content physical-content physical-content physical-content physical-content'
+    'energy energy-content energy-content energy-content energy-content energy-content energy-content'
+    'magic magic-content magic-content magic-content magic-content magic-content magic-content'
+    'footer footer footer footer footer footer footer';
+    border: 1px solid darkgray;
+}
+
+.sheet-attack-category-head{
+    grid-area: category-head;
+    border-bottom: 1px inset darkgray;
+}
+.sheet-attack-name-head{
+    grid-area: name-head;
+    border-bottom: 1px inset darkgray;
+}
+.sheet-attack-misc-strike-head{
+    grid-area: misc-strike-head;
+    border-bottom: 1px inset darkgray;
+}
+.sheet-attack-strike-head{
+    grid-area: strike-head;
+    border-bottom: 1px inset darkgray;
+}
+.sheet-attack-misc-wound-head{
+    grid-area: misc-wound-head;
+    border-bottom: 1px inset darkgray;
+}
+.sheet-attack-wound-head{
+    grid-area: wound-head;
+    border-bottom: 1px inset darkgray;
+}
+.sheet-attack-ki-cost-head{
+    grid-area: ki-cost-head;
+    border-bottom: 1px inset darkgray;
+}
+
+.sheet-attack-physical{
+    grid-area: physical;
+    border-bottom: 1px inset darkgray;
+    border-right: 1px inset darkgray;
+}
+.sheet-attack-physical-content{
+    grid-area: physical-content;
+    border-bottom: 1px inset darkgray;
+    grid-template-areas:'attack-name stike-misc strike wound-misc wound ki-cost';
+    justify-content: space-between;
+    display: grid;
+}
+
+.sheet-attack-energy{
+    grid-area: energy;
+    border-bottom: 1px inset darkgray;
+    border-right: 1px inset darkgray;
+}
+.sheet-attack-energy-content{
+    grid-area: energy-content;
+    border-bottom: 1px inset darkgray;
+    grid-template-areas:'attack-name stike-misc strike wound-misc wound ki-cost';
+    justify-content: space-between;
+    display: grid;
+}
+
+.sheet-attack-magic{
+    grid-area: magic;
+    border-right: 1px inset darkgray;
+}
+.sheet-attack-magic-content{
+    grid-area: magic-content;
+    grid-template-areas:'attack-name stike-misc strike wound-misc wound ki-cost';
+    justify-content: space-between;
+    display: grid;
+}
+
+.sheet-attack-footer{
+    grid-area: footer;
+    border-top: 3px double darkgray;
 }
 
 .sheet-attacks{
