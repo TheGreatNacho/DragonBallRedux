@@ -70,7 +70,6 @@
     'tname tagi tfor tten tsch tins tspi tper';
 }
 
-
 .sheet-tagi{
     grid-area: tagi;
 }
@@ -326,6 +325,7 @@ button[type="roll"].sheet-attack-button{
     'physical physical-content physical-content physical-content physical-content physical-content physical-content'
     'energy energy-content energy-content energy-content energy-content energy-content energy-content'
     'magic magic-content magic-content magic-content magic-content magic-content magic-content'
+    'signature signature-content signature-content signature-content signature-content signature-content signature-content'
     'footer footer footer footer footer footer footer';
     border: 1px solid darkgray;
 }
@@ -387,14 +387,37 @@ button[type="roll"].sheet-attack-button{
 
 .sheet-attack-magic{
     grid-area: magic;
+    border-bottom: 1px inset darkgray;
     border-right: 1px inset darkgray;
 }
 .sheet-attack-magic-content{
     grid-area: magic-content;
+    border-bottom: 1px inset darkgray;
     grid-template-areas:'attack-name stike-misc strike wound-misc wound ki-cost';
     justify-content: space-between;
     display: grid;
 }
+
+.sheet-attack-signature{
+    grid-area: signature;
+    border-right: 1px inset darkgray;
+}
+.sheet-attack-signature-content{
+    grid-area: signature-content;
+}
+.sheet-attack-signature-item-edit{
+    display:none;
+}
+.sheet-attack-signature-item-display{
+    display:grid;
+}
+.sheet-signature-edit:checked ~ .sheet-attack-signature-item-edit{
+    display:grid;
+} 
+.sheet-signature-edit:checked ~ .sheet-attack-signature-item-display{
+    display:none;
+}
+
 
 .sheet-attack-footer{
     grid-area: footer;
@@ -592,13 +615,13 @@ pulled from pathfinder sheet
 */
 .sheet-all-stats{
     grid-area: all-stats;
-    border: 1px solid darkgray;
+    border: 2px solid darkgray;
     display:grid;
 }
 
 .sheet-stats{
     display: grid;
-    border: 2px solid darkgray;
+    border: 1px solid darkgray;
     grid-template-areas: 
     'all-stats skills';
 }
@@ -626,7 +649,7 @@ pulled from pathfinder sheet
 }
 .sheet-info{
     display: grid;
-    border: 3px solid darkgray;
+    border: 1px solid darkgray;
     grid-row: 25px;
     grid-template-areas:
     'attr-head'
@@ -641,20 +664,23 @@ pulled from pathfinder sheet
     border: 1px solid darkgray;
 }
 
-.sheet-showhidebox ~ .sheet-talent-verbose{
+.sheet-talent-edit ~ .sheet-talent-verbose{
     display:none;
 }
 
-.sheet-showhidebox ~ .sheet-talent-simple{
+.sheet-talent-edit ~ .sheet-talent-simple{
     display:none;
 }
 
-.sheet-showhidebox:checked ~ .sheet-talent-verbose{
+.sheet-talent-edit:checked ~ .sheet-talent-verbose{
     display:grid;
 }
 
-.sheet-showhidebox:not(:checked) ~ .sheet-talent-simple{
-    display:flex;
+.sheet-talent-edit:not(:checked) ~ .sheet-talent-simple{
+    display: grid;
+    grid-template-areas:
+    'name short_desc';
+    border: 1px solid darkgray;
 }
 
 .sheet-talent-name{
