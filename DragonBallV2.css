@@ -27,6 +27,7 @@
 	display: none;
 }
 
+/*----------------- ATTRIBUTES ------------------*/
 .sheet-ability-table{
     display:grid;
     border-style: none;
@@ -51,29 +52,16 @@
 	display: block;
 }
 
-/*
 .sheet-info{
     display: grid;
     border: 1px solid darkgray;
-    grid-row: 25px;
-    grid-template-areas:
-    'attr-head'
-    'attr-top'
-    'attr-bottom';
-}
-*/
-
-.sheet-info{
-    display: grid;
-    border: 1px solid darkgray;
-    align-items: center;
     grid-column-gap: 5px;
     grid-row-gap: 5px;
     padding: 5px;
     grid-template-areas:
     'info-header info-header info-header info-header info-header info-header'
     'info-name info-name-data info-name-data info-player info-player-data info-player-data'
-    'info-race info-race-data info-race-data info-subrace info-subrace-data info-subrace-data'
+    'info-race info-race-data info-race-data info-initiative info-initiative-data info-initiative-data'
     'info-age info-age-data info-gender info-gender-data info-skin info-skin-data'
     'info-birthday info-birthday-data info-hair info-hair-data info-eye info-eye-data'
     'info-size info-size-data info-powerlevel info-powerlevel-data info-battlepower info-battlepower-data'
@@ -101,11 +89,15 @@
 .sheet-info-race-data{
     grid-area: info-race-data;
 }
-.sheet-info-subrace{
-    grid-area: info-subrace;
+.sheet-info-initiative{
+    grid-area: info-initiative;
 }
-.sheet-info-subrace-data{
-    grid-area: info-subrace-data;
+.sheet-info-initiative-data{
+    grid-area: info-initiative-data;
+    display:flex;
+}
+.sheet-info-initiative-data input{
+    width: calc(100% - 3.5em);
 }
 .sheet-info-age{
     grid-area: info-age;
@@ -154,6 +146,7 @@
 }
 .sheet-info-powerlevel-data{
     grid-area: info-powerlevel-data;
+    display:flex;
 }
 .sheet-info-battlepower{
     grid-area: info-battlepower;
@@ -166,26 +159,26 @@
 }
 .sheet-info-hp-data{
     grid-area: info-hp-data;
+    display:flex;
 }
 .sheet-info-ki{
     grid-area: info-ki;
 }
 .sheet-info-ki-data{
     grid-area: info-ki-data;
+    display:flex;
 }
 .sheet-info-capacity{
     grid-area: info-capacity;
 }
 .sheet-info-capacity-data{
     grid-area: info-capacity-data;
+    display:flex;
 }
-
-
 
 .sheet-info-name-data input,
 .sheet-info-player-data input,
 .sheet-info-race-data input,
-.sheet-info-subrace-data input,
 .sheet-info-age-data input,
 .sheet-info-gender-data input,
 .sheet-info-skin-data input,
@@ -199,27 +192,268 @@
     width:100%;
 }
 
-/*
-.sheet-attr-head{
-    display: grid;
+.sheet-character{
+    background-position: center;
+    background-color: white;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.sheet-stat-ten{
+    display: flex;
+    grid-area: stat-ten;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    grid-area: attr-head;
+    border: 1px inset darkgray;
 }
 
-.sheet-attr-top{
+.sheet-stat-pot{
     display: flex;
+    grid-area: stat-pot;
+    flex-direction: column;
     justify-content: center;
-    align-content: space-between;
-    grid-area: attr-top;
+    align-items: center;
+    border: 1px inset darkgray;
 }
 
-.sheet-attr-bot{
+.sheet-stat-per{
     display: flex;
+    grid-area: stat-per;
+    flex-direction: column;
     justify-content: center;
-    align-content: space-between;
-    grid-area: attr-bottom;
+    align-items: center;
+    border: 1px inset darkgray;
+}
+
+.sheet-stat-spi{
+    display: flex;
+    grid-area: stat-spi;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px inset darkgray;
+}
+
+.sheet-stat-str{
+    display: flex;
+    grid-area: stat-str;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px inset darkgray;
+}
+
+.sheet-stat-sch{
+    display: flex;
+    grid-area: stat-sch;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px inset darkgray;
+}
+
+.sheet-stat-agi{
+    display: flex;
+    grid-area: stat-agi;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px inset darkgray;
+}
+
+.sheet-stat-ins{
+    grid-area: stat-ins;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px inset darkgray;
+}
+.sheet-skills{
+    grid-area: skills;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 6px;
+    border: 1px inset darkgray;
+}
+.charsheet .repcontainer[data-groupname=repeating_knowledge],
+.charsheet .repcontainer[data-groupname=repeating_profession],
+.sheet-skill-table{
+    width:100%;
+}
+.charsheet .repcontainer[data-groupname=repeating_knowledge]>div,
+.charsheet .repcontainer[data-groupname=repeating_profession]>div,
+.sheet-skill-table{
+    display:grid;
+    grid-template-areas:
+    'skill-name skill-profieciency skill-misc ability-mod skill-total';
+}
+.sheet-skill-table>p{
+    font-size:10px;
+}
+.sheet-skill-label{
+    color: black;
+}
+.sheet-skill-label:hover{
+    cursor: pointer;
+}
+
+button[type="roll"].sheet-skill:hover{
+    background-position: 0;
+    color:red;
+}
+
+button[type="roll"].sheet-skill{
+    font-size: 10px;
+    border-style: none;
+    background-color: transparent;
+    margin-left: 5px;
+    width:100px;
+    background: none;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+button[type="roll"].sheet-ability:hover{
+    background-position: 0;
+    color:red;
+}
+
+button[type="roll"].sheet-ability{
+    font-size: 13px;
+    /*border-style: none;*/
+    background-color: transparent;
+    width:80px;
+    background: none;
+    background-image: none;
+    border: none;
+    box-shadow:none;
+}
+
+.sheet-skill-number{
+    width:45px !important;
+    height:20px !important;
+    font-size:10px;
+}
+
+.sheet-proficiency-select{
+    margin:2px;
+    font-size:10px;
+    width:100px;
+    height:20px;
+}
+/*
+might try something like this later
+pulled from pathfinder sheet
+.sheet-skills>.repcontrol>.repcontrol_add:before{
+    content: '&';
+    font-family: pictos;
+    color: black;
+    display: inline-block;
+}
+
+.sheet-skills>.repcontrol>.repcontrol_add{
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 13px;
+    padding: 3px;
+    height: 12px;
+    width: 12px;
+    line-height: 12px;
+}
+.sheet-skills>.repcontrol>.repcontrol_edit{
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 13px;
+    padding: 3px;
+    height: 12px;
+    width: 12px;
+    line-height: 12px;
 }
 */
+.sheet-all-stats{
+    grid-area: all-stats;
+    border: 2px solid darkgray;
+    display:grid;
+}
+
+.sheet-stats{
+    display: grid;
+    border: 1px solid darkgray;
+    grid-template-areas: 
+    'all-stats skills';
+}
+
+/*----------------- RACE ------------------*/
+.sheet-race-head{
+    display: grid;
+    border: 1px solid darkgray;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    padding: 5px;
+    grid-template-areas: 
+    'race-header race-header race-header race-header race-header'
+    'race-name race-name-data race-name-data race-health race-health-data'
+    'race-subname race-subname-data race-subname-data race-size race-size-data'
+    'race-save race-save-data race-save-data race-dexterity race-dexterity-data';
+}
+
+.sheet-race-header{
+    grid-area: race-header;
+    text-align: center;
+}
+.sheet-race-name{
+    grid-area: race-name;
+}
+.sheet-race-name-data{
+    grid-area: race-name-data;
+}
+.sheet-race-health{
+    grid-area: race-health;
+}
+.sheet-race-health-data{
+    grid-area: race-health-data;
+}
+.sheet-race-health-data input{
+    width: calc(100% - 3.5em);
+}
+.sheet-race-subname{
+    grid-area: race-subname;
+}
+.sheet-race-subname-data{
+    grid-area: race-subname-data;
+}
+.sheet-race-size{
+    grid-area: race-size;
+}
+.sheet-race-size-data{
+    grid-area: race-size-data;
+}
+.sheet-race-save{
+    grid-area: race-save;
+}
+.sheet-race-save-data{
+    grid-area: race-save-data;
+}
+.sheet-race-dexterity{
+    grid-area: race-dexterity;
+}
+.sheet-race-dexterity-data{
+    grid-area: race-dexterity-data;
+}
+.sheet-race-dexterity-data input{
+    width: calc(100% - 3.5em);
+}
+
+.sheet-race-name-data input,
+.sheet-race-subname-data input,
+.sheet-race-size-data input,
+.sheet-race-save-data input{
+    width:100%
+}
 
 .sheet-equipmentTable{
     display: grid;
@@ -604,200 +838,6 @@ button[type="roll"].sheet-attack-button{
     text-align: center;
 }
 
-.sheet-character{
-    background-position: center;
-    background-color: white;
-    background-repeat: no-repeat;
-    text-align: center;
-}
-
-.sheet-stat-ten{
-    display: flex;
-    grid-area: stat-ten;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px inset darkgray;
-}
-
-.sheet-stat-pot{
-    display: flex;
-    grid-area: stat-pot;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px inset darkgray;
-}
-
-.sheet-stat-per{
-    display: flex;
-    grid-area: stat-per;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px inset darkgray;
-}
-
-.sheet-stat-spi{
-    display: flex;
-    grid-area: stat-spi;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px inset darkgray;
-}
-
-.sheet-stat-str{
-    display: flex;
-    grid-area: stat-str;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px inset darkgray;
-}
-
-.sheet-stat-sch{
-    display: flex;
-    grid-area: stat-sch;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px inset darkgray;
-}
-
-.sheet-stat-agi{
-    display: flex;
-    grid-area: stat-agi;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px inset darkgray;
-}
-
-.sheet-stat-ins{
-    grid-area: stat-ins;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px inset darkgray;
-}
-.sheet-skills{
-    grid-area: skills;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 6px;
-    border: 1px inset darkgray;
-}
-.charsheet .repcontainer[data-groupname=repeating_knowledge],
-.charsheet .repcontainer[data-groupname=repeating_profession],
-.sheet-skill-table{
-    width:100%;
-}
-.charsheet .repcontainer[data-groupname=repeating_knowledge]>div,
-.charsheet .repcontainer[data-groupname=repeating_profession]>div,
-.sheet-skill-table{
-    display:grid;
-    grid-template-areas:
-    'skill-name skill-profieciency skill-misc ability-mod skill-total';
-}
-.sheet-skill-table>p{
-    font-size:10px;
-}
-.sheet-skill-label{
-    color: black;
-}
-.sheet-skill-label:hover{
-    cursor: pointer;
-}
-
-button[type="roll"].sheet-skill:hover{
-    background-position: 0;
-    color:red;
-}
-
-button[type="roll"].sheet-skill{
-    font-size: 10px;
-    border-style: none;
-    background-color: transparent;
-    margin-left: 5px;
-    width:100px;
-    background: none;
-    background-image: none;
-    border: none;
-    box-shadow: none;
-}
-button[type="roll"].sheet-ability:hover{
-    background-position: 0;
-    color:red;
-}
-
-button[type="roll"].sheet-ability{
-    font-size: 13px;
-    /*border-style: none;*/
-    background-color: transparent;
-    width:80px;
-    background: none;
-    background-image: none;
-    border: none;
-    box-shadow:none;
-}
-
-.sheet-skill-number{
-    width:45px !important;
-    height:20px !important;
-    font-size:10px;
-}
-
-.sheet-proficiency-select{
-    margin:2px;
-    font-size:10px;
-    width:100px;
-    height:20px;
-}
-/*
-might try something like this later
-pulled from pathfinder sheet
-.sheet-skills>.repcontrol>.repcontrol_add:before{
-    content: '&';
-    font-family: pictos;
-    color: black;
-    display: inline-block;
-}
-
-.sheet-skills>.repcontrol>.repcontrol_add{
-    border: 1px solid black;
-    border-radius: 50%;
-    font-size: 13px;
-    padding: 3px;
-    height: 12px;
-    width: 12px;
-    line-height: 12px;
-}
-.sheet-skills>.repcontrol>.repcontrol_edit{
-    border: 1px solid black;
-    border-radius: 50%;
-    font-size: 13px;
-    padding: 3px;
-    height: 12px;
-    width: 12px;
-    line-height: 12px;
-}
-*/
-.sheet-all-stats{
-    grid-area: all-stats;
-    border: 2px solid darkgray;
-    display:grid;
-}
-
-.sheet-stats{
-    display: grid;
-    border: 1px solid darkgray;
-    grid-template-areas: 
-    'all-stats skills';
-}
 .sheet-talent-table{
     display: grid;
     grid-template-areas:

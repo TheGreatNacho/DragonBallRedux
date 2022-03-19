@@ -17,15 +17,20 @@
             <div class="info-header"><h1>Character</h1></div>
             <div class="info-name"><label>Name:</label></div><div class="info-name-data"><input type='text' name="attr_character_name" placeholder="Character Name" /></div>
             <div class="info-player"><label>Player:</label></div><div class="info-player-data"><input type='text' name="attr_player_name" placeholder="Player Name" /></div>
-            <div class="info-race"><label>Race:</label></div><div class="info-race-data"><input type='text' name="attr_race" value="WIP" disabled="true"/></div>
-            <div class="info-subrace"><label>Sub Race:</label></div><div class="info-subrace-data"><input type='text' name="attr_subrace" value="WIP" disabled="true"/></div>
+            <div class="info-race"><label>Race:</label></div><div class="info-race-data"><input type='text' name="attr_race" value="@{race_name}, @{subrace_name}" disabled="true"/></div>
+            <div class="info-initiative"><label>Initiative:</label></div>
+            <div class="info-initiative-data">
+                <input type="text" name="attr_init_mod" value="0"/>
+                <input type="number" name="attr_initiative" value="@{init_mod} + floor(@{agility_tfmodifier}/2)" disabled="true" />
+                <button type="roll" value="/r 1d10!10 + @{initiative} &{tracker}"></button>    
+            </div>
             <div class="info-age"><label>Age:</label></div><div class="info-age-data"><input style="width:100%;" type='number' name="attr_age" value="0" /></div>
             <div class="info-gender"><label>Gender:</label></div><div class="info-gender-data"><input type='text' name="attr_gender" placeholder="Gender" /></div>
             <div class="info-skin"><label>Skin Tone:</label></div><div class="info-skin-data"><input type='text' name="attr_skin_tone" placeholder="Skin Tone" /></div>
             <div class="info-birthday"><label>Birthday:</label></div><div class="info-birthday-data"><input type='text' name="attr_birthday" placeholder="YYYY/MM/DD" /></div>
             <div class="info-hair"><label>Hair Colour:</label></div><div class="info-hair-data"><input type='text' name="attr_hair_color" placeholder="Hair Colour" /></div>
             <div class="info-eye"><label>Eye Colour:</label></div><div class="info-eye-data"><input type='text' name="attr_eye_color" placeholder="Eye Colour" /></div>
-            <div class="info-size"><label>Size:</label></div><div class="info-size-data"><input type='text' name="attr_size" value="WIP" disabled="true" /></div>
+            <div class="info-size"><label>Size:</label></div><div class="info-size-data"><input type='text' name="attr_size" value="@{race_size}" disabled="true" /></div>
             <div class="info-powerlevel"><label>Power Level / T.O.P:</label></div><div class="info-powerlevel-data"><input class="power-level-data" type="number" name="attr_power_level" value="1" style="width: 50%;" /><input name="attr_tier_of_power" type="number" value="floor((@{power_level})/5)+1" style="width: 50%;" disabled="true" /></div>
             <div class="info-battlepower"><label>Battle Power:</label></div><div class="info-battlepower-data"><input style="width:100%;" class="power-level-calc" type="number" name="attr_battle_power" value="(@{agility} + ((@{force}) * 2) + @{tenacity}) / 2 * (@{ki_max} + @{capacity_max}) * @{power_level} * ((@{tier_of_power}) ** 2)" disabled="true" /></div>
             <div class="info-hp"><label>Hit Points:</label></div><div class="info-hp-data"><input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button name="roll_health" type="roll" value="/r 1d10+@{hp_modifier}+@{tenacity_modifier}"></button></div>
@@ -521,7 +526,34 @@
 </div>
 <!--The race page to provide race information and stats-->
 <div class='race'>
-    <p>WIP</p>
+    <div class="race-head">
+        <h1 class="race-header">Race</h1>
+        <div class="race-name"><label>Race Name:</label></div><div class="race-name-data"><input type='text' name='attr_race_name' placeholder='Saiyan' /></div>
+        <div class="race-health"><label>HP Modifier:</label></div><div class="race-health-data"><input type='text' name='attr_race_health_data' value="+4"/><input type='number' name='attr_race_health' value="@{race_health_data}" disabled="true"/></div>
+        <div class="race-subname"><label>Subrace Name:</label></div><div class="race-subname-data"><input type='text' name='attr_subrace_name' placeholder='Full Blood' /></div>
+        <div class="race-size"><label>Size:</label></div>
+        <div class="race-size-data">
+            <select style="width:100%; margin:0px;" name='attr_race_size'>
+                <option value="Tiny">Tiny</option>
+                <option value="Small">Small</option>
+                <option value="Medium" selected="selected">Medium</option>
+                <option value="Large">Large</option>
+                <option value="Enormous">Enormous</option>
+                <option value="Gigantic">Gigantic</option>
+            </select>
+        </div>
+        <div class="race-save"><label>Save:</label></div>
+        <div class="race-save-data">
+            <select style="width:100%; margin:0px;" name='attr_race_save'>
+                <option value="impulsive">Impulsive</option>
+                <option value="corporeal">Corporeal</option>
+                <option value="cognitive">Cognitive</option>
+                <option value="morale">Morale</option>
+            </select>
+        </div>
+        
+        <div class="race-dexterity"><label>Dexterity:</label></div><div class="race-dexterity-data"><input type='text' name='attr_race_dexterity_data' value="+2"/><input type='number' name='attr_race_dexterity' value="@{race_dexterity_data}" disabled="true"/></div>
+    </div>
 </div>
 
 <div class='attacks'>
