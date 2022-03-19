@@ -2,6 +2,7 @@
 <div class="banner">
     <br><br><br>
     <button class="select-btn" type="action" name="act_attributes" >Attributes</button>
+    <button class="select-btn" type="action" name="act_race" >Race</button>
     <button class="select-btn" type="action" name="act_attacks" >Attacks</button>
     <button class="select-btn" type="action" name="act_abilities">Abilities</button>
     <button class="select-btn" type="action" name="act_transformations">Transformations</button>
@@ -9,11 +10,28 @@
 </div>
 <input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab'  value='attributes'  />
 <br>
-    <!--The attributes division that creates all of the attributes input for the players-->
+<!--The attributes division that creates all of the attributes input for the players-->
 <div class='attributes'>
     <div class ="character">
         <div class="info">
-            <div class="attr-head">
+            <div class="info-header"><h1>Character</h1></div>
+            <div class="info-name"><label>Name:</label></div><div class="info-name-data"><input type='text' name="attr_character_name" placeholder="Character Name" /></div>
+            <div class="info-player"><label>Player:</label></div><div class="info-player-data"><input type='text' name="attr_player_name" placeholder="Player Name" /></div>
+            <div class="info-race"><label>Race:</label></div><div class="info-race-data"><input type='text' name="attr_race" value="WIP" disabled="true"/></div>
+            <div class="info-subrace"><label>Sub Race:</label></div><div class="info-subrace-data"><input type='text' name="attr_subrace" value="WIP" disabled="true"/></div>
+            <div class="info-age"><label>Age:</label></div><div class="info-age-data"><input style="width:100%;" type='number' name="attr_age" value="0" /></div>
+            <div class="info-gender"><label>Gender:</label></div><div class="info-gender-data"><input type='text' name="attr_gender" placeholder="Gender" /></div>
+            <div class="info-skin"><label>Skin Tone:</label></div><div class="info-skin-data"><input type='text' name="attr_skin_tone" placeholder="Skin Tone" /></div>
+            <div class="info-birthday"><label>Birthday:</label></div><div class="info-birthday-data"><input type='text' name="attr_birthday" placeholder="YYYY/MM/DD" /></div>
+            <div class="info-hair"><label>Hair Colour:</label></div><div class="info-hair-data"><input type='text' name="attr_hair_color" placeholder="Hair Colour" /></div>
+            <div class="info-eye"><label>Eye Colour:</label></div><div class="info-eye-data"><input type='text' name="attr_eye_color" placeholder="Eye Colour" /></div>
+            <div class="info-size"><label>Size:</label></div><div class="info-size-data"><input type='text' name="attr_size" value="WIP" disabled="true" /></div>
+            <div class="info-powerlevel"><label>Power Level / T.O.P:</label></div><div class="info-powerlevel-data"><input class="power-level-data" type="number" name="attr_power_level" value="1" style="width: 50%;" /><input name="attr_tier_of_power" type="number" value="floor((@{power_level})/5)+1" style="width: 50%;" disabled="true" /></div>
+            <div class="info-battlepower"><label>Battle Power:</label></div><div class="info-battlepower-data"><input style="width:100%;" class="power-level-calc" type="number" name="attr_battle_power" value="(@{agility} + ((@{force}) * 2) + @{tenacity}) / 2 * (@{ki_max} + @{capacity_max}) * @{power_level} * ((@{tier_of_power}) ** 2)" disabled="true" /></div>
+            <div class="info-hp"><label>Hit Points:</label></div><div class="info-hp-data"><input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button name="roll_health" type="roll" value="/r 1d10+@{hp_modifier}+@{tenacity_modifier}"></button></div>
+            <div class="info-ki"><label>Ki Points:</label></div><div class="info-ki-data"><input style="width:45%;" type="number" name="attr_ki" value="0" /> / <input style="width:45%;" type="number" name="attr_ki_max" value="[[(26 + (12*(@{power_level}-1)))]]" disabled="true" /></div>
+            <div class="info-capacity"><label>Capacity:</label></div><div class="info-capacity-data"><input style="width:45%;" type="number" name="attr_capacity" value="0"/> / <input style="width:45%;" type="number" name="attr_capacity_max" value="[[(14 + (6*(@{power_level}-1)))]]" disabled="true" /></div>
+            <!--<div class="attr-head">
                 <h1>Character</h1>
                 <div><label>Character name: <input name="attr_character_name" type="text" style="width:120px;" /></label></div>
                 <div><label>Tier of Power:<input name="attr_tier_of_power" type="number" value="floor((@{power_level})/5)+1" style="width: 50px;" disabled="true" /></label></div>
@@ -39,7 +57,10 @@
                 </div>
                 <div><label>Subrace:<input type="text" name="attr_subrace" style="width:100px;" value=""/></label></div>
                 <input type="hidden" name="attr_hp_modifier" value="0"/>
-                <div><label>HP: <input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button name="roll_health" type="roll" value="/r 1d10+@{hp_modifier}+@{tenacity_modifier}"></button></label></div>
+                <div>
+                    <label>HP: <input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button name="roll_health" type="roll" value="/r 1d10+@{hp_modifier}+@{tenacity_modifier}"></button>
+                    </label>
+                </div>
                 
                 <div>
                     <label>
@@ -55,12 +76,8 @@
                 <div><label>Zeni: <input type="number" name="attr_zeni" value="0"/></label></div>
                 <div><label>XP: <input type="number" name="attr_xp" value = "0"/> </label></div>
                 <div><label>TXP: <input type="number" name="attr_txp" value="0"/></label></div>
-                <!--
-                    Suggested formula is ((@{agility} + ((@{force}) * 2) + @{tenacity}) / 2 * (@{ki_max} + @{capacity_max}) * @{power_level} * (@{tier_of_power}**2))
-                    Reworking to include transform modifier
-                -->
                 <div><label>BP: <input style="width:80px;" class="power-level-calc" type="number" name="attr_battle_power" value="(@{agility} + ((@{force}) * 2) + @{tenacity}) / 2 * (@{ki_max} + @{capacity_max}) * @{power_level} * ((@{tier_of_power}) ** 2)" disabled="true" /></label></div>
-            </div>
+            </div>-->
         </div>
 
         <br>
@@ -502,9 +519,10 @@
         </div>
     </div>
 </div>
-
-
-
+<!--The race page to provide race information and stats-->
+<div class='race'>
+    <p>WIP</p>
+</div>
 
 <div class='attacks'>
     <div class="info">
@@ -699,8 +717,6 @@
     </div>
 </div>
 
-
-
 <div class='abilities'>
     <h1>Abilities</h1>
     <h2>Karma: <input type="number" name="attr_karma" max="10" value="5"></h2>
@@ -743,8 +759,6 @@
         </fieldset>
     </div>
 </div>
-
-
 
 <div class='transformations'>
     <h1>Transformations</h1>
@@ -790,7 +804,7 @@
 <script type="text/worker">
     
 
-    const buttonlist = ["attributes","attacks","abilities","transformations", "settings"];
+    const buttonlist = ["attributes", "race", "attacks", "abilities", "transformations", "settings"];
     buttonlist.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({
@@ -820,187 +834,6 @@
                 "ki_max":ki_pool,
                 "capacity_max": capacity
             });
-        });
-    });
-
-    /*
-        Race logic
-    */
-    on("change:race", function(){                
-        getAttrs(["RACE"], function(values){
-            var race = values.RACE;
-            
-            switch (race){
-                case "android":
-                    setAttrs({
-                        "subrace":"Artificial Construct, Cybernetic Organism, Bio-Engineered"
-                    });
-                    break;
-                case "arcosian":
-                    setAttrs({
-                        "subrace":"Arcosian"
-                    });
-                    break;
-                case "human":
-                    setAttrs({
-                        "subrace":"Earthling, Beast-men"
-                    });
-                    break;
-                case "namekians":
-                    setAttrs({
-                        "subrace":"Warrior, Priest"
-                    });
-                    break;
-                case "majin":
-                    setAttrs({
-                        "subrace":"Majin"
-                    });
-                    break;
-                case "saiyan":
-                    setAttrs({
-                        "subrace":"Full Blood, Half-Blood"
-                    });
-                    break;
-                case "shinjin":
-                    setAttrs({
-                        "subrace":"Kaio, Makaio"
-                    });
-                    break;
-                case "tuffle":
-                    setAttrs({
-                        "subrace":""
-                    });
-                    break;
-                case "custom":
-                    setAttrs({
-                        "subrace":""
-                    });
-                    break;
-            };
-        });
-    });
-
-    on("change:subrace", function(){
-        getAttrs(["SUBRACE", "RACE"], function(values){
-            var subrace = values.SUBRACE;
-            var race = values.RACE;
-            
-            if(race == "android"){
-                if(subrace == "Bio-Engineered"){
-                    setAttrs({
-                        "hp_modifier":5
-                    });
-                }else{
-                    setAttrs({
-                        "hp_modifier":4
-                    });
-                }
-                setAttrs({
-                    "agility_racial":0,
-                    "force_racial":3,
-                    "tenacity_racial":3,
-                    "scholarship_racial":0,
-                    "insight_racial":2,
-                    "spirit_racial":0,
-                    "personality_racial":0,
-                });
-            }else if(subrace == "Arcosian"){
-                setAttrs({
-                    "hp_modifier":3,
-                    "agility_racial":3,
-                    "force_racial":2,
-                    "tenacity_racial":3,
-                    "scholarship_racial":0,
-                    "insight_racial":0,
-                    "spirit_racial":0,
-                    "personality_racial":0,
-                });
-            }else if(race == "human"){
-                setAttrs({
-                    "hp_modifier":4,
-                    "agility_racial":0,
-                    "force_racial":0,
-                    "tenacity_racial":0,
-                    "scholarship_racial":0,
-                    "insight_racial":0,
-                    "spirit_racial":0,
-                    "personality_racial":0,
-                });
-            }else if(race == "namekians"){
-                setAttrs({
-                    "hp_modifier":4,
-                    "agility_racial":0,
-                    "force_racial":0,
-                    "tenacity_racial":3,
-                    "scholarship_racial":0,
-                    "insight_racial":3,
-                    "spirit_racial":0,
-                    "personality_racial":0,
-                });
-            }else if(subrace == "Majin"){
-                setAttrs({
-                    "hp_modifier":3,
-                    "agility_racial":0,
-                    "force_racial":0,
-                    "tenacity_racial":2,
-                    "scholarship_racial":0,
-                    "insight_racial":0,
-                    "spirit_racial":0,
-                    "personality_racial":3,
-                });
-            }else if(race == "saiyan"){
-                setAttrs({
-                    "hp_modifier":4,
-                    "agility_racial":2,
-                    "force_racial":3,
-                    "tenacity_racial":3,
-                    "scholarship_racial":0,
-                    "insight_racial":0,
-                    "spirit_racial":0,
-                    "personality_racial":0,
-                });
-            }else if(race == "shinjin"){
-                if(subrace == "Kaio"){
-                    setAttrs({
-                        "hp_modifier":5
-                    });
-                }else{
-                    setAttrs({
-                        "hp_modifier":4
-                    });
-                }
-                setAttrs({
-                    "agility_racial":0,
-                    "force_racial":0,
-                    "tenacity_racial":0,
-                    "scholarship_racial":0,
-                    "insight_racial":3,
-                    "spirit_racial":0,
-                    "personality_racial":0,
-                });
-            }else if(race == "tuffle"){
-                setAttrs({
-                    "hp_modifier":4,
-                    "agility_racial":0,
-                    "force_racial":0,
-                    "tenacity_racial":3,
-                    "scholarship_racial":2,
-                    "insight_racial":3,
-                    "spirit_racial":0,
-                    "personality_racial":0,
-                });
-            }else if(race == "custom"){
-                setAttrs({
-                    "hp_modifier":4,
-                    "agility_racial":0,
-                    "force_racial":0,
-                    "tenacity_racial":0,
-                    "scholarship_racial":0,
-                    "insight_racial":0,
-                    "spirit_racial":0,
-                    "personality_racial":0,
-                });
-            }
         });
     });
 

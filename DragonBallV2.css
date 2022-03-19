@@ -15,9 +15,11 @@
 }
 .sheet-select-btn:hover{
     background-color: darkgray;
-    color: white;
+    border-color: gray;
 }
+
 .sheet-attributes,
+.sheet-race,
 .sheet-attacks,
 .sheet-abilities,
 .sheet-transformations,
@@ -41,12 +43,183 @@
 
 /* show the selected tab */
 .sheet-tabstoggle[value="attributes"] ~ div.sheet-attributes,
+.sheet-tabstoggle[value="race"] ~ div.sheet-race,
 .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks,
 .sheet-tabstoggle[value="abilities"] ~ div.sheet-abilities,
 .sheet-tabstoggle[value="transformations"] ~ div.sheet-transformations,
 .sheet-tabstoggle[value="settings"] ~ div.sheet-settings {
 	display: block;
 }
+
+/*
+.sheet-info{
+    display: grid;
+    border: 1px solid darkgray;
+    grid-row: 25px;
+    grid-template-areas:
+    'attr-head'
+    'attr-top'
+    'attr-bottom';
+}
+*/
+
+.sheet-info{
+    display: grid;
+    border: 1px solid darkgray;
+    align-items: center;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    padding: 5px;
+    grid-template-areas:
+    'info-header info-header info-header info-header info-header info-header'
+    'info-name info-name-data info-name-data info-player info-player-data info-player-data'
+    'info-race info-race-data info-race-data info-subrace info-subrace-data info-subrace-data'
+    'info-age info-age-data info-gender info-gender-data info-skin info-skin-data'
+    'info-birthday info-birthday-data info-hair info-hair-data info-eye info-eye-data'
+    'info-size info-size-data info-powerlevel info-powerlevel-data info-battlepower info-battlepower-data'
+    'info-hp info-hp-data info-ki info-ki-data info-capacity info-capacity-data';
+}
+
+.sheet-info-header{
+    grid-area: info-header;
+}
+.sheet-info-name{
+    grid-area: info-name;
+}
+.sheet-info-name-data{
+    grid-area: info-name-data;
+}
+.sheet-info-player{
+    grid-area: info-player;
+}
+.sheet-info-player-data{
+    grid-area: info-player-data;
+}
+.sheet-info-race{
+    grid-area: info-race;
+}
+.sheet-info-race-data{
+    grid-area: info-race-data;
+}
+.sheet-info-subrace{
+    grid-area: info-subrace;
+}
+.sheet-info-subrace-data{
+    grid-area: info-subrace-data;
+}
+.sheet-info-age{
+    grid-area: info-age;
+}
+.sheet-info-age-data{
+    grid-area: info-age-data;
+}
+.sheet-info-gender{
+    grid-area: info-gender;
+}
+.sheet-info-gender-data{
+    grid-area: info-gender-data;
+}
+.sheet-info-skin{
+    grid-area: info-skin;
+}
+.sheet-info-skin-data{
+    grid-area: info-skin-data;
+}
+.sheet-info-birthday{
+    grid-area: info-birthday;
+}
+.sheet-info-birthday-data{
+    grid-area: info-birthday-data;
+}
+.sheet-info-hair{
+    grid-area: info-hair;
+}
+.sheet-info-hair-data{
+    grid-area: info-hair-data;
+}
+.sheet-info-eye{
+    grid-area: info-eye;
+}
+.sheet-info-eye-data{
+    grid-area: info-eye-data;
+}
+.sheet-info-size{
+    grid-area: info-size;
+}
+.sheet-info-size-data{
+    grid-area: info-size-data;
+}
+.sheet-info-powerlevel{
+    grid-area: info-powerlevel;
+}
+.sheet-info-powerlevel-data{
+    grid-area: info-powerlevel-data;
+}
+.sheet-info-battlepower{
+    grid-area: info-battlepower;
+}
+.sheet-info-battlepower-data{
+    grid-area: info-battlepower-data;
+}
+.sheet-info-hp{
+    grid-area: info-hp;
+}
+.sheet-info-hp-data{
+    grid-area: info-hp-data;
+}
+.sheet-info-ki{
+    grid-area: info-ki;
+}
+.sheet-info-ki-data{
+    grid-area: info-ki-data;
+}
+.sheet-info-capacity{
+    grid-area: info-capacity;
+}
+.sheet-info-capacity-data{
+    grid-area: info-capacity-data;
+}
+
+
+
+.sheet-info-name-data input,
+.sheet-info-player-data input,
+.sheet-info-race-data input,
+.sheet-info-subrace-data input,
+.sheet-info-age-data input,
+.sheet-info-gender-data input,
+.sheet-info-skin-data input,
+.sheet-info-birthday-data input,
+.sheet-info-hair-data input,
+.sheet-info-eye-data input,
+.sheet-info-size-data input,
+.sheet-info-powerlevel-data input,
+.sheet-info-battlepower-data input
+{
+    width:100%;
+}
+
+/*
+.sheet-attr-head{
+    display: grid;
+    align-items: center;
+    grid-area: attr-head;
+}
+
+.sheet-attr-top{
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    grid-area: attr-top;
+}
+
+.sheet-attr-bot{
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    grid-area: attr-bottom;
+}
+*/
 
 .sheet-equipmentTable{
     display: grid;
@@ -624,37 +797,6 @@ pulled from pathfinder sheet
     border: 1px solid darkgray;
     grid-template-areas: 
     'all-stats skills';
-}
-
-.sheet-attr-head{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    grid-area: attr-head;
-}
-
-.sheet-attr-top{
-    display: flex;
-    justify-content: center;
-    align-content: space-between;
-    grid-area: attr-top;
-}
-
-.sheet-attr-bot{
-    display: flex;
-    justify-content: center;
-    align-content: space-between;
-    grid-area: attr-bottom;
-}
-.sheet-info{
-    display: grid;
-    border: 1px solid darkgray;
-    grid-row: 25px;
-    grid-template-areas:
-    'attr-head'
-    'attr-top'
-    'attr-bottom';
 }
 .sheet-talent-table{
     display: grid;
