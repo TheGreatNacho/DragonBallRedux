@@ -20,8 +20,8 @@
             <div class="info-race"><label>Race:</label></div><div class="info-race-data"><input type='text' name="attr_race" value="@{race_name}, @{subrace_name}" disabled="true"/></div>
             <div class="info-initiative"><label>Initiative:</label></div>
             <div class="info-initiative-data">
-                <input type="text" name="attr_init_mod" value="0"/>
-                <input type="number" name="attr_initiative" value="@{init_mod} + floor(@{agility_tfmodifier}/2)" disabled="true" />
+                <input type="text" name="attr_initiative_modifier" value="0"/>
+                <input type="number" name="attr_initiative" value="@{initiative_modifier} + floor(@{agility_tfmodifier}/2)" disabled="true" />
                 <button type="roll" value="/r 1d10!10 + @{initiative} &{tracker}"></button>    
             </div>
             <div class="info-age"><label>Age:</label></div><div class="info-age-data"><input style="width:100%;" type='number' name="attr_age" value="0" /></div>
@@ -31,11 +31,30 @@
             <div class="info-hair"><label>Hair Colour:</label></div><div class="info-hair-data"><input type='text' name="attr_hair_color" placeholder="Hair Colour" /></div>
             <div class="info-eye"><label>Eye Colour:</label></div><div class="info-eye-data"><input type='text' name="attr_eye_color" placeholder="Eye Colour" /></div>
             <div class="info-size"><label>Size:</label></div><div class="info-size-data"><input type='text' name="attr_size" value="@{race_size}" disabled="true" /></div>
-            <div class="info-powerlevel"><label>Power Level / T.O.P:</label></div><div class="info-powerlevel-data"><input class="power-level-data" type="number" name="attr_power_level" value="1" style="width: 50%;" /><input name="attr_tier_of_power" type="number" value="floor((@{power_level})/5)+1" style="width: 50%;" disabled="true" /></div>
+            <div class="info-powerlevel"><label>PL / T.O.P:</label></div><div class="info-powerlevel-data"><input class="power-level-data" type="number" name="attr_power_level" value="1" style="width: 50%;" /><input name="attr_tier_of_power" type="number" value="floor((@{power_level})/5)+1" style="width: 50%;" disabled="true" /></div>
             <div class="info-battlepower"><label>Battle Power:</label></div><div class="info-battlepower-data"><input style="width:100%;" class="power-level-calc" type="number" name="attr_battle_power" value="(@{agility} + ((@{force}) * 2) + @{tenacity}) / 2 * (@{ki_max} + @{capacity_max}) * @{power_level} * ((@{tier_of_power}) ** 2)" disabled="true" /></div>
             <div class="info-hp"><label>Hit Points:</label></div><div class="info-hp-data"><input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button name="roll_health" type="roll" value="/r 1d10+@{hp_modifier}+@{tenacity_modifier}"></button></div>
             <div class="info-ki"><label>Ki Points:</label></div><div class="info-ki-data"><input style="width:45%;" type="number" name="attr_ki" value="0" /> / <input style="width:45%;" type="number" name="attr_ki_max" value="[[(26 + (12*(@{power_level}-1)))]]" disabled="true" /></div>
             <div class="info-capacity"><label>Capacity:</label></div><div class="info-capacity-data"><input style="width:45%;" type="number" name="attr_capacity" value="0"/> / <input style="width:45%;" type="number" name="attr_capacity_max" value="[[(14 + (6*(@{power_level}-1)))]]" disabled="true" /></div>
+            
+            <div class="info-reach"><label>Reach:</label></div>
+            <div class="info-reach-data">
+                <input type="hidden" name="attr_size_reach" value="1" />
+                <input type="text" name="attr_reach_modifier" value="0"/>
+                <input type="number" name="attr_reach" value="@{reach_modifier} + @{size_reach}" disabled="true" />
+            </div>
+            <div class="info-land-speed"><label>Ground Speed:</label></div>
+            <div class="info-land-speed-data">
+                <input type="hidden" name="attr_size_speed" value="1" />
+                <input type="text" name="attr_land_speed_modifier" value="0"/>
+                <input type="number" name="attr_land_speed" value="floor(@{agility_tfmodifier}/2) + @{dexterity} + @{size_speed} + @{land_speed_modifier}" disabled="true" />
+            </div>
+            <div class="info-fly-speed"><label>Fly Speed:</label></div>
+            <div class="info-fly-speed-data">
+                <input type="hidden" name="attr_size_speed" value="1" />
+                <input type="text" name="attr_fly_speed_modifier" value="0"/>
+                <input type="number" name="attr_fly_speed" value="@{agility_tfmodifier} + @{dexterity} + @{size_speed} + @{fly_speed_modifier}" disabled="true" />
+            </div>
             <!--<div class="attr-head">
                 <h1>Character</h1>
                 <div><label>Character name: <input name="attr_character_name" type="text" style="width:120px;" /></label></div>
@@ -552,7 +571,26 @@
             </select>
         </div>
         
-        <div class="race-dexterity"><label>Dexterity:</label></div><div class="race-dexterity-data"><input type='text' name='attr_race_dexterity_data' value="+2"/><input type='number' name='attr_race_dexterity' value="@{race_dexterity_data}" disabled="true"/></div>
+        <div class="race-dexterity"><label>Dexterity:</label></div><div class="race-dexterity-data"><input type='text' name='attr_race_dexterity_data' value="2"/><input type='number' name='attr_dexterity' value="@{race_dexterity_data}" disabled="true"/></div>
+    </div>
+    <br/>
+    <div class="race-traits">
+        <h2 style="text-align:center;">Traits</h2>
+        <fieldset class="repeating_traits">
+            <input class="trait-edit" type="checkbox" name="attr_toggle-show" value="1" />
+            <div class="trait-table trait-verbose">
+                <input class="trait-name" type="text" name="attr_name" style="width:100%"; placeholder="Name"/>
+                <input class="trait-short-desc" type="text" name="attr_short_description" placeholder="Short Description"/>
+                <div class="auto-expand trait-long-desc">
+                    <span name="attr_description"></span>
+                    <textarea name="attr_description" rows="5" placeholder="Description"></textarea>
+                </div>
+            </div>
+            <div class="trait-simple">
+                <button class="ability trait-name" type="roll" name="roll_trait" value="&{template:default} {{name=@{name}}} {{description=@{description}}}"><b><span name="attr_name"></span></b></button>
+                <span class="trait-short-desc"name="attr_short_description"></span>
+            </div>
+        </fieldset>
     </div>
 </div>
 
@@ -565,7 +603,8 @@
         <div class="attr-top">
             <p>TP:</p><input class="skill-number" type="number" name="attr_technique_points" value="0"/>
             <p>Soak</p> <input class="skill-number" type="number" name="attr_soak" value="0"/>/<input class="skill-number" type="number" name="attr_soak_max" value="@{hidden_soak}+@{soak_modifier}"  disabled> <p>Modifier: </p><input class="skill-number" type="number" name="attr_soak_modifier" value="0"/>
-            <h2>Dodge <input type="number" name="attr_dodge_modifier" value="0"/><button class="attack-button" type="roll" name="roll_dodge" value="/r 1d10!10+@{dodge_modifier}+@{agility_modifier}"></button></h2>
+            <h2>Dodge <input type="number" name="attr_dodge_modifier" value="0"/><button class="attack-button" type="roll" name="roll_dodge" value="/r 1d10!10+@{dodge_modifier}+@{agility_modifier}+@{size_dodge}"></button></h2>
+            <input type="hidden" name="attr_size_dodge" value="0" />
             <input type="hidden" name="attr_hidden_soak" value="0">
             <div style="display: flex;"><h2>Hit Modifier: <input type="number" name="attr_global_hit" value="0"></h2><h2>Wound Modifier: <input type="number" name="attr_global_wound" value="0"></h2></div>
             
@@ -995,9 +1034,70 @@
     });
 
     /*
+        Race Logic
+    */
+    on("change:race_size sheet:opened", function(){
+        getAttrs([
+            "race_size"
+        ], function(values){
+            let race = values.race_size;
+            switch(race){
+                case "Tiny":
+                    setAttrs({
+                        "size_reach": 1,
+                        "size_speed": -3,
+                        "size_dodge": "(3 * @{tier_of_power})",
+                        "size_soak": "(-2 * @{tier_of_power})" 
+                    });
+                    break;
+                case "Small":
+                    setAttrs({
+                        "size_reach": 1,
+                        "size_speed": -1,
+                        "size_dodge": "(2 * @{tier_of_power})",
+                        "size_soak": "(-1 * @{tier_of_power})" 
+                    });
+                    break;
+                case "Medium":
+                    setAttrs({
+                        "size_reach": 1,
+                        "size_speed": 0,
+                        "size_dodge": 0,
+                        "size_soak": 0 
+                    });
+                    break;
+                case "Large":
+                    setAttrs({
+                        "size_reach": 2,
+                        "size_speed": 1,
+                        "size_dodge": 0,
+                        "size_soak": "(1 * @{tier_of_power})" 
+                    });
+                    break;
+                case "Enormous":    
+                    setAttrs({
+                        "size_reach": 2,
+                        "size_speed": +3,
+                        "size_dodge": "(-1 * @{tier_of_power})",
+                        "size_soak": "(2 * @{tier_of_power})" 
+                    });
+                    break;
+                case "Gigantic":
+                    setAttrs({
+                        "size_reach": 4,
+                        "size_speed": +5,
+                        "size_dodge": "(-2 * @{tier_of_power})",
+                        "size_soak": "(3 * @{tier_of_power})" 
+                    });
+                    break;
+            }
+        });
+    });
+
+    /*
         Hidden soak logic
     */
-    on("change:tenacity, sheet:opened", function(){
+    on("change:tenacity sheet:opened", function(){
         getAttrs(["TENACITY_MODIFIER"], function(values){
             var ten = values.TENACITY_MODIFIER;
             if(ten == 1){

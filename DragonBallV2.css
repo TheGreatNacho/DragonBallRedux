@@ -65,7 +65,8 @@
     'info-age info-age-data info-gender info-gender-data info-skin info-skin-data'
     'info-birthday info-birthday-data info-hair info-hair-data info-eye info-eye-data'
     'info-size info-size-data info-powerlevel info-powerlevel-data info-battlepower info-battlepower-data'
-    'info-hp info-hp-data info-ki info-ki-data info-capacity info-capacity-data';
+    'info-hp info-hp-data info-ki info-ki-data info-capacity info-capacity-data'
+    'info-reach info-reach-data info-land-speed info-land-speed-data info-fly-speed info-fly-speed-data';
 }
 
 .sheet-info-header{
@@ -175,6 +176,39 @@
     grid-area: info-capacity-data;
     display:flex;
 }
+.sheet-info-reach{
+    grid-area: info-reach;
+}
+.sheet-info-reach-data{
+    grid-area: info-reach-data;
+    display:flex;
+}
+.sheet-info-reach-data input{
+    width: calc(100% - 3.5em);
+}
+.sheet-info-land-speed{
+    grid-area: info-land-speed;
+}
+.sheet-info-land-speed-data{
+    grid-area: info-land-speed-data;
+    display:flex;
+}
+.sheet-info-land-speed-data input{
+    width: calc(100% - 3.5em);
+}
+.sheet-info-fly-speed{
+    grid-area: info-fly-speed;
+}
+.sheet-info-fly-speed-data{
+    grid-area: info-fly-speed-data;
+    display:flex;
+}
+.sheet-info-fly-speed-data input{
+    width: calc(100% - 3.5em);
+}
+
+
+
 
 .sheet-info-name-data input,
 .sheet-info-player-data input,
@@ -454,6 +488,55 @@ pulled from pathfinder sheet
 .sheet-race-save-data input{
     width:100%
 }
+.sheet-race-traits{
+    border: 1px solid darkgray;
+}
+.sheet-trait-table{
+    display: grid;
+    grid-template-areas:
+    'name short_desc short_desc'
+    'long_desc long_desc long_desc';
+    border: 1px inset darkgray;
+}
+
+.sheet-trait-edit ~ .sheet-trait-verbose{
+    display:none;
+}
+
+.sheet-trait-edit ~ .sheet-trait-simple{
+    display:none;
+}
+
+.sheet-trait-edit:checked ~ .sheet-trait-verbose{
+    display:grid;
+}
+
+.sheet-trait-edit:not(:checked) ~ .sheet-trait-simple{
+    display: grid;
+    grid-template-areas:
+    'name short_desc';
+    border: 1px solid darkgray;
+}
+
+.sheet-trait-name{
+    grid-area: name;
+    display: grid;
+    grid-template-rows:auto;
+    grid-template-columns: 26px auto;
+    width:100%;
+}
+.sheet-trait-short-desc{
+    grid-area: short_desc;
+    width:100%;
+}
+.sheet-trait-long-desc{
+    grid-area: long_desc;
+    font-size:10px;
+    resize:vertical;
+    margin: 5px;
+    min-height:13px;
+}
+
 
 .sheet-equipmentTable{
     display: grid;
