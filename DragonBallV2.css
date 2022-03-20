@@ -23,23 +23,9 @@
 .sheet-attacks,
 .sheet-abilities,
 .sheet-transformations,
+.sheet-details,
 .sheet-settings {
 	display: none;
-}
-
-/*----------------- ATTRIBUTES ------------------*/
-.sheet-ability-table{
-    display:grid;
-    border-style: none;
-    grid-template-areas:
-    'abilityName abilityMod abilityTrans abilityRanks abilityRacial abilityTotal';
-}
-
-.sheet-save-table{
-    border-top: 1px inset darkgray;
-    grid-template-areas:
-    'save-name save-misc save-total';
-    display:grid;
 }
 
 /* show the selected tab */
@@ -48,8 +34,74 @@
 .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks,
 .sheet-tabstoggle[value="abilities"] ~ div.sheet-abilities,
 .sheet-tabstoggle[value="transformations"] ~ div.sheet-transformations,
+.sheet-tabstoggle[value="details"] ~ div.sheet-details,
 .sheet-tabstoggle[value="settings"] ~ div.sheet-settings {
 	display: block;
+}
+
+/*----------------- ATTRIBUTES ------------------*/
+.sheet-ability-table{
+    border: 1px inset darkgray;
+    display:grid;
+    grid-template-areas:
+    'abilityName abilityMod abilityTrans abilityRanks abilityRacial abilityTotal';
+}
+
+.sheet-level-table{
+    border: 1px inset darkgray;
+    display:grid;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    padding:5px;
+    grid-template-areas:
+    'level-header level-header level-header level-header'
+    'level-power level-power-data level-battle level-battle-data'
+    'level-tier level-tier-data level-dice level-dice-data';
+
+}
+.sheet-level-header{
+    grid-area: level-header;
+}
+.sheet-level-power{
+    grid-area: level-power;
+}
+.sheet-level-power-data{
+    grid-area: level-power-data;
+    display: flex;
+}
+.sheet-level-battle{
+    grid-area: level-battle;
+}
+.sheet-level-battle-data{
+    grid-area: level-battle-data;
+    display: flex;
+}
+.sheet-level-tier{
+    grid-area: level-tier;
+}
+.sheet-level-tier-data{
+    grid-area: level-tier-data;
+    display: flex;
+}
+.sheet-level-tier-data input{
+    width: calc(100% - 3.5em);
+}
+.sheet-level-dice{
+    grid-area: level-dice;
+}
+.sheet-level-dice-data{
+    grid-area: level-dice-data;
+    display: flex;
+}
+.sheet-level-dice-data input{
+    width: 100%;
+}
+
+.sheet-save-table{
+    border: 1px inset darkgray;
+    grid-template-areas:
+    'save-name save-misc save-total';
+    display:grid;
 }
 
 .sheet-info{
@@ -410,13 +462,10 @@ pulled from pathfinder sheet
 */
 .sheet-all-stats{
     grid-area: all-stats;
-    border: 2px solid darkgray;
-    display:grid;
 }
 
 .sheet-stats{
     display: grid;
-    border: 1px solid darkgray;
     grid-template-areas: 
     'all-stats skills';
 }
