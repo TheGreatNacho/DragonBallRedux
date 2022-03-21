@@ -3,7 +3,7 @@
     <br><br><br>
     <button class="select-btn" type="action" name="act_attributes" >Attributes</button>
     <button class="select-btn" type="action" name="act_race" >Race</button>
-    <button class="select-btn" type="action" name="act_attacks" >Attacks</button>
+    <button class="select-btn" type="action" name="act_attacks" >Combat</button>
     <button class="select-btn" type="action" name="act_abilities">Abilities</button>
     <button class="select-btn" type="action" name="act_transformations">Transformations</button>
     <button class="select-btn" type="action" name="act_details" >Details</button>
@@ -17,32 +17,24 @@
         <div class="info">
             <div class="info-header"><h1>Character</h1></div>
             <div class="info-name"><label>Name:</label></div><div class="info-name-data"><input type='text' name="attr_character_name" placeholder="Character Name" /></div>
-            <div class="info-player"><label>Player:</label></div><div class="info-player-data"><input type='text' name="attr_player_name" placeholder="Player Name" /></div>
-            <div class="info-race"><label>Race:</label></div><div class="info-race-data"><input type='text' name="attr_race" value="@{race_name}, @{subrace_name}" disabled="true"/></div>
             <div class="info-initiative"><label>Initiative:</label></div>
             <div class="info-initiative-data">
                 <input type="text" name="attr_initiative_modifier" value="0"/>
                 <input type="number" name="attr_initiative" value="@{initiative_modifier} + floor(@{agility_tfmodifier}/2)" disabled="true" />
                 <button type="roll" value="/r 1d10!10 + @{initiative} &{tracker}"></button>    
             </div>
-            <div class="info-age"><label>Age:</label></div><div class="info-age-data"><input style="width:100%;" type='number' name="attr_age" value="0" /></div>
-            <div class="info-gender"><label>Gender:</label></div><div class="info-gender-data"><input type='text' name="attr_gender" placeholder="Gender" /></div>
-            <div class="info-skin"><label>Skin Tone:</label></div><div class="info-skin-data"><input type='text' name="attr_skin_tone" placeholder="Skin Tone" /></div>
-            <div class="info-birthday"><label>Birthday:</label></div><div class="info-birthday-data"><input type='text' name="attr_birthday" placeholder="YYYY/MM/DD" /></div>
-            <div class="info-hair"><label>Hair Colour:</label></div><div class="info-hair-data"><input type='text' name="attr_hair_color" placeholder="Hair Colour" /></div>
-            <div class="info-eye"><label>Eye Colour:</label></div><div class="info-eye-data"><input type='text' name="attr_eye_color" placeholder="Eye Colour" /></div>
+            <div class="info-race"><label>Race:</label></div><div class="info-race-data"><input type='text' name="attr_race" value="@{race_name}, @{subrace_name}" disabled="true"/></div>
             <div class="info-size"><label>Size:</label></div><div class="info-size-data"><input type='text' name="attr_size" value="@{race_size}" disabled="true" /></div>
-            <div class="info-powerlevel"><label>Power Level:</label></div><div class="info-powerlevel-data"><input class="power-level-data" type="number" name="attr_power_level" value="1" style="width: 50%;" /></div>
-            <div class="info-battlepower"><label>Battle Power:</label></div><div class="info-battlepower-data"><input style="width:100%;" class="power-level-calc" type="number" name="attr_battle_power" value="(@{agility} + ((@{force}) * 2) + @{tenacity}) / 2 * (@{ki_max} + @{capacity_max}) * @{power_level} * ((@{tier_of_power}) ** 2)" disabled="true" /></div>
-            <div class="info-hp"><label>Hit Points:</label></div><div class="info-hp-data"><input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button name="roll_health" type="roll" value="/r 1d10+@{race_health}+@{tenacity_modifier}"></button></div>
-            <div class="info-ki"><label>Ki Points:</label></div><div class="info-ki-data"><input style="width:45%;" type="number" name="attr_ki" value="0" /> / <input style="width:45%;" type="number" name="attr_ki_max" value="[[(26 + (12*(@{power_level}-1)))]]" disabled="true" /></div>
-            <div class="info-capacity"><label>Capacity:</label></div><div class="info-capacity-data"><input style="width:45%;" type="number" name="attr_capacity" value="0"/> / <input style="width:45%;" type="number" name="attr_capacity_max" value="[[(14 + (6*(@{power_level}-1)))]]" disabled="true" /></div>
-            
             <div class="info-reach"><label>Reach:</label></div>
             <div class="info-reach-data">
                 <input type="hidden" name="attr_size_reach" value="1" />
                 <input type="text" name="attr_reach_modifier" value="0"/>
                 <input type="number" name="attr_reach" value="@{reach_modifier} + @{size_reach}" disabled="true" />
+            </div>
+            <div class="info-ki"><label>Ki Points:</label></div><div class="info-ki-data"><input style="width:45%;" type="number" name="attr_ki" value="0" /> / <input style="width:45%;" type="number" name="attr_ki_max" value="[[(26 + (12*(@{power_level}-1)))]]" disabled="true" /></div>
+            <div class="info-ki-bar">
+                <input type="hidden" type="number" value="@{kibarv}" name="attr_kibar" class="sheet-kibar" disabled="true" />
+                <div class="sheet-kibar"></div>
             </div>
             <div class="info-land-speed"><label>Ground Speed:</label></div>
             <div class="info-land-speed-data">
@@ -50,11 +42,20 @@
                 <input type="text" name="attr_land_speed_modifier" value="0"/>
                 <input type="number" name="attr_land_speed" value="floor(@{agility_tfmodifier}/2) + @{dexterity} + @{size_speed} + @{land_speed_modifier}" disabled="true" />
             </div>
+            <div class="info-capacity"><label>Capacity:</label></div><div class="info-capacity-data"><input style="width:45%;" type="number" name="attr_capacity" value="0"/> / <input style="width:45%;" type="number" name="attr_capacity_max" value="[[(14 + (6*(@{power_level}-1)))]]" disabled="true" /></div>
+            <div class="info-capacity-bar">
+                <input type="hidden" type="number" value="@{capacitybarv}" name="attr_hpbar" class="sheet-capacitybar" disabled="true" />
+                <div class="sheet-capacitybar"></div>
+            </div>
             <div class="info-fly-speed"><label>Fly Speed:</label></div>
             <div class="info-fly-speed-data">
                 <input type="hidden" name="attr_size_speed" value="1" />
                 <input type="text" name="attr_fly_speed_modifier" value="0"/>
                 <input type="number" name="attr_fly_speed" value="@{agility_tfmodifier} + @{dexterity} + @{size_speed} + @{fly_speed_modifier}" disabled="true" />
+            </div><div class="info-hp"><label>Hit Points:</label></div><div class="info-hp-data"><input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button name="roll_health" type="roll" value="/r 1d10+@{race_health}+@{tenacity_modifier}"></button></div>
+            <div class="info-hp-bar">
+                <input type="hidden" type="number" value="@{hpbarv}" name="attr_hpbar" class="sheet-hpbar" disabled="true" />
+                <div class="sheet-hpbar"></div>
             </div>
         </div>
 
@@ -556,7 +557,8 @@
 </div>
 
 <div class='attacks'>
-    <div class="info">
+
+    <!--div class="info">
         <div class="attr-head">
             <h1>Attacks</h1>
             
@@ -570,9 +572,27 @@
             <div style="display: flex;"><h2>Hit Modifier: <input type="number" name="attr_global_hit" value="0"></h2><h2>Wound Modifier: <input type="number" name="attr_global_wound" value="0"></h2></div>
             
         </div>
+    </div-->
+    
+    <div class="attack-header">
+        <h1 class="combat-header">Combat</h1>
+        <div class="strike-section">
+            <div class="strike-header"><label style="text-align:center;">Strike</label></div>
+            <div class="strike-haste"><button class="ability" type="roll" name="roll_haste" value="/r 1d10!10+@{haste}+@{power_die}">Haste:</button></div><div class="strike-haste-data"><input type="text" name="attr_haste_bonus" value="0" /><input type="number" name="attr_haste" value="floor(@{agility_tfmodifier}/2) + @{haste_bonus}" disabled="true" /></div>
+            <div class="strike-awareness"><button class="ability" type="roll" name="roll_awareness" value="/r 1d10!10+@{awareness}+@{power_die}">Awareness:</button></div><div class="strike-awareness-data"><input type="text" name="attr_awareness_bonus" value="0" /><input type="number" name="attr_awareness" value="@{insight_tfmodifier} + @{awareness_bonus}" disabled="true" /></div>
+            <div class="strike-bonus">Bonus:</div><div class="strike-bonus-data"><input type="text" name="attr_strike_bonus_data" value="0" /><input type="number" name="attr_strike_bonus" value="@{strike_bonus_data}" disabled="true" /></div>
+            <div class="strike-total"><button class="ability" type="roll" name="roll_strike" value="/r 1d10!10+@{strike}+@{power_die}">Strike:</button></div><div class="strike-total-data"><input type="number" name="attr_strike" value="@{haste} + @{awareness} + @{strike_bonus}" style="width:100%;" disabled="true" /></div>
+            
+        </div>
+        <div class="defense-section">
+            <div class="defense-header"><label style="text-align:center;">Defense</label></div>
+            <div class="defense-value">Value:</div><div class="defense-value-data"><input type="text" name="attr_defense_bonus" value="0" /><input type="number" name="attr_defense" value="@{agility_tfmodifier} + @{defense_bonus}" disabled="true" /></div>
+            <div class="defense-diminishing">Diminishing:</div><div class="defense-diminishing-data"><input type="number" name="attr_diminishing_defense" value="0" style="width:100%;" /></div>
+            <div class="defense-dodge"><button class="ability" type="roll" name="roll_dodge" value="/r 1d10!10+@{dodge}+@{power_die}">Dodge:</button></div><div class="defense-dodge-data"><input type="text" name="attr_dodge_bonus" value="0" /><input type="number" name="attr_dodge" value="@{defense} + @{dodge_bonus} + @{size_dodge} - @{diminishing_defense}" disabled="true" /></div>
+            <div class="defense-soak">Soak:</div><div class="defense-soak-data"><input type="text" name="attr_soak_bonus" value="0" /><input type="number" name="attr_soak" value="@{tenacity_tfmodifier} + @{soak_bonus} + @{size_soak} + @{hidden_soak}" disabled="true" /></div>
+        </div>
     </div>
-    
-    
+    <br>
     <div class="basic-attack">
         <!-- Basic Attack Header -->
         <div class="attack-category-head">TYPE</div>
@@ -827,7 +847,14 @@
 </div>
 
 <div class='details'>
-
+    <div class="info-player"><label>Player:</label></div><div class="info-player-data"><input type='text' name="attr_player_name" placeholder="Player Name" /></div>
+    <div class="info-age"><label>Age:</label></div><div class="info-age-data"><input style="width:100%;" type='number' name="attr_age" value="0" /></div>
+    <div class="info-gender"><label>Gender:</label></div><div class="info-gender-data"><input type='text' name="attr_gender" placeholder="Gender" /></div>
+    <div class="info-skin"><label>Skin Tone:</label></div><div class="info-skin-data"><input type='text' name="attr_skin_tone" placeholder="Skin Tone" /></div>
+    <div class="info-birthday"><label>Birthday:</label></div><div class="info-birthday-data"><input type='text' name="attr_birthday" placeholder="YYYY/MM/DD" /></div>
+    <div class="info-hair"><label>Hair Colour:</label></div><div class="info-hair-data"><input type='text' name="attr_hair_color" placeholder="Hair Colour" /></div>
+    <div class="info-eye"><label>Eye Colour:</label></div><div class="info-eye-data"><input type='text' name="attr_eye_color" placeholder="Eye Colour" /></div>
+    
 </div>
 
 <div class='settings'>
@@ -845,6 +872,73 @@
         on(`clicked:${button}`, function() {
             setAttrs({
                 sheetTab: button
+            });
+        });
+    });
+
+    /*
+        Bar Logic
+    */
+    on("sheet:opened change:ki change:ki_max", function(){
+        console.log("triggered");
+        getAttrs([
+            "ki",
+            "ki_max"
+        ], function(values){
+            var maximum = values.ki_max;
+            var current = values.ki;
+            var percent = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,999];
+            var val = 0
+            for (let i=0; i < percent.length; i++){
+                if (current <= (maximum * percent[i]/100)){
+                    val = i
+                    break;
+                }
+            }
+            setAttrs({
+                "kibarv":val
+            });
+        });
+    });
+    on("sheet:opened change:capacity change:capacity_max", function(){
+        console.log("triggered");
+        getAttrs([
+            "capacity",
+            "capacity_max"
+        ], function(values){
+            var maximum = values.capacity_max;
+            var current = values.capacity;
+            var percent = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,999];
+            var val = 0
+            for (let i=0; i < percent.length; i++){
+                if (current <= (maximum * percent[i]/100)){
+                    val = i
+                    break;
+                }
+            }
+            setAttrs({
+                "capacitybarv":val
+            });
+        });
+    });
+    on("sheet:opened change:hp change:hp_max", function(){
+        console.log("triggered");
+        getAttrs([
+            "hp",
+            "hp_max"
+        ], function(values){
+            var maximum = values.hp_max;
+            var current = values.hp;
+            var percent = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,999];
+            var val = 0
+            for (let i=0; i < percent.length; i++){
+                if (current <= (maximum * percent[i]/100)){
+                    val = i
+                    break;
+                }
+            }
+            setAttrs({
+                "hpbarv":val
             });
         });
     });
