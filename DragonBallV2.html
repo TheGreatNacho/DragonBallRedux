@@ -404,19 +404,6 @@
                     <input class="skill-number" type="number" name="attr_pilot_mod" value="(@{agility_modifier})" disabled="true" />
                     <input class="skill-number" type="number" name="attr_pilot" value="(@{agility_modifier}+@{pilot_proficiency}+@{pilot_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
 
-                    <button class="skill" type="roll" name="roll_perception" value="/r 1d10!10+@{perception}+@{power_die}">Perception</button>
-                    <select class="proficiency-select" name="attr_perception_proficiency">
-                        <option value="0">No Proficiency</option>
-                        <option value="2">Experienced</option>
-                        <option value="4">Trained</option>
-                        <option value="6">Qualified</option>
-                        <option value="8">Specialist</option>
-                        <option value="10">Expert</option>
-                    </select>
-                    <input class="skill-number" type="number" name="attr_perception_misc" value="0" />
-                    <input class="skill-number" type="number" name="attr_perception_mod" value="(@{insight_modifier})" disabled="true" />
-                    <input class="skill-number" type="number" name="attr_perception" value="(@{insight_modifier}+@{perception_proficiency}+@{perception_misc}+floor(@{scholarship_modifier}/2))" disabled="true" />
-                    
                     <p class="skill">PROFESSION</p><div></div><div></div><div></div><div></div>
                 </div>
                 <fieldset class="repeating_profession">
@@ -539,9 +526,9 @@
     <div class="race-traits">
         <h2 style="text-align:center;">Traits</h2>
         <fieldset class="repeating_traits">
-            <input class="trait-edit" type="checkbox" name="attr_toggle-show" value="1" />
+            <input class="trait-edit" type="checkbox" name="attr_toggle-show" value="1" checked />
             <div class="trait-table trait-verbose">
-                <input class="trait-name" type="text" name="attr_name" style="width:100%"; placeholder="Name"/>
+                <input class="trait-name" type="text" name="attr_name" style="width:100%;" placeholder="Name"/>
                 <input class="trait-short-desc" type="text" name="attr_short_description" placeholder="Short Description"/>
                 <div class="auto-expand trait-long-desc">
                     <span name="attr_description"></span>
@@ -549,7 +536,7 @@
                 </div>
             </div>
             <div class="trait-simple">
-                <button class="ability trait-name" type="roll" name="roll_trait" value="&{template:default} {{name=@{name}}} {{description=@{description}}}"><b><span name="attr_name"></span></b></button>
+                <button class="ability trait-name" type="roll" name="roll_trait" value="&{template:default} {{name=@{name}}} {{description=@{description}}}" style="width:fit-content;"><b><span name="attr_name"></span></b></button>
                 <span class="trait-short-desc"name="attr_short_description"></span>
             </div>
         </fieldset>
@@ -578,17 +565,17 @@
         <h1 class="combat-header">Combat</h1>
         <div class="strike-section">
             <div class="strike-header"><label style="text-align:center;">Strike</label></div>
-            <div class="strike-haste"><button class="ability" type="roll" name="roll_haste" value="/r 1d10!10+@{haste}+@{power_die}">Haste:</button></div><div class="strike-haste-data"><input type="text" name="attr_haste_bonus" value="0" /><input type="number" name="attr_haste" value="floor(@{agility_tfmodifier}/2) + @{haste_bonus}" disabled="true" /></div>
-            <div class="strike-awareness"><button class="ability" type="roll" name="roll_awareness" value="/r 1d10!10+@{awareness}+@{power_die}">Awareness:</button></div><div class="strike-awareness-data"><input type="text" name="attr_awareness_bonus" value="0" /><input type="number" name="attr_awareness" value="@{insight_tfmodifier} + @{awareness_bonus}" disabled="true" /></div>
-            <div class="strike-bonus">Bonus:</div><div class="strike-bonus-data"><input type="text" name="attr_strike_bonus_data" value="0" /><input type="number" name="attr_strike_bonus" value="@{strike_bonus_data}" disabled="true" /></div>
+            <div class="strike-haste"><button class="ability" type="roll" name="roll_haste" value="/r 1d10!10+@{haste}+@{power_die}">Haste:</button></div><div class="strike-haste-data"><input type="text" name="attr_haste_bonus" value="0" /><input type="number" name="attr_haste" value="([HASTE] floor(@{agility_tfmodifier} / 2) + @{haste_bonus})" disabled="true" /></div>
+            <div class="strike-awareness"><button class="ability" type="roll" name="roll_awareness" value="/r 1d10!10+@{awareness}+@{power_die}">Awareness:</button></div><div class="strike-awareness-data"><input type="text" name="attr_awareness_bonus" value="0" /><input type="number" name="attr_awareness" value="([AWARENESS] @{insight_tfmodifier} + @{awareness_bonus})" disabled="true" /></div>
+            <div class="strike-bonus">Bonus:</div><div class="strike-bonus-data"><input type="text" name="attr_strike_bonus_data" value="0" /><input type="number" name="attr_strike_bonus" value="([STRIKE BONUS] @{strike_bonus_data})" disabled="true" /></div>
             <div class="strike-total"><button class="ability" type="roll" name="roll_strike" value="/r 1d10!10+@{strike}+@{power_die}">Strike:</button></div><div class="strike-total-data"><input type="number" name="attr_strike" value="@{haste} + @{awareness} + @{strike_bonus}" style="width:100%;" disabled="true" /></div>
             
         </div>
         <div class="defense-section">
             <div class="defense-header"><label style="text-align:center;">Defense</label></div>
-            <div class="defense-value">Value:</div><div class="defense-value-data"><input type="text" name="attr_defense_bonus" value="0" /><input type="number" name="attr_defense" value="@{agility_tfmodifier} + @{defense_bonus}" disabled="true" /></div>
+            <div class="defense-value">Value:</div><div class="defense-value-data"><input type="text" name="attr_defense_bonus" value="0" /><input type="number" name="attr_defense" value="([DEFENSE] @{agility_tfmodifier} + @{defense_bonus})" disabled="true" /></div>
             <div class="defense-diminishing">Diminishing:</div><div class="defense-diminishing-data"><input type="number" name="attr_diminishing_defense" value="0" style="width:100%;" /></div>
-            <div class="defense-dodge"><button class="ability" type="roll" name="roll_dodge" value="/r 1d10!10+@{dodge}+@{power_die}">Dodge:</button></div><div class="defense-dodge-data"><input type="text" name="attr_dodge_bonus" value="0" /><input type="number" name="attr_dodge" value="@{defense} + @{dodge_bonus} + @{size_dodge} - @{diminishing_defense}" disabled="true" /></div>
+            <div class="defense-dodge"><button class="ability" type="roll" name="roll_dodge" value="/r 1d10!10+@{dodge}+@{power_die}">Dodge:</button></div><div class="defense-dodge-data"><input type="text" name="attr_dodge_bonus" value="0" /><input type="number" name="attr_dodge" value="@{defense} + [BONUS] @{dodge_bonus} + [SIZE] @{size_dodge} - [DIMINISHING DEFENSE] @{diminishing_defense}" disabled="true" /></div>
             <div class="defense-soak">Soak:</div><div class="defense-soak-data"><input type="text" name="attr_soak_bonus" value="0" /><input type="number" name="attr_soak" value="@{tenacity_tfmodifier} + @{soak_bonus} + @{size_soak} + @{hidden_soak}" disabled="true" /></div>
         </div>
     </div>
@@ -605,118 +592,116 @@
 
         <div class="attack-physical">Physical</div>
         <div class="attack-physical-content">
-            <button class="ability" type="roll" name="roll_simple" value="&{template:default} {{name=Simple Physical Attack}} {{strike=[[1d10!10 + @{simple_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{simple_wound} + [EXTRA DIE] @{power_die}]]}}">Simple</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_simple" value="&{template:default} {{name=Simple Physical Attack}} {{strike=[[1d10!10 + @{simple_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{simple_wound} + [EXTRA DIE] @{power_die}]]}}">Simple</button>
             <input type="number" name="attr_simple_strike_misc" value="0" />
-            <input type="number" name="attr_simple_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{simple_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_simple_strike" value="@{strike} + @{simple_strike_misc}" disabled="true" />
             <input type="number" name="attr_simple_wound_misc" value="0" />
-            <input type="number" name="attr_simple_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{simple_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_simple_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{simple_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_simple_ki_cost" value="(@{ki_wager})" disabled="true" />
 
-            <button class="ability" type="roll" name="roll_combination" value="&{template:default} {{name=Combination Physical Attack}} {{strike=[[1d10!10 + @{combination_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[([HITS] [[1d10!10 + [[@{tier_of_power}]]d4]] * 2) + @{combination_wound} + [EXTRA DIE] @{power_die}]]}}">Combination</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_combination" value="&{template:default} {{name=Combination Physical Attack}} {{strike=[[1d10!10 + @{combination_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[([HITS] [[1d10!10 + [[@{tier_of_power}]]d4]] * 2) + @{combination_wound} + [EXTRA DIE] @{power_die}]]}}">Combination</button>
             <input type="number" name="attr_combination_strike_misc" value="0" />
-            <input type="number" name="attr_combination_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{combination_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_combination_strike" value="@{strike} + @{combination_strike_misc}" disabled="true" />
             <input type="number" name="attr_combination_wound_misc" value="0" />
-            <input type="number" name="attr_combination_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{combination_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_combination_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{combination_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_combination_ki_cost" value="((@{tier_of_power}) * 6 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_powered" value="&{template:default} {{name=Powered Physical Attack}} {{strike=[[1d10!10 + @{powered_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{powered_wound} + [EXTRA DIE] @{power_die}]]}}">Powered</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_powered" value="&{template:default} {{name=Powered Physical Attack}} {{strike=[[1d10!10 + @{powered_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{powered_wound} + [EXTRA DIE] @{power_die}]]}}">Powered</button>
             <input type="number" name="attr_powered_strike_misc" value="0" />
-            <input type="number" name="attr_powered_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{powered_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_powered_strike" value="@{strike} + @{powered_strike_misc}" disabled="true" />
             <input type="number" name="attr_powered_wound_misc" value="0" />
-            <input type="number" name="attr_powered_wound" value="([FORCE] (@{force_tfmodifier}) * 2 + [MISC] (@{global_wound} + @{powered_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_powered_wound" value="([FORCE] (@{force_tfmodifier}) * 2 + [MISC] (@{powered_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_powered_ki_cost" value="((@{tier_of_power}) * 4 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_crushing" value="&{template:default} {{name=Crushing Physical Attack}} {{strike=[[1d10!10 + @{crushing_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[[[@{tier_of_power}]]d6 + @{crushing_wound} + [EXTRA DIE] @{power_die}]]}}">Crushing</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_crushing" value="&{template:default} {{name=Crushing Physical Attack}} {{strike=[[1d10!10 + @{crushing_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[[[@{tier_of_power}]]d6 + @{crushing_wound} + [EXTRA DIE] @{power_die}]]}}">Crushing</button>
             <input type="number" name="attr_crushing_strike_misc" value="0" />
-            <input type="number" name="attr_crushing_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{crushing_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_crushing_strike" value="@{strike} + @{crushing_strike_misc}" disabled="true" />
             <input type="number" name="attr_crushing_wound_misc" value="0" />
-            <input type="number" name="attr_crushing_wound" value="([MISC] (@{global_wound} + @{crushing_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_crushing_wound" value="([MISC] (@{crushing_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_crushing_ki_cost" value="((@{tier_of_power}) * 6 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_sweeping" value="&{template:default} {{name=Sweeping Physical Attack}} {{strike=[[1d10!10 + @{sweeping_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{sweeping_wound} + [EXTRA DIE] @{power_die}]]}}">Sweeping</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_sweeping" value="&{template:default} {{name=Sweeping Physical Attack}} {{strike=[[1d10!10 + @{sweeping_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{sweeping_wound} + [EXTRA DIE] @{power_die}]]}}">Sweeping</button>
             <input type="number" name="attr_sweeping_strike_misc" value="0" />
-            <input type="number" name="attr_sweeping_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{sweeping_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_sweeping_strike" value="@{strike} + @{sweeping_strike_misc}" disabled="true" />
             <input type="number" name="attr_sweeping_wound_misc" value="0" />
-            <input type="number" name="attr_sweeping_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{sweeping_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_sweeping_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{sweeping_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_sweeping_ki_cost" value="((@{tier_of_power}) * 5 + @{ki_wager})" disabled="true" />
         </div>
 
         <div class="attack-energy">Energy</div>
         <div class="attack-energy-content">
-            <button class="ability" type="roll" name="roll_sphere" value="&{template:default} {{name=Sphere Energy Attack}} {{strike=[[1d10!10 + @{sphere_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{sphere_wound} + [EXTRA DIE] @{power_die}]]}}">Sphere</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_sphere" value="&{template:default} {{name=Sphere Energy Attack}} {{strike=[[1d10!10 + @{sphere_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{sphere_wound} + [EXTRA DIE] @{power_die}]]}}">Sphere</button>
             <input type="number" name="attr_sphere_strike_misc" value="0" />
-            <input type="number" name="attr_sphere_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{sphere_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_sphere_strike" value="@{strike} + @{sphere_strike_misc}" disabled="true" />
             <input type="number" name="attr_sphere_wound_misc" value="0" />
-            <input type="number" name="attr_sphere_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{sphere_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_sphere_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{sphere_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_sphere_ki_cost" value="((@{tier_of_power}) * 2 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_rapid" value="&{template:default} {{name=Rapid Fire Energy Attack}} {{strike=[[1d10!10 + @{rapid_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[([HITS] [[1d10!10 + [[@{tier_of_power}]]d4]] * 2) + @{rapid_wound} + [EXTRA DIE] @{power_die}]]}}">Rapid Fire</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_rapid" value="&{template:default} {{name=Rapid Fire Energy Attack}} {{strike=[[1d10!10 + @{rapid_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[([HITS] [[1d10!10 + [[@{tier_of_power}]]d4]] * 2) + @{rapid_wound} + [EXTRA DIE] @{power_die}]]}}">Rapid Fire</button>
             <input type="number" name="attr_rapid_strike_misc" value="0" />
-            <input type="number" name="attr_rapid_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{rapid_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_rapid_strike" value="@{strike} + @{rapid_strike_misc}" disabled="true" />
             <input type="number" name="attr_rapid_wound_misc" value="0" />
-            <input type="number" name="attr_rapid_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{rapid_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_rapid_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{rapid_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_rapid_ki_cost" value="((@{tier_of_power}) * 6 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_kiai" value="&{template:default} {{name=Kiai Energy Attack}} {{strike=[[{1d10!10,1d10!10}kh1 + @{kiai_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[2d10kl1 + @{kiai_wound} + [EXTRA DIE] @{power_die}]]}}">Kiai</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_kiai" value="&{template:default} {{name=Kiai Energy Attack}} {{strike=[[{1d10!10,1d10!10}kh1 + @{kiai_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[2d10kl1 + @{kiai_wound} + [EXTRA DIE] @{power_die}]]}}">Kiai</button>
             <input type="number" name="attr_kiai_strike_misc" value="0" />
-            <input type="number" name="attr_kiai_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{kiai_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_kiai_strike" value="@{strike} + @{kiai_strike_misc}" disabled="true" />
             <input type="number" name="attr_kiai_wound_misc" value="0" />
-            <input type="number" name="attr_kiai_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{kiai_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_kiai_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{kiai_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_kiai_ki_cost" value="((@{tier_of_power}) * 4 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_blast" value="&{template:default} {{name=Blast Energy Attack}} {{strike=[[1d10!10 + @{blast_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{blast_wound} + [EXTRA DIE] @{power_die}]]}}">Blast</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_blast" value="&{template:default} {{name=Blast Energy Attack}} {{strike=[[1d10!10 + @{blast_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{blast_wound} + [EXTRA DIE] @{power_die}]]}}">Blast</button>
             <input type="number" name="attr_blast_strike_misc" value="0" />
-            <input type="number" name="attr_blast_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{blast_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_blast_strike" value="@{strike} + @{blast_strike_misc}" disabled="true" />
             <input type="number" name="attr_blast_wound_misc" value="0" />
-            <input type="number" name="attr_blast_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{blast_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_blast_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{blast_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_blast_ki_cost" value="((@{tier_of_power}) * 5 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_explosion" value="&{template:default} {{name=Explosion Energy Attack}} {{strike=[[1d10!10 + @{explosion_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{explosion_wound} + [EXTRA DIE] @{power_die}]]}}">Explosion</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_explosion" value="&{template:default} {{name=Explosion Energy Attack}} {{strike=[[1d10!10 + @{explosion_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{explosion_wound} + [EXTRA DIE] @{power_die}]]}}">Explosion</button>
             <input type="number" name="attr_explosion_strike_misc" value="0" />
-            <input type="number" name="attr_explosion_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{explosion_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_explosion_strike" value="@{strike} + @{explosion_strike_misc}" disabled="true" />
             <input type="number" name="attr_explosion_wound_misc" value="0" />
-            <input type="number" name="attr_explosion_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{explosion_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_explosion_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{explosion_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_explosion_ki_cost" value="((@{tier_of_power}) * 6 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_beam" value="&{template:default} {{name=Beam Energy Attack}} {{strike=[[1d10!10 + @{beam_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{beam_wound} + [EXTRA DIE] @{power_die}]]}}">Beam</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_beam" value="&{template:default} {{name=Beam Energy Attack}} {{strike=[[1d10!10 + @{beam_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{beam_wound} + [EXTRA DIE] @{power_die}]]}}">Beam</button>
             <input type="number" name="attr_beam_strike_misc" value="0" />
-            <input type="number" name="attr_beam_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{beam_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_beam_strike" value="@{strike} + @{beam_strike_misc}" disabled="true" />
             <input type="number" name="attr_beam_wound_misc" value="0" />
-            <input type="number" name="attr_beam_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{beam_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_beam_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{beam_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_beam_ki_cost" value="((@{tier_of_power}) * 8 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_cutting" value="&{template:default} {{name=Cutting Energy Attack}} {{strike=[[1d10!10 + @{cutting_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{cutting_wound} + [EXTRA DIE] @{power_die}]]}}">Cutting</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_cutting" value="&{template:default} {{name=Cutting Energy Attack}} {{strike=[[1d10!10 + @{cutting_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{cutting_wound} + [EXTRA DIE] @{power_die}]]}}">Cutting</button>
             <input type="number" name="attr_cutting_strike_misc" value="0" />
-            <input type="number" name="attr_cutting_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{cutting_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_cutting_strike" value="@{strike} + @{cutting_strike_misc}" disabled="true" />
             <input type="number" name="attr_cutting_wound_misc" value="0" />
-            <input type="number" name="attr_cutting_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{global_wound} + @{cutting_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_cutting_wound" value="([FORCE] @{force_tfmodifier} + [MISC] (@{cutting_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_cutting_ki_cost" value="((@{tier_of_power}) * 8 + @{ki_wager})" disabled="true" />
         </div>
 
         <div class="attack-magic">Magic</div>
         <div class="attack-magic-content">
-            <button class="ability" type="roll" name="roll_spell" value="&{template:default} {{name=Spell Magical Attack}} {{strike=[[1d10!10 + @{spell_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{spell_wound} + [EXTRA DIE] @{power_die}]]}}">Spell</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_spell" value="&{template:default} {{name=Spell Magical Attack}} {{strike=[[1d10!10 + @{spell_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{spell_wound} + [EXTRA DIE] @{power_die}]]}}">Spell</button>
             <input type="number" name="attr_spell_strike_misc" value="0" />
-            <input type="number" name="attr_spell_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{spell_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_spell_strike" value="@{strike} + @{spell_strike_misc}" disabled="true" />
             <input type="number" name="attr_spell_wound_misc" value="0" />
-            <input type="number" name="attr_spell_wound" value="([SPIRIT] @{spirit_tfmodifier} + [MISC] (@{global_wound} + @{spell_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_spell_wound" value="([SPIRIT] @{spirit_tfmodifier} + [MISC] (@{spell_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_spell_ki_cost" value="((@{tier_of_power}) * 2 + @{ki_wager})" disabled="true" />
             
-            <button class="ability" type="roll" name="roll_elemental" value="&{template:default} {{name=Elemental Magical Attack}} {{strike=[[1d10!10 + @{elemental_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{elemental_wound} + [EXTRA DIE] @{power_die}]]}}">Elemental</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_elemental" value="&{template:default} {{name=Elemental Magical Attack}} {{strike=[[1d10!10 + @{elemental_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{elemental_wound} + [EXTRA DIE] @{power_die}]]}}">Elemental</button>
             <input type="number" name="attr_elemental_strike_misc" value="0" />
-            <input type="number" name="attr_elemental_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{elemental_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_elemental_strike" value="@{strike} + @{elemental_strike_misc}" disabled="true" />
             <input type="number" name="attr_elemental_wound_misc" value="0" />
-            <input type="number" name="attr_elemental_wound" value="([SPIRIT] @{spirit_tfmodifier} + [MISC] (@{global_wound} + @{elemental_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_elemental_wound" value="([SPIRIT] @{spirit_tfmodifier} + [MISC] (@{elemental_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_elemental_ki_cost" value="((@{tier_of_power}) * 10 + @{ki_wager})" disabled="true" />
 
-            <button class="ability" type="roll" name="roll_spiritual" value="&{template:default} {{name=Spiritual Assault Magical Attack}} {{strike=[[1d10!10 + @{spiritual_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{spiritual_wound} + [EXTRA DIE] @{power_die}]]}}">Spiritual Assault</button>
+            <button class="ability" style="width:80px;" type="roll" name="roll_spiritual" value="&{template:default} {{name=Spiritual Assault Magical Attack}} {{strike=[[1d10!10 + @{spiritual_strike} + [EXTRA DIE] @{power_die}]]}} {{wound=[[1d10!10 + @{spiritual_wound} + [EXTRA DIE] @{power_die}]]}}">Spiritual Assault</button>
             <input type="number" name="attr_spiritual_strike_misc" value="0" />
-            <input type="number" name="attr_spiritual_strike" value="([HASTE] floor(@{agility_tfmodifier}/2) + [AWARENESS] @{insight_tfmodifier} + [MISC] (@{global_hit} + @{spiritual_strike_misc}))" disabled="true" />
+            <input type="number" name="attr_spiritual_strike" value="@{strike} + @{spiritual_strike_misc}" disabled="true" />
             <input type="number" name="attr_spiritual_wound_misc" value="0" />
-            <input type="number" name="attr_spiritual_wound" value="([SPIRIT] @{spirit_tfmodifier} + [MISC] (@{global_wound} + @{spiritual_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
+            <input type="number" name="attr_spiritual_wound" value="([SPIRIT] @{spirit_tfmodifier} + [MISC] (@{spiritual_wound_misc}) + [WAGER] @{ki_wager})"  disabled="true" />
             <input type="number" name="attr_spiritual_ki_cost" value="((@{tier_of_power}) * 8 + @{ki_wager})" disabled="true" />
-            
-            
         </div>
         <div class="attack-signature">Signature</div>
         <div class="attack-signature-content">
@@ -730,10 +715,13 @@
                 </div>
             </fieldset>
         </div>
-
         <div class="attack-footer">
             <h3>Ki Wager: </h3><input type="number" name="attr_ki_wager" value="0" />
         </div>
+    </div>
+    <br>
+    <div class="spellbook">
+        <h2>Spell Book</h2>
     </div>
     <br>
     <div class="custom-attacks">
@@ -762,7 +750,7 @@
                     <div class="ccol2"><input type="number" name="attr_custom_attack_ki" value="0"></div>
                     <div class="ccol3"><input type="number" name="attr_custom_attack_technique" value="0" ></div>  
                     <div class="ccol4"><input type="text" name="attr_custom_attack_hit" value="0" style="width: 50px;"></div>
-                    <div class="ccol5"><input type="text" name="attr_custom_attack_wound" value="0" style="width: 50px;"><button class="attack-button" type="roll" name="roll_custom_attack" value="/em @{custom_attack_name} for [[@{custom_attack_hit}+@{power_die}+floor(@{agility_modifier}/2)+@{insight_modifier}+@{global_hit}]], dealing [[@{custom_attack_wound}+@{power_die}+@{global_wound}+?{What ability are you using?|force,@{force_modifier} | Spirit,@{spirit_modifier} | Balistic, 0}+@{global_wound}]] and costing @{custom_attack_ki} ki"></button></div>
+                    <div class="ccol5"><input type="text" name="attr_custom_attack_wound" value="0" style="width: 50px;"><button class="attack-button" type="roll" name="roll_custom_attack" value="/em @{custom_attack_name} for [[@{custom_attack_hit}+@{power_die}+@{strike}]], dealing [[@{custom_attack_wound}+@{power_die}+@{ki_wager}+?{What ability are you using?|force,@{force_modifier} | Spirit,@{spirit_modifier} | Balistic, 0}+@{global_wound}]] and costing @{custom_attack_ki} ki"></button></div>
                 </div>
             </fieldset>
         </div>
@@ -792,20 +780,43 @@
 
     <br>
 
-    <h2>Talents and Abilities</h2>
-    <div style="border: 3px solid darkgray;">
+    <div class="talent-table">
+        <h2>Talents</h2>
         <fieldset class="repeating_talents">
-            <input class="talent-edit" type="checkbox" name="attr_toggle-show" value="1" />
-            <div class="talent-table talent-verbose">
-                <input class="talent-name" type="text" name="attr_name" style="width:100%"; placeholder="Name"/>
-                <input class="talent-short-desc" type="text" name="attr_short_description" placeholder="Short Description"/>
-                <div class="auto-expand talent-long-desc">
+            <input class="talent-edit" type="checkbox" name="attr_toggle-show" value="1" checked />
+            <div class="talent-verbose">
+                <span class="talent-name">Name:</span><input class="talent-name-data" type="text" name="attr_name" style="width:100%"; placeholder="Name"/>
+                <span class="talent-type">Type:</span>
+                <select class="talent-type-data" name="attr_type">
+                    <option value="Adaption">Adaption</option>
+                    <option value="Apparel">Apparel</option>
+                    <option value="Health">Health</option>
+                    <option value="Minion">Minion</option>
+                    <option value="Mobility">Mobility</option>
+                    <option value="Pose">Pose</option>
+                    <option value="Racial">Racial</option>
+                    <option value="Rage">Rage</option>
+                    <option value="Ranged">Ranged</option>
+                    <option value="Specialization">Specialization</option>
+                    <option value="Speed">Speed</option>
+                    <option value="Tactical">Tactical</option>
+                    <option value="Taunt">Taunt</option>
+                    <option value="Technique">Technique</option>
+                    <option value="Transformation">Transformation</option>
+                    <option value="Unarmed Combat">Unarmed Combat</option>
+                    <option value="Weapon">Weapon</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+                <span class="talent-short-desc">Short Description:</span><input class="talent-short-desc-data" type="text" name="attr_short_description" placeholder="Short Description"/>
+                <span class="talent-prereqs">Prerequisites:</span><input class="talent-prereqs-data" name="attr_prerequisites" placeholder="Prerequisites" type="text"/>
+                <span class="talent-description">Description:</span>
+                <div class="auto-expand talent-description-data">
 	                <span name="attr_description"></span>
                     <textarea name="attr_description" rows="5" placeholder="Description"></textarea>
                 </div>
             </div>
             <div class="talent-simple">
-                <button class="ability talent-name" type="roll" name="roll_talent" value="&{template:default} {{name=@{name}}} {{description=@{description}}}"><b><span name="attr_name"></span></b></button>
+                <button class="ability talent-name" type="roll" name="roll_talent" value="&{template:default} {{name=@{name}}} {{description=@{description}}}"><b><span name="attr_name"></span> (<span name="attr_type"></span>)</b></button>
                 <span class="talent-short-desc"name="attr_short_description"></span>
             </div>
         </fieldset>

@@ -624,7 +624,7 @@ button[type="roll"].sheet-ability{
     font-size: 13px;
     /*border-style: none;*/
     background-color: transparent;
-    width:80px;
+    width:fit-content;
     background: none;
     background-image: none;
     border: none;
@@ -752,12 +752,59 @@ pulled from pathfinder sheet
 .sheet-race-traits{
     border: 1px solid darkgray;
 }
+
+.sheet-trait-table{
+    display: grid;
+    grid-template-areas:
+    'name short_desc short_desc'
+    'long_desc long_desc long_desc';
+    border: 1px inset darkgray;
+}
+
+.sheet-trait-edit ~ .sheet-trait-verbose{
+    display:none;
+}
+
+.sheet-trait-edit ~ .sheet-trait-simple{
+    display:none;
+}
+
+.sheet-trait-edit:checked ~ .sheet-trait-verbose{
+    display:grid;
+}
+
+.sheet-trait-edit:not(:checked) ~ .sheet-trait-simple{
+    display: grid;
+    grid-template-areas:
+    'name short_desc';
+    border: 1px solid darkgray;
+}
+
+.sheet-trait-name{
+    grid-area: name;
+    display: grid;
+    grid-template-rows:auto;
+    grid-template-columns: 26px auto;
+    width:100%;
+}
+.sheet-trait-short-desc{
+    grid-area: short_desc;
+    width:100%;
+}
+.sheet-trait-long-desc{
+    grid-area: long_desc;
+    font-size:10px;
+    resize:vertical;
+    margin: 5px;
+    min-height:13px;
+}
+
+
 /* Attack CSS */
 .sheet-attacks{
     background-position: center;
     background-repeat: no-repeat;
     background-color: white;
-    text-align: center;
 }
 .sheet-attack-header{
     border:1px solid darkgray;
@@ -765,6 +812,7 @@ pulled from pathfinder sheet
     grid-template-areas:
     'combat-header combat-header'
     'strike defense';
+    text-align: center;
 }
 .sheet-combat-header{
     grid-area:combat-header;
@@ -866,6 +914,7 @@ pulled from pathfinder sheet
     'magic magic-content magic-content magic-content magic-content magic-content magic-content'
     'signature signature-content signature-content signature-content signature-content signature-content signature-content'
     'footer footer footer footer footer footer footer';
+    text-align: center;
     border: 1px solid darkgray;
 }
 
@@ -910,7 +959,6 @@ pulled from pathfinder sheet
     justify-content: space-between;
     display: grid;
 }
-
 .sheet-attack-energy{
     grid-area: energy;
     border-bottom: 1px inset darkgray;
@@ -963,53 +1011,6 @@ pulled from pathfinder sheet
     border-top: 3px double darkgray;
 }
 
-.sheet-trait-table{
-    display: grid;
-    grid-template-areas:
-    'name short_desc short_desc'
-    'long_desc long_desc long_desc';
-    border: 1px inset darkgray;
-}
-
-.sheet-trait-edit ~ .sheet-trait-verbose{
-    display:none;
-}
-
-.sheet-trait-edit ~ .sheet-trait-simple{
-    display:none;
-}
-
-.sheet-trait-edit:checked ~ .sheet-trait-verbose{
-    display:grid;
-}
-
-.sheet-trait-edit:not(:checked) ~ .sheet-trait-simple{
-    display: grid;
-    grid-template-areas:
-    'name short_desc';
-    border: 1px solid darkgray;
-}
-
-.sheet-trait-name{
-    grid-area: name;
-    display: grid;
-    grid-template-rows:auto;
-    grid-template-columns: 26px auto;
-    width:100%;
-}
-.sheet-trait-short-desc{
-    grid-area: short_desc;
-    width:100%;
-}
-.sheet-trait-long-desc{
-    grid-area: long_desc;
-    font-size:10px;
-    resize:vertical;
-    margin: 5px;
-    min-height:13px;
-}
-
-
 .sheet-equipmentTable{
     display: grid;
     border: 1px solid seagreen;
@@ -1020,9 +1021,7 @@ pulled from pathfinder sheet
 
 .sheet-abilities{
     background-position: center;
-    background-repeat: no-repeat;
     background-color: white;
-    text-align: center;
 }
 .sheet-transformations-table{
     display: grid;
@@ -1234,24 +1233,36 @@ button[type="roll"].sheet-attack-button{
     grid-template-areas:
     'custom-attacks-top'
     'custom-attacks-bottom';
-    border: 3px solid rgb(156, 155, 155);
+    border: 1px solid darkgray;
 }
 
 
 .sheet-talent-table{
-    display: grid;
-    grid-template-areas:
-    'name short_desc short_desc'
-    'long_desc long_desc long_desc';
     border: 1px solid darkgray;
+    padding: 5px;
+}
+.sheet-talent-table h2{
+    text-align:center;
 }
 
-.sheet-talent-edit ~ .sheet-talent-verbose{
+.sheet-talent-verbose{
     display:none;
+    grid-template-areas:
+    'talent-name talent-name-data talent-name-data talent-type talent-type-data'
+    'talent-short-desc talent-short-desc-data talent-short-desc-data talent-short-desc-data talent-short-desc-data'
+    'talent-prereqs talent-prereqs-data talent-prereqs-data talent-prereqs-data talent-prereqs-data'
+    'talent-description talent-description talent-description talent-description talent-description'
+    'talent-description-data talent-description-data talent-description-data talent-description-data talent-description-data'
+    'talent-notes talent-notes talent-notes talent-notes talent-notes'
+    'talent-notes-data talent-notes-data talent-notes-data talent-notes-data talent-notes-data';
+    border: 1px inset darkgray;
 }
 
-.sheet-talent-edit ~ .sheet-talent-simple{
+.sheet-talent-simple{
     display:none;
+    grid-template-areas:
+    'talent-name talent-short-desc';
+    border: 1px inset darkgray;
 }
 
 .sheet-talent-edit:checked ~ .sheet-talent-verbose{
@@ -1260,30 +1271,45 @@ button[type="roll"].sheet-attack-button{
 
 .sheet-talent-edit:not(:checked) ~ .sheet-talent-simple{
     display: grid;
-    grid-template-areas:
-    'name short_desc';
-    border: 1px solid darkgray;
 }
 
 .sheet-talent-name{
-    grid-area: name;
-    display: grid;
-    grid-template-rows:auto;
-    grid-template-columns: 26px auto;
-    width:100%;
+    grid-area: talent-name;
+}
+.sheet-talent-name-data{
+    grid-area: talent-name-data;
+}
+.sheet-talent-type{
+    grid-area: talent-type;
+}
+.sheet-talent-type-data{
+    grid-area: talent-type-data;
+    margin:0px;
 }
 .sheet-talent-short-desc{
-    grid-area: short_desc;
+    grid-area: talent-short-desc;
+}
+.sheet-talent-short-desc-data{
+    grid-area: talent-short-desc-data;
     width:100%;
 }
-.sheet-talent-long-desc{
-    grid-area: long_desc;
+.sheet-talent-prereqs{
+    grid-area: talent-prereqs;
+}
+.sheet-talent-prereqs-data{
+    grid-area: talent-prereqs-data;
+    width:100%;
+}
+.sheet-talent-description{
+    grid-area: talent-description;
+    text-align:center;
+}
+.sheet-talent-description-data{
+    grid-area: talent-description-data;
     font-size:10px;
     resize:vertical;
-    margin: 5px;
-    min-height:13px;
+    min-height:24px;
 }
-
 .sheet-auto-expand {
 	position: relative;
 	cursor: text;
