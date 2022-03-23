@@ -66,7 +66,11 @@
                 <div class="level-table">
                     <label class="level-header" style="text-align:center;">LEVEL</label>
                     <div class="level-power"><label>Power Level:</label></div><div class="level-power-data"><input class="power-level-data" type="number" name="attr_power_level" value="1" style="width: 100%;" /></div>
-                    <div class="level-battle"><label>Battle Power:</label></div><div class="level-battle-data"><input style="width:100%;" class="power-level-calc" type="number" name="attr_battle_power" value="(@{agility} + ((@{force}) * 2) + @{tenacity}) / 2 * (@{ki_max} + @{capacity_max}) * @{power_level} * ((@{tier_of_power}) ** 2)" disabled="true" /></div>
+                    <div class="level-battle"><label>Battle Power:</label></div>
+                    <div class="level-battle-data">
+                        <input style="display:none;" class="power-level-calc" type="number" name="attr_battle_power" value="(@{agility} + ((@{force}) * 2) + @{tenacity}) / 2 * (@{ki_max} + @{capacity_max}) * @{power_level} * ((@{tier_of_power}) ** 2)" disabled="true" />
+                        <input style="width:100%;" class="power-level-calc" type="text" name="attr_visable_battle_power" value="" readonly />
+                    </div>
                     <div class="level-tier"><label>Tier:</label></div><div class="level-tier-data"><input type="text" name="attr_tier_of_power_misc" value="0"><input name="attr_tier_of_power" type="number" value="floor((@{power_level})/5)+1+@{tier_of_power_misc}" disabled="true" /></div>
                     <div class="level-dice"><label>Bonus Dice:</label></div><div class="level-dice-data"><input type="text" name="attr_power_die" readonly="true"/></div>
                 </div>
@@ -576,7 +580,7 @@
             <div class="defense-value">Value:</div><div class="defense-value-data"><input type="text" name="attr_defense_bonus" value="0" /><input type="number" name="attr_defense" value="([DEFENSE] @{agility_tfmodifier} + @{defense_bonus})" disabled="true" /></div>
             <div class="defense-diminishing">Diminishing:</div><div class="defense-diminishing-data"><input type="number" name="attr_diminishing_defense" value="0" style="width:100%;" /></div>
             <div class="defense-dodge"><button class="ability" type="roll" name="roll_dodge" value="/r 1d10!10+@{dodge}+@{power_die}">Dodge:</button></div><div class="defense-dodge-data"><input type="text" name="attr_dodge_bonus" value="0" /><input type="number" name="attr_dodge" value="@{defense} + [BONUS] @{dodge_bonus} + [SIZE] @{size_dodge} - [DIMINISHING DEFENSE] @{diminishing_defense}" disabled="true" /></div>
-            <div class="defense-soak">Soak:</div><div class="defense-soak-data"><input type="text" name="attr_soak_bonus" value="0" /><input type="number" name="attr_soak" value="@{tenacity_tfmodifier} + @{soak_bonus} + @{size_soak} + @{hidden_soak}" disabled="true" /></div>
+            <div class="defense-soak">Soak:</div><div class="defense-soak-data"><input type="text" name="attr_soak_bonus" value="0" /><input type="number" name="attr_soak" value="@{hidden_soak}+@{soak_bonus} + @{size_soak}" disabled="true" /></div>
         </div>
     </div>
     <br>
@@ -707,10 +711,10 @@
         <div class="attack-signature-content">
             <fieldset class="repeating_signatures">
                 <input class="signature-edit" type="checkbox" name="attr_toggle_show" value="1" />
-                <!--div class="attack-signature-item-display">
-                    Display
-                </div-->
                 <div class="attack-signature-item-display">
+                    Display
+                </div>
+                <div class="attack-signature-item-edit">
                     Editing
                 </div>
             </fieldset>
@@ -722,6 +726,30 @@
     <br>
     <div class="spellbook">
         <h2>Spell Book</h2>
+        <fieldset class="repeating_spells">
+            <div class="spell">
+                <input style="display:none;" class="spell-edit" type="hidden" name="attr_toggle_show" value="on" />
+                <div class="spell-edit">
+                    <input type="checkbox" name="attr_toggle_show" checked/>
+                    <input type="text" name="attr_name" placeholder="Spell Name" />
+                    <textarea name="attr_description" rows="5" placeholder="Description"></textarea>
+                    <textarea name="attr_effect"></textarea>
+                    <input type="number" name="attr_ki_cost" value="0" />
+                    <input type="number" name="attr_tp_cost" value="0" />
+                    <input type="text" name="attr_prerequisite" placeholder="Prerequisite" />
+                </div>
+                <div class="spell-display">
+                    <h3><input type="checkbox" name="attr_toggle_show"/><span name="attr_name"></span> - <em>Magical Ability</em></h3>
+                    <p><span name="attr_description"></span></p>
+                    <ul>
+                        <li><strong>Effects. </strong><em><span name="attr_effects"></span></em></li>
+                        <li><strong>Ki Point Cost: </strong><em><span name="attr_ki_cost"></span> KP</em></li>
+                        <li><strong>Technique Point Cost: </strong><em><span name="attr_tp_cost"></span> TP</em></li>
+                        <li><strong>Prerequisite: </strong><em><span name="attr_prerequisite"></span></em></li>
+                    </ul>
+                </div>
+            </div>
+        </fieldset>
     </div>
     <br>
     <div class="custom-attacks">
@@ -891,7 +919,6 @@
         Bar Logic
     */
     on("sheet:opened change:ki change:ki_max", function(){
-        console.log("triggered");
         getAttrs([
             "ki",
             "ki_max"
@@ -912,7 +939,6 @@
         });
     });
     on("sheet:opened change:capacity change:capacity_max", function(){
-        console.log("triggered");
         getAttrs([
             "capacity",
             "capacity_max"
@@ -933,7 +959,6 @@
         });
     });
     on("sheet:opened change:hp change:hp_max", function(){
-        console.log("triggered");
         getAttrs([
             "hp",
             "hp_max"
@@ -958,22 +983,40 @@
         Powerlevel logic
     */
     on("change:power_level", function(){
-        getAttrs(["POWER_LEVEL"], function(values){
+        getAttrs(["power_level"], function(values){
             var dicelist = [0,4,6,8];
-            var tier = Math.floor(values.POWER_LEVEL/5)+1;
+            var tier = Math.floor(values.power_level/5)+1;
             var d10s = Math.floor((tier-1)/4);
             var die = "";
             if (d10s > 0){
                 die += Math.floor((tier-1)/4) + "d10 + ";
             }
             die += "1d"+dicelist[(tier-1)%4];
-            var capacity = 14 + ((values.POWER_LEVEL-1)*6);
-            var ki_pool = 26 + ((values.POWER_LEVEL-1)*12);
+            var capacity = 14 + ((values.power_level-1)*6);
+            var ki_pool = 26 + ((values.power_level-1)*12);
             setAttrs({
                 "power_die":(die==="1d0"?0:die),
                 "tier_of_power":tier,
                 "ki_max":ki_pool,
                 "capacity_max": capacity
+            });
+        });
+    });
+
+    on("sheet:opened change:battle_power", ()=>{
+        getAttrs([
+        "power_level",
+        "agility",
+        "force",
+        "tenacity",
+        "tier_of_power"
+        ], function(values){
+            var capacity = 14 + ((values.power_level-1)*6);
+            var ki_pool = 26 + ((values.power_level-1)*12);
+            var battlepower = (capacity + ki_pool) * (values.agility + (values.force*2) + values.tenacity) / 2 * values.power_level * (values.tier_of_power*values.tier_of_power);
+            console.log((values.agility + (values.force*2) + values.tenacity));
+            setAttrs({
+                "visable_battle_power":battlepower.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             });
         });
     });
@@ -1167,9 +1210,9 @@
     /*
         Hidden soak logic
     */
-    on("change:tenacity sheet:opened", function(){
-        getAttrs(["TENACITY_MODIFIER"], function(values){
-            var ten = values.TENACITY_MODIFIER;
+    on("change:tenacity_tfmodifier sheet:opened", function(){
+        getAttrs(["tenacity_tfmodifier"], function(values){
+            var ten = values.tenacity_tfmodifier;
             if(ten == 1){
                 setAttrs({
                     "hidden_soak":2
@@ -1287,5 +1330,8 @@
         });
         update_stats();
     });
-    
+
+    on("sheet:opened", function(){
+        update_stats();
+    });
 </script>

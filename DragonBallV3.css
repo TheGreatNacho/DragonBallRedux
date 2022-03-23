@@ -991,6 +991,7 @@ pulled from pathfinder sheet
 }
 .sheet-attack-signature-content{
     grid-area: signature-content;
+    text-align: left;
 }
 .sheet-attack-signature-item-edit{
     display:none;
@@ -1004,12 +1005,46 @@ pulled from pathfinder sheet
 .sheet-signature-edit:checked ~ .sheet-attack-signature-item-display{
     display:none;
 }
-
-
 .sheet-attack-footer{
     grid-area: footer;
     border-top: 3px double darkgray;
 }
+.sheet-spellbook{
+    border: 1px solid darkgray;
+}
+.sheet-spellbook h2{
+    text-align:center;
+}
+.sheet-spell h3{
+    color: #cf2e2e;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 18px;
+    margin: 24px;
+}
+.sheet-spell p{
+    margin-left: 24px;
+}
+.sheet-spell ul{
+    margin-left: 24px;
+    padding: 0 0 0 12px;
+}
+.sheet-spell li{
+    list-style:inside;
+    margin-left:6px;
+    padding: 0 0 0 12px;
+}
+div.sheet-spell-edit,
+.sheet-spell-display{
+    display: none;
+}
+input.sheet-spell-edit[value="on"] ~ .sheet-spell-edit{
+    display:grid;
+}
+input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
+    display:grid;
+}
+
 
 .sheet-equipmentTable{
     display: grid;
@@ -1363,7 +1398,6 @@ h2{
 
 h3{
     font-size: 1.5em;
-    text-align: center;
     color: black;
 }
 
