@@ -71,7 +71,7 @@
                         <input style="display:none;" class="power-level-calc" type="number" name="attr_battle_power" value="(@{agility} + ((@{force}) * 2) + @{tenacity}) / 2 * (@{ki_max} + @{capacity_max}) * @{power_level} * ((@{tier_of_power}) ** 2)" disabled="true" />
                         <input style="width:100%;" class="power-level-calc" type="text" name="attr_visable_battle_power" value="" readonly />
                     </div>
-                    <div class="level-tier"><label>Tier:</label></div><div class="level-tier-data"><input type="text" name="attr_tier_of_power_misc" value="0"><input name="attr_tier_of_power" type="number" value="floor((@{power_level})/5)+1+@{tier_of_power_misc}" disabled="true" /></div>
+                    <div class="level-tier"><label>Tier:</label></div><div class="level-tier-data"><input type="text" name="attr_tier_of_power_misc" value="0"><input name="attr_tier_of_power" type="number" value="1" readonly /></div>
                     <div class="level-dice"><label>Bonus Dice:</label></div><div class="level-dice-data"><input type="text" name="attr_power_die" readonly="true"/></div>
                 </div>
                 <div class="ability-table">
@@ -1012,9 +1012,14 @@
         "tenacity",
         "tier_of_power"
         ], function(values){
-            var capacity = 14 + ((values.power_level-1)*6);
-            var ki_pool = 26 + ((values.power_level-1)*12);
-            var battlepower = (capacity + ki_pool) * (values.agility + (values.force*2) + values.tenacity) / 2 * values.power_level * (values.tier_of_power*values.tier_of_power);
+            var pl = parseInt(values.power_level);
+            var ag = parseInt(values.agility);
+            var fo = parseInt(values.force);
+            var te = parseInt(values.tenacity);
+            var tier = parseInt(values.tier_of_power);
+            var capacity = 14 + ((pl-1)*6);
+            var ki_pool = 26 + ((pl-1)*12);
+            var battlepower = (capacity + ki_pool) * (ag + (fo*2) + te) / 2 * pl * (Math.pow(tier,2));
             setAttrs({
                 "visable_battle_power":battlepower.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             });
