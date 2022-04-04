@@ -52,7 +52,7 @@
                 <input type="hidden" name="attr_size_speed" value="1" />
                 <input type="text" name="attr_fly_speed_modifier" value="0"/>
                 <input type="number" name="attr_fly_speed" value="@{agility_tfmodifier} + @{dexterity} + @{size_speed} + @{fly_speed_modifier}" disabled="true" />
-            </div><div class="info-hp"><label>Hit Points:</label></div><div class="info-hp-data"><input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button name="roll_health" type="roll" value="/r 1d10+@{race_health}+@{tenacity_modifier}"></button></div>
+            </div><div class="info-hp"><label>Hit Points:</label></div><div class="info-hp-data"><input type="number" name="attr_hp" value="0" /> / <input type="number" name="attr_hp_max" value="20"/><button name="roll_health" type="roll" value="/r 2d10+@{race_health}+@{tenacity_modifier}"></button></div>
             <div class="info-hp-bar">
                 <input type="hidden" type="number" value="@{hpbarv}" name="attr_hpbar" class="sheet-hpbar" disabled="true" />
                 <div class="sheet-hpbar"></div>
@@ -87,7 +87,7 @@
                     <div class="abilityMod"><input type="number" name="attr_agility_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_agility_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_agility_ranks" value="2" /></div>
-                    <div class="abilityRacial"><input type="number" name="attr_agility_racial" value="0" /></div>
+                    <div class="abilityRacial"><input type="number" name="attr_agility_racial" value="@{race_ag}" disabled="true" /></div>
                     <div class="abilityTotal"><input type="number" name="attr_agility" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_agility_tf">
                     
@@ -95,7 +95,7 @@
                     <div class="abilityMod"><input type="number" name="attr_force_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_force_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRaclnks"><input type="number" name="attr_force_ranks" value="2" /></div>
-                    <div class="abilityRacial"><input type="number" name="attr_force_racial" value="0" /></div>
+                    <div class="abilityRacial"><input type="number" name="attr_force_racial" value="@{race_fo}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_force" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_force_tf">
 
@@ -103,7 +103,7 @@
                     <div class="abilityMod"><input type="number" name="attr_tenacity_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_tenacity_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_tenacity_ranks" value="2" /></div>
-                    <div class="abilityRacial"><input type="number" name="attr_tenacity_racial" value="0" /></div>
+                    <div class="abilityRacial"><input type="number" name="attr_tenacity_racial" value="@{race_te}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_tenacity" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_tenacity_tf">
 
@@ -111,7 +111,7 @@
                     <div class="abilityMod"><input type="number" name="attr_scholarship_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_scholarship_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_scholarship_ranks" value="2" /></div>
-                    <div class="abilityRacial"><input type="number" name="attr_scholarship_racial" value="0" /></div>
+                    <div class="abilityRacial"><input type="number" name="attr_scholarship_racial" value="@{race_sc}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_scholarship" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_scholarship_tf">
 
@@ -119,7 +119,7 @@
                     <div class="abilityMod"><input type="number" name="attr_insight_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_insight_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_insight_ranks" value="2" /></div>
-                    <div class="abilityRacial"><input type="number" name="attr_insight_racial" value="0" /></div>
+                    <div class="abilityRacial"><input type="number" name="attr_insight_racial" value="@{race_in}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_insight" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_insight_tf">
 
@@ -127,7 +127,7 @@
                     <div class="abilityMod"><input type="number" name="attr_spirit_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_spirit_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_spirit_ranks" value="2" /></div>
-                    <div class="abilityRacial"><input type="number" name="attr_spirit_racial" value="0" /></div>
+                    <div class="abilityRacial"><input type="number" name="attr_spirit_racial" value="@{race_sp}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_spirit" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_spirit_tf">
 
@@ -135,7 +135,7 @@
                     <div class="abilityMod"><input type="number" name="attr_personality_modifier" value="1" readonly /></div>
                     <div class="abilityTrans"><input type="number" name="attr_personality_tfmodifier" value="1" readonly /></div>
                     <div class="abilityRanks"><input type="number" name="attr_personality_ranks" value="2" /></div>
-                    <div class="abilityRacial"><input type="number" name="attr_personality_racial" value="0" /></div>
+                    <div class="abilityRacial"><input type="number" name="attr_personality_racial" value="@{race_pe}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_personality" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_personality_tf">
                 </div>
@@ -501,7 +501,7 @@
     <div class="race-head">
         <h1 class="race-header">Race</h1>
         <div class="race-name"><label>Race Name:</label></div><div class="race-name-data"><input type='text' name='attr_race_name' placeholder='Saiyan' /></div>
-        <div class="race-health"><label>HP Modifier:</label></div><div class="race-health-data"><input type='text' name='attr_race_health_data' value="+4"/><input type='number' name='attr_race_health' value="@{race_health_data}" disabled="true"/></div>
+        <div class="race-health"><label>HP Modifier:</label></div><div class="race-health-data"><input type='text' name='attr_race_health_data' value="4"/><input type='number' name='attr_race_health' value="@{race_health_data}" disabled="true"/></div>
         <div class="race-subname"><label>Subrace Name:</label></div><div class="race-subname-data"><input type='text' name='attr_subrace_name' placeholder='Full Blood' /></div>
         <div class="race-size"><label>Size:</label></div>
         <div class="race-size-data">
@@ -526,7 +526,24 @@
         
         <div class="race-dexterity"><label>Dexterity:</label></div><div class="race-dexterity-data"><input type='text' name='attr_race_dexterity_data' value="2"/><input type='number' name='attr_dexterity' value="@{race_dexterity_data}" disabled="true"/></div>
     </div>
-    <br/>
+    <br>
+    <div class="race-attributes">
+        <h3>AG</h3>
+        <h3>FO</h3>
+        <h3>TE</h3>
+        <h3>SC</h3>
+        <h3>IN</h3>
+        <h3>SP</h3>
+        <h3>PE</h3>
+        <input name="attr_race_ag" type="text" value="+0"> 
+        <input name="attr_race_fo" type="text" value="+0">
+        <input name="attr_race_te" type="text" value="+0">
+        <input name="attr_race_sc" type="text" value="+0">
+        <input name="attr_race_in" type="text" value="+0">
+        <input name="attr_race_sp" type="text" value="+0">
+        <input name="attr_race_pe" type="text" value="+0">
+    </div>
+    <br>
     <div class="race-traits">
         <h2 style="text-align:center;">Traits</h2>
         <fieldset class="repeating_traits">
@@ -852,13 +869,86 @@
 </div>
 
 <div class='transformations'>
-    <h1>Transformations</h1>
-    <h2>Stress Test<button class="stress-button" name="roll_stress_test" type="roll" value="/em [[1d10 + @{power_level} + floor(@{personality_modifier}/2)]]"></button></h2>
-    <h2>Training Roll <input type="number" min="1" value="1" name="attr_intensity"><button class="stress-button" name="roll_training" type="roll" value="/em puts their body on the line in training, attempt [[@{intensity}d10!10+@{agility_modifier}+@{tenacity_modifier}+@{insight_modifier}+@{personality_modifier}]]>[[?{Condition Range? |Very Easy, 10*@{intensity}+floor(@{power_level}/5)*5|Easy, 20*@{intensity}+floor(@{power_level}/5)*5|Medium, 30*@{intensity}+floor(@{power_level}/5)*5|Hard, 40*@{intensity}+floor(@{power_level}/5)*5|Very Hard, 50*@{intensity}+floor(@{power_level}/5)*5|Nearly Impossible, 60*@{intensity}+floor(@{power_level}/5)*5}]] gaining [[@{power_level}*@{intensity}]] xp"></button></h2>
-    <div class="transformations-page">
+    <div class="transformations-head">
+        <h1>Transformations</h1>
+        <h2>Stress Test<button class="stress-button" name="roll_stress_test" type="roll" value="/em [[1d10 + @{power_level} + floor(@{personality_modifier}/2)]]"></button></h2>
+        <h2>Training Roll <input type="number" min="1" value="1" name="attr_intensity"><button class="stress-button" name="roll_training" type="roll" value="/em puts their body on the line in training, attempt [[@{intensity}d10!10+@{agility_modifier}+@{tenacity_modifier}+@{insight_modifier}+@{personality_modifier}]]>[[?{Condition Range? |Very Easy, 10*@{intensity}+floor(@{power_level}/5)*5|Easy, 20*@{intensity}+floor(@{power_level}/5)*5|Medium, 30*@{intensity}+floor(@{power_level}/5)*5|Hard, 40*@{intensity}+floor(@{power_level}/5)*5|Very Hard, 50*@{intensity}+floor(@{power_level}/5)*5|Nearly Impossible, 60*@{intensity}+floor(@{power_level}/5)*5}]] gaining [[@{power_level}*@{intensity}]] xp"></button></h2>    
+    </div>
+    
+    <div class="transformations-content">
+        <fieldset class="repeating_transformations">
+            <div class="transformations-table">
+                <input class="transformations-expand" type="checkbox" name="attr_expand" value="1" checked>
+                <div class="transformations-header-active transformations-header">Active</div>
+                <div class="transformations-header-name transformations-header">Name</div>
+                <div class="transformations-header-stacks transformations-header">Stacks</div>
+                <div class="transformations-header-mastered transformations-header">Mastered</div>
+                <div class="transformations-header-tier transformations-header">Tier</div>
+                <div class="transformations-header-stress transformations-header">Stress</div>
+                <input class="transformations-active" type="checkbox" name="attr_active" value="1">
+                <input class="transformations-name" type="text" name="attr_name" placeholder="Super Saiyan" />
+                <input class="transformations-stacks" type="number" name="attr_stacks" value="1" />
+                <input class="transformations-mastered" type="checkbox" name="attr_mastered" value="1" />
+                <input class="transformations-tier" type="text" name="attr_tier" value="1+" />
+                <input class="transformations-stress" type="number" name="attr_stress" value="@{stress_mod}" disabled="true"/>
+                
+                <div class="transformations-header-ag transformations-header">AG</div>
+                <div class="transformations-header-fo transformations-header">FO</div>
+                <div class="transformations-header-te transformations-header">TE</div>
+                <div class="transformations-header-sc transformations-header">SC</div>
+                <div class="transformations-header-in transformations-header">IN</div>
+                <div class="transformations-header-sp transformations-header">SP</div>
+                <div class="transformations-header-pe transformations-header">PE</div>
+
+                <input class="transformations-agility" type="number" name="attr_agility" value="floor(@{stacks} * @{ag_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
+                <input class="transformations-force" type="number" name="attr_force" value="floor(@{stacks} * @{fo_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
+                <input class="transformations-tenacity" type="number" name="attr_tenacity" value="floor(@{stacks} * @{te_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
+                <input class="transformations-scholarship" type="number" name="attr_scholarship" value="floor(@{stacks} * @{sc_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
+                <input class="transformations-insight" type="number" name="attr_insight" value="floor(@{stacks} * @{in_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
+                <input class="transformations-spirit" type="number" name="attr_spirit" value="floor(@{stacks} * @{sp_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
+                <input class="transformations-personality" type="number" name="attr_personality" value="floor(@{stacks} * @{pe_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
+                
+                <div class="transformations-header-stress-mod transformations-vertical-header">Stress+</div>
+                <input class="transformations-stress-mod" type="text" name="attr_stress_mod" placeholder="35">
+                <div class="transformations-header-shatter-limits transformations-vertical-header">Shatter Your Limits</div>
+                <input class="transformations-shatter-limits" type="checkbox" name="attr_shatter" value="1">
+                <div class="transformations-header-type transformations-vertical-header">Type</div>
+                <select class="transformations-type" style="margin:0px;" name="attr_type">
+                    <option value="Manifested Power">Manifested Power</option>
+                    <option value="Alternate Form">Alternate Form</option>
+                    <option value="Enchantment Power">Enchantment Power</option>
+                    <option value="Legendary Form">Legendary Form</option>
+                </select>
+
+                <div class="transformations-header-ag-misc  transformations-header">AG Base</div>
+                <div class="transformations-header-fo-misc  transformations-header">FO Base</div>
+                <div class="transformations-header-te-misc  transformations-header">TE Base</div>
+                <div class="transformations-header-sc-misc  transformations-header">SC Base</div>
+                <div class="transformations-header-in-misc  transformations-header">IN Base</div>
+                <div class="transformations-header-sp-misc  transformations-header">SP Base</div>
+                <div class="transformations-header-pe-misc  transformations-header">PE Base</div>
+                <input class="transformations-ag-misc" type="text" name="attr_ag_misc" value="+0" />
+                <input class="transformations-fo-misc" type="text" name="attr_fo_misc" value="+0" />
+                <input class="transformations-te-misc" type="text" name="attr_te_misc" value="+0" />
+                <input class="transformations-sc-misc" type="text" name="attr_sc_misc" value="+0" />
+                <input class="transformations-in-misc" type="text" name="attr_in_misc" value="+0" />
+                <input class="transformations-sp-misc" type="text" name="attr_sp_misc" value="+0" />
+                <input class="transformations-pe-misc" type="text" name="attr_pe_misc" value="+0" />
+
+                <input class="transformations-ag-misc" type="hidden" name="attr_ag_misc_hidden" value="+0" />
+                <input class="transformations-fo-misc" type="hidden" name="attr_fo_misc_hidden" value="+0" />
+                <input class="transformations-te-misc" type="hidden" name="attr_te_misc_hidden" value="+0" />
+                <input class="transformations-sc-misc" type="hidden" name="attr_sc_misc_hidden" value="+0" />
+                <input class="transformations-in-misc" type="hidden" name="attr_in_misc_hidden" value="+0" />
+                <input class="transformations-sp-misc" type="hidden" name="attr_sp_misc_hidden" value="+0" />
+                <input class="transformations-pe-misc" type="hidden" name="attr_pe_misc_hidden" value="+0" />
+            </div>
+        </fieldset>
+    </div>
+    
+    <!--div class="transformations-page">
         <div class="transformations-top">
             <div style="grid-area: tn; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>Name:</h3></div>
-            <!--<div style="grid-area: tty; border-right: 1px solid silver;"><h3 style="color: silver;">Type:</h3></div>-->
             <div style="grid-area: tag; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>AG:</h3></div>
             <div style="grid-area: tfo; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>FO:</h3></div>
             <div style="grid-area: tte; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>TE:</h3></div>
@@ -882,7 +972,7 @@
                 </div>
             </fieldset>
         </div>
-    </div>
+    </div-->
 </div>
 
 <div class='details'>
@@ -899,10 +989,17 @@
 <div class='settings'>
     <input type="hidden" name="attr_dice_roll" value="[[{{floor({[[1d10]]}/([[11-@{crit_rate}]])),{[[1d1]]}}dh1*[[1d10+11-1d[[@{crit_rate}]]]],1d10r>[[10-(@{crit_rate})]]}kh1]]" />
     <input type="hidden" name="attr_crit_rate" value="1" />
-    <div class="attr-head">
+    <div class="settings-head">
         <h1>Settings</h1>
     </div>
-    <div><button type="action" name="act_recalc_stats">Recalculate Stats</button></div>
+    <div class="settings-table">
+        <div class="settings-houserules">
+            <label><input type="checkbox" name="attr_maxhp_rule" /> Max HP Rolls</label>
+        </div>
+        <div class="settings-debug">
+            <button type="action" name="act_recalc_stats">Recalculate Stats</button>
+        </div>
+    </div>
 </div>
 
 <script type="text/worker">
@@ -1027,49 +1124,46 @@
     });
 
     /*
-    Ability Logic
+    Attribute Logic
     */
     function update_stats(){
         /* This may be considered an abomination by some */
         getAttrs([
         "agility_ranks",
-        "agility_racial",
+        "race_ag",
         "agility_tf",
 
         "force_ranks",
-        "force_racial",
+        "race_fo",
         "force_tf",
 
         "tenacity_ranks",
-        "tenacity_racial",
+        "race_te",
         "tenacity_tf",
 
         "scholarship_ranks",
-        "scholarship_racial",
+        "race_sc",
         "scholarship_tf",
 
         "insight_ranks",
-        "insight_racial",
+        "race_in",
         "insight_tf",
 
         "spirit_ranks",
-        "spirit_racial",
+        "race_sp",
         "spirit_tf",
 
         "personality_ranks",
-        "personality_racial",
-        "personality_tf",
-
-        "impulsive_misc",
-        "impulsive_proficiency"
+        "race_pe",
+        "personality_tf"
         ], function(values){
-            var agility = +values.agility_ranks + +values.agility_racial;
-            var force = +values.force_ranks + +values.force_racial;
-            var tenacity = +values.tenacity_ranks + +values.tenacity_racial;
-            var scholarship = +values.scholarship_ranks + +values.scholarship_racial;
-            var insight = +values.insight_ranks + +values.insight_racial;
-            var spirit = +values.spirit_ranks + +values.spirit_racial;
-            var personality = +values.personality_ranks + +values.personality_racial;
+            var agility = +values.agility_ranks + +values.race_ag;
+            var force = +values.force_ranks + +values.race_fo;
+            var tenacity = +values.tenacity_ranks + +values.race_te;
+            var scholarship = +values.scholarship_ranks + +values.race_sc;
+            var insight = +values.insight_ranks + +values.race_in;
+            var spirit = +values.spirit_ranks + +values.race_sp;
+            var personality = +values.personality_ranks + +values.race_pe;
             setAttrs({
                 "agility":agility,
                 "agility_modifier":(Math.floor(agility/2)),
@@ -1102,55 +1196,29 @@
         });
     }
 
-    on("change:agility_ranks", function(){                
-        update_stats();
-    });
-    on("change:agility_racial", function(){
+    on("change:agility_ranks change:agility_racial change:force_ranks change:force_racial change:tenacity_ranks change:tenacity_racial change:scholarship_ranks change:scholarship_racial change:insight_ranks change:insight_racial change:spirit_ranks change:spirit_racial change:personality_ranks change:personality_racial", function(){                
         update_stats();
     });
 
-    on("change:force_ranks", function(){                
-        update_stats();
+    on("sheet:opened change:race_health_data change:tenacity_modifier change:power_level change:maxhp_rule", function(){
+        getAttrs([
+            "race_health_data",
+            "tenacity_modifier",
+            "power_level",
+            "maxhp_rule"
+        ], function(values){
+            if (values.maxhp_rule == "on"){
+                var rhp = parseInt(values.race_health_data);
+                var te_mod = parseInt(values.tenacity_modifier);
+                var pl = parseInt(values.power_level);
+                var max_hp = 50 + rhp + te_mod + ((20+rhp+te_mod)*(pl-1));
+                setAttrs({
+                    "hp_max": max_hp
+                });
+            }
+        });
+        
     });
-    on("change:force_racial", function(){
-        update_stats();
-    });
-    
-    on("change:tenacity_ranks", function(){                
-        update_stats();
-    });
-    on("change:tenacity_racial", function(){
-        update_stats();
-    });
-    
-    on("change:scholarship_ranks", function(){                
-        update_stats();
-    });
-    on("change:scholarship_racial", function(){
-        update_stats();
-    });
-    
-    on("change:insight_ranks", function(){                
-        update_stats();
-    });
-    on("change:insight_racial", function(){
-        update_stats();
-    });
-    
-    on("change:spirit_ranks", function(){                
-        update_stats();
-    });
-    on("change:spirit_racial", function(){
-        update_stats();
-    });
-    
-    on("change:personality_ranks", function(){                
-        update_stats();
-    });
-    on("change:personality_racial", function(){
-        update_stats();
-    });
-
     /*
         Race Logic
     */
@@ -1233,31 +1301,54 @@
         Transformation logic
     */
 
-    function parseNumber(value, tier){
-        var result = 0;
-        var token = 0;
-        const numberRegex = /^([\-0-9]*)/g;
+    function parseNumber(value){
+        var result = "";
         const tierRegex = /^(\([tT]\))/g;
         while (value.length>0){
-            var match = value.match(numberRegex);
-            if (match != null && match[0] != ''){
-                /* Number detected - Take the shot */
-                value = value.substring(match[0].length);
-                result += parseInt(match[0]);
-                continue;
-            }
             match = value.match(tierRegex);
             if (match != null && match[0] != ''){
                 /* Tier detected - Take the shot */
                 value = value.substring(match[0].length);
-                result *= tier;
+                result += "*@{tier_of_power}";
                 continue;
             }
+            result += value.substring(0,1);
             value = value.substring(1);
         }
         return result;
     }
 
+    on("change:repeating_transformations:ag_misc change:repeating_transformations:fo_misc change:repeating_transformations:te_misc change:repeating_transformations:sc_misc change:repeating_transformations:in_misc change:repeating_transformations:sp_misc change:repeating_transformations:pe_misc",
+    function(){
+        getAttrs([
+            "repeating_transformations_ag_misc",
+            "repeating_transformations_fo_misc",
+            "repeating_transformations_te_misc",
+            "repeating_transformations_sc_misc",
+            "repeating_transformations_in_misc",
+            "repeating_transformations_sp_misc",
+            "repeating_transformations_pe_misc",
+            "tier_of_power"
+        ], function(values){
+            var ag_misc = parseNumber(values.repeating_transformations_ag_misc, values.tier_of_power);
+            var fo_misc = parseNumber(values.repeating_transformations_fo_misc, values.tier_of_power);
+            var te_misc = parseNumber(values.repeating_transformations_te_misc, values.tier_of_power);
+            var sc_misc = parseNumber(values.repeating_transformations_sc_misc, values.tier_of_power);
+            var in_misc = parseNumber(values.repeating_transformations_in_misc, values.tier_of_power);
+            var sp_misc = parseNumber(values.repeating_transformations_sp_misc, values.tier_of_power);
+            var pe_misc = parseNumber(values.repeating_transformations_pe_misc, values.tier_of_power);
+            console.log(ag_misc);
+            setAttrs({
+                "repeating_transformations_ag_misc_hidden":ag_misc,
+                "repeating_transformations_fo_misc_hidden":fo_misc,
+                "repeating_transformations_te_misc_hidden":te_misc,
+                "repeating_transformations_sc_misc_hidden":sc_misc,
+                "repeating_transformations_in_misc_hidden":in_misc,
+                "repeating_transformations_sp_misc_hidden":sp_misc,
+                "repeating_transformations_pe_misc_hidden":pe_misc
+            })
+        });
+    });
     on("change:repeating_transformations:active", function(){
         getAttrs([
             "repeating_transformations_active",

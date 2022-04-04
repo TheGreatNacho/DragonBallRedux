@@ -749,6 +749,17 @@ pulled from pathfinder sheet
 .sheet-race-save-data input{
     width:100%
 }
+
+.sheet-race-attributes{
+    display: grid;
+    grid-template-columns: 14.25% 14.25% 14.25% 14% 14.25% 14.25% 14.25%;
+    text-align:center;
+    border: 1px solid darkgray;
+}
+.sheet-race-attributes input{
+    width: 100%;
+}
+
 .sheet-race-traits{
     border: 1px solid darkgray;
 }
@@ -1058,117 +1069,264 @@ input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
     background-position: center;
     background-color: white;
 }
+
+/* Tranformation section */
+.sheet-transformations-head{
+    text-align:center;
+}
+.sheet-transformations-header{
+    background: dimgray;
+    color:white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align:center;
+}
+.sheet-transformations-content{
+    border:1px solid darkgray;
+    background: dimgray;
+}
 .sheet-transformations-table{
-    display: grid;
-    border: 2px solid silver;
-    justify-content: space-around;
+    padding:5px;
+    margin:5px 0px;
+    display:grid;
+    background:darkgray;
     grid-template-areas: 
-    'tname tagi tfor tten tsch tins tspi tper';
+    'expand header-active header-name header-name header-stacks header-mastered header-tier header-stress'
+    'none active name name stacks mastered tier stress'
+    'none header-ag header-fo header-te header-sc header-in header-sp header-pe'
+    'none agility force tenacity scholarship insight spirit personality'
+    'none header-stress-mod stress-mod header-shatter-limits shatter-limits header-type type type'
+    'none header-ag-misc header-fo-misc header-te-misc header-sc-misc header-in-misc header-sp-misc header-pe-misc'
+    'none ag-misc fo-misc te-misc sc-misc in-misc sp-misc pe-misc';
+}
+.sheet-transformations-expand{
+    grid-area: expand;
+}
+.sheet-transformations-header-active{
+    grid-area: header-active;
+}
+.sheet-transformations-header-name{
+    grid-area: header-name;
+}
+.sheet-transformations-header-stacks{
+    grid-area: header-stacks;
+}
+.sheet-transformations-header-mastered{
+    grid-area: header-mastered;
+}
+.sheet-transformations-header-tier{
+    grid-area: header-tier;
+}
+.sheet-transformations-header-stress{
+    grid-area: header-stress;
+}
+.sheet-transformations-active{
+    grid-area: active;
+}
+.sheet-transformations-name{
+    grid-area: name;
+    width:100%;
+}
+.sheet-transformations-stacks{
+    grid-area: stacks;
+}
+.sheet-transformations-mastered{
+    grid-area: mastered;
+}
+.sheet-transformations-tier{
+    grid-area: tier;
+    display:flex;
+    width:100%;
+}
+.sheet-transformations-stress{
+    grid-area: stress;
+}
+.sheet-transformations-header-ag{
+    grid-area: header-ag;
+}
+.sheet-transformations-header-fo{
+    grid-area: header-fo;
+}
+.sheet-transformations-header-te{
+    grid-area: header-te;
+}
+.sheet-transformations-header-sc{
+    grid-area: header-sc;
+}
+.sheet-transformations-header-in{
+    grid-area: header-in;
+}
+.sheet-transformations-header-sp{
+    grid-area: header-sp;
+}
+.sheet-transformations-header-pe{
+    grid-area: header-pe;
+}
+.sheet-transformations-agility{
+    grid-area: agility;
+}
+.sheet-transformations-force{
+    grid-area: force;
+}
+.sheet-transformations-tenacity{
+    grid-area: tenacity;
+}
+.sheet-transformations-scholarship{
+    grid-area: scholarship;
+}
+.sheet-transformations-insight{
+    grid-area: insight;
+}
+.sheet-transformations-spirit{
+    grid-area: spirit;
+}
+.sheet-transformations-personality{
+    grid-area: personality;
+}
+.sheet-transformations-agility,
+.sheet-transformations-force,
+.sheet-transformations-tenacity,
+.sheet-transformations-scholarship,
+.sheet-transformations-insight,
+.sheet-transformations-spirit,
+.sheet-transformations-personality{
+    display:flex;
+    width:100%!important;
+    background:gray;
+    color:white;
 }
 
-.sheet-tagi{
-    grid-area: tagi;
+.sheet-transformations-vertical-header{
+    background:dimgray;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    color: white;
+    text-align: center;
+}
+.sheet-transformations-header-stress-mod{
+    grid-area: header-stress-mod;
+}
+.sheet-transformations-stress-mod{
+    grid-area: stress-mod;
+    width:100%;
+}
+.sheet-transformations-header-shatter-limits{
+    grid-area: header-shatter-limits;
+}
+.sheet-transformations-shatter-limits{
+    grid-area: shatter-limits;
+}
+.sheet-transformations-header-type{
+    grid-area: header-type;
+}
+.sheet-transformations-type{
+    grid-area: type;
+    width:100%;
+    height:100%;
+}
+.sheet-transformations-header-ag-misc{
+    grid-area: header-ag-misc;
+}
+.sheet-transformations-header-fo-misc{
+    grid-area: header-fo-misc;
+}
+.sheet-transformations-header-te-misc{
+    grid-area: header-te-misc;
+}
+.sheet-transformations-header-sc-misc{
+    grid-area: header-sc-misc;
+}
+.sheet-transformations-header-in-misc{
+    grid-area: header-in-misc;
+}
+.sheet-transformations-header-sp-misc{
+    grid-area: header-sp-misc;
+}
+.sheet-transformations-header-pe-misc{
+    grid-area: header-pe-misc;
+}
+.sheet-transformations-ag-misc{
+    grid-area: ag-misc;
+    width:100%;
+}
+.sheet-transformations-fo-misc{
+    grid-area: fo-misc;
+    width:100%;
+}
+.sheet-transformations-te-misc{
+    grid-area: te-misc;
+    width:100%;
+}
+.sheet-transformations-sc-misc{
+    grid-area: sc-misc;
+    width:100%;
+}
+.sheet-transformations-in-misc{
+    grid-area: in-misc;
+    width:100%;
+}
+.sheet-transformations-sp-misc{
+    grid-area: sp-misc;
+    width:100%;
+}
+.sheet-transformations-pe-misc{
+    grid-area: pe-misc;
+    width:100%;
 }
 
-.sheet-tfor{
-    grid-area: tfor;
+
+.sheet-transformations-header-stress-mod,
+.sheet-transformations-stress-mod,
+.sheet-transformations-header-shatter-limits,
+.sheet-transformations-shatter-limits,
+.sheet-transformations-header-type,
+.sheet-transformations-type,
+.sheet-transformations-header-ag-misc,
+.sheet-transformations-header-fo-misc,
+.sheet-transformations-header-te-misc,
+.sheet-transformations-header-sc-misc,
+.sheet-transformations-header-in-misc,
+.sheet-transformations-header-sp-misc,
+.sheet-transformations-header-pe-misc,
+.sheet-transformations-ag-misc,
+.sheet-transformations-fo-misc,
+.sheet-transformations-te-misc,
+.sheet-transformations-sc-misc,
+.sheet-transformations-in-misc,
+.sheet-transformations-sp-misc,
+.sheet-transformations-pe-misc{
+    display: none;
 }
 
-.sheet-tten{
-    grid-area: tten;
-}
-
-.sheet-tspi{
-    grid-area: tspi;
-}
-
-.sheet-tsch{
-    grid-area: tsch;
-}
-
-.sheet-tper{
-    grid-area: tper;
-}
-
-.sheet-tins{
-    grid-area: tins;
-}
-
-.sheet-ttype{
-    grid-area: ttype;
-}
-
-.sheet-tname{
-    grid-area: tname;
-}
-
-.sheet-transformations-bot{
-    grid-area: transformations-bot;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.sheet-transformations-top{
-    grid-area: transformations-top;
-    display: grid;
-    grid-template-areas: 
-    'tn tag tin tpe tsc tsp tfo tte';
-}
-
-.sheet-transformations-page{
-    display: grid;
-    border: 3px solid silver;
-    grid-template-areas: 
-    'transformations-top'
-    'transformations-bot';
-}
-
-button[type="roll"].sheet-stress-button:before{
-    content: ' ';
-  }
-  
-button[type="roll"].sheet-stress-button:hover{
-    background-position: 0;
-  }
-
-button[type="roll"].sheet-stress-button{
-    background-image: url(https://i.pinimg.com/564x/e2/3d/e8/e23de8081ca4de637306e28c58f521e4.jpg);
-    background-size: 30px 30px;
-    background-repeat: no-repeat;
-    width: 30px;
-    height: 30px;
-    border-style: none;
-    background-color: transparent;
-    margin-left: 5px;
-} 
-
-button[type="roll"].sheet-attack-button:before{
-    content: ' ';
-  }
-  
-button[type="roll"].sheet-attack-button:hover{
-    background-position: 0;
-  }
-
-button[type="roll"].sheet-attack-button{
-    background-image: url(https://i.pinimg.com/564x/24/79/d7/2479d70c7483283648c3af85b1da948d.jpg);
-    background-size: 30px 30px;
-    background-repeat: no-repeat;
-    width: 30px;
-    height: 30px;
-    border-style: none;
-    background-color: transparent;
-    margin-left: 5px;
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-stress-mod,
+.sheet-transformations-expand:checked ~ .sheet-transformations-stress-mod,
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-shatter-limits,
+.sheet-transformations-expand:checked ~ .sheet-transformations-shatter-limits,
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-type,
+.sheet-transformations-expand:checked ~ .sheet-transformations-type,
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-ag-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-fo-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-te-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-sc-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-in-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-sp-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-header-pe-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-ag-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-fo-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-te-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-sc-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-in-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-sp-misc,
+.sheet-transformations-expand:checked ~ .sheet-transformations-pe-misc{
+    display:block;
 }
 
 .sheet-transformations{
     background-position: center;
     background-repeat: no-repeat;
     background-color: white;
-    text-align: center;
 }
-
+/**/
 .sheet-ccol7{
     grid-area: ccol7;
 }
@@ -1375,6 +1533,24 @@ button[type="roll"].sheet-attack-button{
 	padding: inherit;
 	text-align: inherit;
 	text-transform: inherit;
+}
+
+.sheet-settings-table{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.sheet-settings-head{
+    border: 1px solid darkgray;
+    padding: 5px;
+    text-align:center;
+}
+.sheet-settings-debug{
+    border: 1px solid darkgray;
+    padding: 5px;
+}
+.sheet-settings-houserules{
+    border: 1px solid darkgray;
+    padding: 5px;
 }
 
 .sheet-j-label{
