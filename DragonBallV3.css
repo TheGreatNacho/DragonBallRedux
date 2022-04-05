@@ -1135,7 +1135,6 @@ input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
 }
 .sheet-transformations-tier{
     grid-area: tier;
-    display:flex;
     width:100%;
 }
 .sheet-transformations-stress{
@@ -1164,36 +1163,58 @@ input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
 }
 .sheet-transformations-agility{
     grid-area: agility;
+    font-size: 24px;
+    font-weight: 1000;
 }
 .sheet-transformations-force{
     grid-area: force;
+    font-size: 24px;
+    font-weight: 1000;
 }
 .sheet-transformations-tenacity{
     grid-area: tenacity;
+    font-size: 24px;
+    font-weight: 1000;
 }
 .sheet-transformations-scholarship{
     grid-area: scholarship;
+    font-size: 24px;
+    font-weight: 1000;
 }
 .sheet-transformations-insight{
     grid-area: insight;
+    font-size: 24px;
+    font-weight: 1000;
 }
 .sheet-transformations-spirit{
     grid-area: spirit;
+    font-size: 24px;
+    font-weight: 1000;
 }
 .sheet-transformations-personality{
     grid-area: personality;
+    font-size: 24px;
+    font-weight: 1000;
 }
+span.sheet-transformations-name,
+span.sheet-transformations-stacks,
+span.sheet-transformations-tier,
 .sheet-transformations-agility,
 .sheet-transformations-force,
 .sheet-transformations-tenacity,
 .sheet-transformations-scholarship,
 .sheet-transformations-insight,
 .sheet-transformations-spirit,
-.sheet-transformations-personality{
-    display:flex;
+.sheet-transformations-personality,
+.sheet-transformations-stress{
     width:100%!important;
+    display:flow-root;
     background:gray;
     color:white;
+    text-align:center;
+    border: 1px solid white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .sheet-transformations-vertical-header{
@@ -1273,54 +1294,26 @@ input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
     grid-area: pe-misc;
     width:100%;
 }
-
-
-.sheet-transformations-header-stress-mod,
-.sheet-transformations-stress-mod,
-.sheet-transformations-header-shatter-limits,
-.sheet-transformations-shatter-limits,
-.sheet-transformations-header-type,
-.sheet-transformations-type,
-.sheet-transformations-header-ag-misc,
-.sheet-transformations-header-fo-misc,
-.sheet-transformations-header-te-misc,
-.sheet-transformations-header-sc-misc,
-.sheet-transformations-header-in-misc,
-.sheet-transformations-header-sp-misc,
-.sheet-transformations-header-pe-misc,
-.sheet-transformations-ag-misc,
-.sheet-transformations-fo-misc,
-.sheet-transformations-te-misc,
-.sheet-transformations-sc-misc,
-.sheet-transformations-in-misc,
-.sheet-transformations-sp-misc,
-.sheet-transformations-pe-misc{
+.sheet-transformations-hide{
     display: none;
 }
 
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-stress-mod,
-.sheet-transformations-expand:checked ~ .sheet-transformations-stress-mod,
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-shatter-limits,
-.sheet-transformations-expand:checked ~ .sheet-transformations-shatter-limits,
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-type,
-.sheet-transformations-expand:checked ~ .sheet-transformations-type,
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-ag-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-fo-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-te-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-sc-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-in-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-sp-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-header-pe-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-ag-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-fo-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-te-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-sc-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-in-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-sp-misc,
-.sheet-transformations-expand:checked ~ .sheet-transformations-pe-misc{
-    display:block;
+.sheet-transformations-expand:checked ~ .sheet-transformations-hide{
+    display: block;
+}
+.sheet-transformations-expand:checked ~ .sheet-transformations-show{
+    display: none;
 }
 
+.sheet-transformations-type[value="Manifested Power"] ~ .sheet-transformations-hide-on-manifest{
+    display:none;
+}
+.sheet-transformations-type[value="Enchantment Power"] ~ .sheet-transformations-hide-on-enchant{
+    display:none;
+}
+.sheet-transformations-type[value="Alternate Form"] ~ .sheet-transformations-hide-on-alt{
+    display:none;
+}
 .sheet-transformations{
     background-position: center;
     background-repeat: no-repeat;

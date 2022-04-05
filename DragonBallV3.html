@@ -90,6 +90,7 @@
                     <div class="abilityRacial"><input type="number" name="attr_agility_racial" value="@{race_ag}" disabled="true" /></div>
                     <div class="abilityTotal"><input type="number" name="attr_agility" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_agility_tf">
+                    <input type="hidden" value="0" name="attr_agility_manifest">
                     
                     <div class="abilityName"><button class="ability" type="roll" name="roll_force" value="/r @{dice_roll}+@{force_tfmodifier}+@{power_die}">Force</button></div>
                     <div class="abilityMod"><input type="number" name="attr_force_modifier" value="1" readonly /></div>
@@ -98,6 +99,7 @@
                     <div class="abilityRacial"><input type="number" name="attr_force_racial" value="@{race_fo}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_force" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_force_tf">
+                    <input type="hidden" value="0" name="attr_force_manifest">
 
                     <div class="abilityName"><button class="ability" type="roll" name="roll_tenacity" value="/r @{dice_roll}+@{tenacity_tfmodifier}+@{power_die}">Tenacity</button></div>
                     <div class="abilityMod"><input type="number" name="attr_tenacity_modifier" value="1" readonly /></div>
@@ -106,6 +108,7 @@
                     <div class="abilityRacial"><input type="number" name="attr_tenacity_racial" value="@{race_te}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_tenacity" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_tenacity_tf">
+                    <input type="hidden" value="0" name="attr_tenacity_manifest">
 
                     <div class="abilityName"><button class="ability" type="roll" name="roll_scholarship" value="/r @{dice_roll}+@{scholarship_tfmodifier}+@{power_die}">Scholarship</button></div>
                     <div class="abilityMod"><input type="number" name="attr_scholarship_modifier" value="1" readonly /></div>
@@ -114,6 +117,7 @@
                     <div class="abilityRacial"><input type="number" name="attr_scholarship_racial" value="@{race_sc}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_scholarship" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_scholarship_tf">
+                    <input type="hidden" value="0" name="attr_scholarship_manifest">
 
                     <div class="abilityName"><button class="ability" type="roll" name="roll_insight" value="/r @{dice_roll}+@{insight_tfmodifier}+@{power_die}">Insight</button></div>
                     <div class="abilityMod"><input type="number" name="attr_insight_modifier" value="1" readonly /></div>
@@ -122,6 +126,7 @@
                     <div class="abilityRacial"><input type="number" name="attr_insight_racial" value="@{race_in}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_insight" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_insight_tf">
+                    <input type="hidden" value="0" name="attr_insight_manifest">
 
                     <div class="abilityName"><button class="ability" type="roll" name="roll_spirit" value="/r @{dice_roll}+@{spirit_tfmodifier}+@{power_die}">Spirit</button></div>
                     <div class="abilityMod"><input type="number" name="attr_spirit_modifier" value="1" readonly /></div>
@@ -130,6 +135,7 @@
                     <div class="abilityRacial"><input type="number" name="attr_spirit_racial" value="@{race_sp}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_spirit" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_spirit_tf">
+                    <input type="hidden" value="0" name="attr_spirit_manifest">
 
                     <div class="abilityName"><button class="ability" type="roll" name="roll_personality" value="/r @{dice_roll}+@{personality_tfmodifier}+@{power_die}">Personality</button></div>
                     <div class="abilityMod"><input type="number" name="attr_personality_modifier" value="1" readonly /></div>
@@ -138,6 +144,7 @@
                     <div class="abilityRacial"><input type="number" name="attr_personality_racial" value="@{race_pe}" disabled="true"  /></div>
                     <div class="abilityTotal"><input type="number" name="attr_personality" value="2" readonly /></div>
                     <input type="hidden" value="0" name="attr_personality_tf">
+                    <input type="hidden" value="0" name="attr_personality_manifest">
                 </div>
                 <div class="save-table">
                     <div class="save-name"><p>PROF. NAME</p></div>
@@ -145,20 +152,32 @@
                     <div class="save-total"><p>TOTAL</p></div>
 
                     <div class="save-name"><input type="checkbox" name="attr_impulsive_proficiency" value="@{tier_of_power}" /><button class="ability" type="roll" name="roll_impulsive" value="/r @{dice_roll}+@{impulsive}+@{power_die}">Impulsive</button></div>
-                    <div class="save-misc"><input type="number" name="attr_impulsive_misc" value="0" /></div>
-                    <div class="save-total"><input type="number" name="attr_impulsive" value="[[@{agility_modifier} + @{impulsive_proficiency} + @{impulsive_misc}]]" disabled="true" /></div>
+                    <div class="save-misc">
+                        <input type="text" name="attr_impulsive_misc" value="0" />
+                        <input type="hidden" name="attr_impulsive_misc_hidden" value="0" />
+                    </div>
+                    <div class="save-total"><input type="number" name="attr_impulsive" value="[[@{agility_modifier} + @{impulsive_proficiency} + @{impulsive_misc_hidden}]]" disabled="true" /></div>
                 
                     <div class="save-name"><input type="checkbox" name="attr_corporeal_proficiency" value="@{tier_of_power}" /><button class="ability" type="roll" name="roll_corporeal" value="/r @{dice_roll}+@{corporeal}+@{power_die}">Corporeal</button></div>
-                    <div class="save-misc"><input type="number" name="attr_corporeal_misc" value="0" /></div>
-                    <div class="save-total"><input type="number" name="attr_corporeal" value="[[@{tenacity_modifier} + @{corporeal_proficiency} + @{corporeal_misc}]]" disabled="true" /></div>
+                    <div class="save-misc">
+                        <input type="text" name="attr_corporeal_misc" value="0" />
+                        <input type="hidden" name="attr_corporeal_misc_hidden" value="0" />
+                    </div>
+                    <div class="save-total"><input type="number" name="attr_corporeal" value="[[@{tenacity_modifier} + @{corporeal_proficiency} + @{corporeal_misc_hidden}]]" disabled="true" /></div>
                     
                     <div class="save-name"><input type="checkbox" name="attr_cognitive_proficiency" value="@{tier_of_power}" /><button class="ability" type="roll" name="roll_cognitive" value="/r @{dice_roll}+@{cognitive}+@{power_die}">Cognitive</button></div>
-                    <div class="save-misc"><input type="number" name="attr_cognitive_misc" value="0" /></div>
-                    <div class="save-total"><input type="number" name="attr_cognitive" value="[[@{insight_modifier} + @{cognitive_proficiency} + @{cognitive_misc}]]" disabled="true" /></div>
+                    <div class="save-misc">
+                        <input type="text" name="attr_cognitive_misc" value="0" />
+                        <input type="hidden" name="attr_cognitive_misc_hidden" value="0" />
+                    </div>
+                    <div class="save-total"><input type="number" name="attr_cognitive" value="[[@{insight_modifier} + @{cognitive_proficiency} + @{cognitive_misc_hidden}]]" disabled="true" /></div>
                 
                     <div class="save-name"><input type="checkbox" name="attr_morale_proficiency" value="@{tier_of_power}" /><button class="ability" type="roll" name="roll_morale" value="/r @{dice_roll}+@{morale}+@{power_die}">Morale</button></div>
-                    <div class="save-misc"><input type="number" name="attr_morale_misc" value="0" /></div>
-                    <div class="save-total"><input type="number" name="attr_morale" value="[[@{personality_modifier} + @{morale_proficiency} + @{morale_misc}]]" disabled="true" /></div>
+                    <div class="save-misc">
+                        <input type="text" name="attr_morale_misc" value="0" />
+                        <input type="hidden" name="attr_morale_misc_hidden" value="0" />
+                    </div>
+                    <div class="save-total"><input type="number" name="attr_morale" value="[[@{personality_modifier} + @{morale_proficiency} + @{morale_misc_hidden}]]" disabled="true" /></div>
                 </div>
             </div>
             <div class="skills">
@@ -879,18 +898,24 @@
         <fieldset class="repeating_transformations">
             <div class="transformations-table">
                 <input class="transformations-expand" type="checkbox" name="attr_expand" value="1" checked>
-                <div class="transformations-header-active transformations-header">Active</div>
+                
+                <input class="transformations-type" type="hidden" name="attr_type" />
+
+                <div class="transformations-header-active transformations-header transformations-hide-on-manifest">Active</div>
                 <div class="transformations-header-name transformations-header">Name</div>
                 <div class="transformations-header-stacks transformations-header">Stacks</div>
-                <div class="transformations-header-mastered transformations-header">Mastered</div>
+                <div class="transformations-header-mastered transformations-header transformations-hide-on-manifest transformations-hide-on-enchant">Mastered</div>
                 <div class="transformations-header-tier transformations-header">Tier</div>
-                <div class="transformations-header-stress transformations-header">Stress</div>
-                <input class="transformations-active" type="checkbox" name="attr_active" value="1">
-                <input class="transformations-name" type="text" name="attr_name" placeholder="Super Saiyan" />
-                <input class="transformations-stacks" type="number" name="attr_stacks" value="1" />
-                <input class="transformations-mastered" type="checkbox" name="attr_mastered" value="1" />
-                <input class="transformations-tier" type="text" name="attr_tier" value="1+" />
-                <input class="transformations-stress" type="number" name="attr_stress" value="@{stress_mod}" disabled="true"/>
+                <div class="transformations-header-stress transformations-header transformations-hide-on-manifest">Stress</div>
+                <input class="transformations-active transformations-hide-on-manifest" type="checkbox" name="attr_active" value="1">
+                <span class="transformations-name transformations-show" name="attr_name"></span>
+                <input class="transformations-name transformations-hide" type="text" name="attr_name" placeholder="Super Saiyan" />
+                <input class="transformations-stacks transformations-hide" type="number" name="attr_stacks" value="1" />
+                <span class="transformations-stacks transformations-show" name="attr_stacks"></span>
+                <input class="transformations-mastered transformations-hide-on-manifest transformations-hide-on-enchant" type="checkbox" name="attr_mastered" value="1" />
+                <input class="transformations-tier transformations-hide" type="text" name="attr_tier" value="1+" />
+                <span class="transformations-tier transformations-show" name="attr_tier"></span>
+                <input class="transformations-stress transformations-hide-on-manifest" type="number" name="attr_stress" value="@{stress_mod}" disabled="true"/>
                 
                 <div class="transformations-header-ag transformations-header">AG</div>
                 <div class="transformations-header-fo transformations-header">FO</div>
@@ -900,48 +925,48 @@
                 <div class="transformations-header-sp transformations-header">SP</div>
                 <div class="transformations-header-pe transformations-header">PE</div>
 
-                <input class="transformations-agility" type="number" name="attr_agility" value="floor(@{stacks} * @{ag_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
-                <input class="transformations-force" type="number" name="attr_force" value="floor(@{stacks} * @{fo_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
-                <input class="transformations-tenacity" type="number" name="attr_tenacity" value="floor(@{stacks} * @{te_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
-                <input class="transformations-scholarship" type="number" name="attr_scholarship" value="floor(@{stacks} * @{sc_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
-                <input class="transformations-insight" type="number" name="attr_insight" value="floor(@{stacks} * @{in_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
-                <input class="transformations-spirit" type="number" name="attr_spirit" value="floor(@{stacks} * @{sp_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
-                <input class="transformations-personality" type="number" name="attr_personality" value="floor(@{stacks} * @{pe_misc_hidden} * (1 + (0.5 * @{shatter})))" disabled="true"/>
+                <input class="transformations-agility" type="number" name="attr_agility" value="0" hidden="true"/>
+                <span class="transformations-agility" name="attr_agility"></span>
+                <input class="transformations-force" type="number" name="attr_force" value="0" hidden="true"/>
+                <span class="transformations-force" name="attr_force"></span>
+                <input class="transformations-tenacity" type="number" name="attr_tenacity" value="0" hidden="true"/>
+                <span class="transformations-tenacity" name="attr_tenacity"></span>
+                <input class="transformations-scholarship" type="number" name="attr_scholarship" value="0" hidden="true"/>
+                <span class="transformations-scholarship" name="attr_scholarship"></span>
+                <input class="transformations-insight" type="number" name="attr_insight" value="0" hidden="true"/>
+                <span class="transformations-insight" name="attr_insight"></span>
+                <input class="transformations-spirit" type="number" name="attr_spirit" value="0" hidden="true"/>
+                <span class="transformations-spirit" name="attr_spirit"></span>
+                <input class="transformations-personality" type="number" name="attr_personality" value="0" hidden="true"/>
+                <span class="transformations-personality" name="attr_personality"></span>
                 
-                <div class="transformations-header-stress-mod transformations-vertical-header">Stress+</div>
-                <input class="transformations-stress-mod" type="text" name="attr_stress_mod" placeholder="35">
-                <div class="transformations-header-shatter-limits transformations-vertical-header">Shatter Your Limits</div>
-                <input class="transformations-shatter-limits" type="checkbox" name="attr_shatter" value="1">
-                <div class="transformations-header-type transformations-vertical-header">Type</div>
-                <select class="transformations-type" style="margin:0px;" name="attr_type">
+                <div class="transformations-header-stress-mod transformations-vertical-header transformations-hide transformations-hide-on-manifest">Stress+</div>
+                <input class="transformations-stress-mod transformations-hide transformations-hide-on-manifest" type="text" name="attr_stress_mod">
+                <div class="transformations-header-shatter-limits transformations-vertical-header transformations-hide transformations-hide-on-manifest transformations-hide-on-enchant transformations-hide-on-alt">Shatter Your Limits</div>
+                <input class="transformations-shatter-limits transformations-hide transformations-hide-on-manifest transformations-hide-on-enchant transformations-hide-on-alt" type="checkbox" name="attr_shatter" value="1">
+                <div class="transformations-header-type transformations-vertical-header transformations-hide">Type</div>
+                <select class="transformations-type transformations-hide" style="margin:0px;" name="attr_type">
+                    <option value="" selected></option>
                     <option value="Manifested Power">Manifested Power</option>
                     <option value="Alternate Form">Alternate Form</option>
                     <option value="Enchantment Power">Enchantment Power</option>
                     <option value="Legendary Form">Legendary Form</option>
                 </select>
 
-                <div class="transformations-header-ag-misc  transformations-header">AG Base</div>
-                <div class="transformations-header-fo-misc  transformations-header">FO Base</div>
-                <div class="transformations-header-te-misc  transformations-header">TE Base</div>
-                <div class="transformations-header-sc-misc  transformations-header">SC Base</div>
-                <div class="transformations-header-in-misc  transformations-header">IN Base</div>
-                <div class="transformations-header-sp-misc  transformations-header">SP Base</div>
-                <div class="transformations-header-pe-misc  transformations-header">PE Base</div>
-                <input class="transformations-ag-misc" type="text" name="attr_ag_misc" value="+0" />
-                <input class="transformations-fo-misc" type="text" name="attr_fo_misc" value="+0" />
-                <input class="transformations-te-misc" type="text" name="attr_te_misc" value="+0" />
-                <input class="transformations-sc-misc" type="text" name="attr_sc_misc" value="+0" />
-                <input class="transformations-in-misc" type="text" name="attr_in_misc" value="+0" />
-                <input class="transformations-sp-misc" type="text" name="attr_sp_misc" value="+0" />
-                <input class="transformations-pe-misc" type="text" name="attr_pe_misc" value="+0" />
-
-                <input class="transformations-ag-misc" type="hidden" name="attr_ag_misc_hidden" value="+0" />
-                <input class="transformations-fo-misc" type="hidden" name="attr_fo_misc_hidden" value="+0" />
-                <input class="transformations-te-misc" type="hidden" name="attr_te_misc_hidden" value="+0" />
-                <input class="transformations-sc-misc" type="hidden" name="attr_sc_misc_hidden" value="+0" />
-                <input class="transformations-in-misc" type="hidden" name="attr_in_misc_hidden" value="+0" />
-                <input class="transformations-sp-misc" type="hidden" name="attr_sp_misc_hidden" value="+0" />
-                <input class="transformations-pe-misc" type="hidden" name="attr_pe_misc_hidden" value="+0" />
+                <div class="transformations-header-ag-misc transformations-hide transformations-header">AG Base</div>
+                <div class="transformations-header-fo-misc transformations-hide transformations-header">FO Base</div>
+                <div class="transformations-header-te-misc transformations-hide transformations-header">TE Base</div>
+                <div class="transformations-header-sc-misc transformations-hide transformations-header">SC Base</div>
+                <div class="transformations-header-in-misc transformations-hide transformations-header">IN Base</div>
+                <div class="transformations-header-sp-misc transformations-hide transformations-header">SP Base</div>
+                <div class="transformations-header-pe-misc transformations-hide transformations-header">PE Base</div>
+                <input class="transformations-ag-misc transformations-hide" type="text" name="attr_ag_misc" value="+0" />
+                <input class="transformations-fo-misc transformations-hide" type="text" name="attr_fo_misc" value="+0" />
+                <input class="transformations-te-misc transformations-hide" type="text" name="attr_te_misc" value="+0" />
+                <input class="transformations-sc-misc transformations-hide" type="text" name="attr_sc_misc" value="+0" />
+                <input class="transformations-in-misc transformations-hide" type="text" name="attr_in_misc" value="+0" />
+                <input class="transformations-sp-misc transformations-hide" type="text" name="attr_sp_misc" value="+0" />
+                <input class="transformations-pe-misc transformations-hide" type="text" name="attr_pe_misc" value="+0" />
             </div>
         </fieldset>
     </div>
@@ -1132,66 +1157,80 @@
         "agility_ranks",
         "race_ag",
         "agility_tf",
+        "agility_manifest",
 
         "force_ranks",
         "race_fo",
         "force_tf",
+        "force_manifest",
 
         "tenacity_ranks",
         "race_te",
         "tenacity_tf",
+        "tenacity_manifest",
 
         "scholarship_ranks",
         "race_sc",
         "scholarship_tf",
+        "scholarship_manifest",
 
         "insight_ranks",
         "race_in",
         "insight_tf",
+        "insight_manifest",
 
         "spirit_ranks",
         "race_sp",
         "spirit_tf",
+        "spirit_manifest",
 
         "personality_ranks",
         "race_pe",
-        "personality_tf"
+        "personality_tf",
+        "personality_manifest"
         ], function(values){
-            var agility = +values.agility_ranks + +values.race_ag;
-            var force = +values.force_ranks + +values.race_fo;
-            var tenacity = +values.tenacity_ranks + +values.race_te;
-            var scholarship = +values.scholarship_ranks + +values.race_sc;
-            var insight = +values.insight_ranks + +values.race_in;
-            var spirit = +values.spirit_ranks + +values.race_sp;
-            var personality = +values.personality_ranks + +values.race_pe;
+            var agility = parseInt(values.agility_ranks) + parseInt(values.race_ag);
+            var force = parseInt(values.force_ranks) + parseInt(values.race_fo);
+            var tenacity = parseInt(values.tenacity_ranks) + parseInt(values.race_te);
+            var scholarship = parseInt(values.scholarship_ranks) + parseInt(values.race_sc);
+            var insight = parseInt(values.insight_ranks) + parseInt(values.race_in);
+            var spirit = parseInt(values.spirit_ranks) + parseInt(values.race_sp);
+            var personality = parseInt(values.personality_ranks) + parseInt(values.race_pe);
+            var agility_modifier = Math.floor(agility/2) + parseInt(values.agility_manifest);
+            var force_modifier = Math.floor(force/2) + parseInt(values.force_manifest);
+            var tenacity_modifier = Math.floor(tenacity/2) + parseInt(values.tenacity_manifest);
+            var scholarship_modifier = Math.floor(scholarship/2) + parseInt(values.scholarship_manifest);
+            var insight_modifier = Math.floor(insight/2) + parseInt(values.insight_manifest);
+            var spirit_modifier = Math.floor(spirit/2) + parseInt(values.spirit_manifest);
+            var personality_modifier = Math.floor(personality/2) + parseInt(values.personality_manifest);
             setAttrs({
                 "agility":agility,
-                "agility_modifier":(Math.floor(agility/2)),
-                "agility_tfmodifier":(Math.floor(agility/2) + +values.agility_tf),
+                "agility_modifier":agility_modifier,
+                "agility_tfmodifier":agility_modifier + parseInt(values.agility_tf),
 
                 "force":force,
-                "force_modifier":(Math.floor(force/2)),
-                "force_tfmodifier":(Math.floor(force/2) + +values.force_tf),
+                "force_modifier":force_modifier,
+                "force_tfmodifier":force_modifier + parseInt(values.force_tf),
                 
                 "tenacity":tenacity,
-                "tenacity_modifier":(Math.floor(tenacity/2)),
-                "tenacity_tfmodifier":(Math.floor(tenacity/2) + +values.tenacity_tf),
+                "tenacity_modifier":tenacity_modifier,
+                "tenacity_tfmodifier":tenacity_modifier + parseInt(values.tenacity_tf),
                 
                 "scholarship":scholarship,
-                "scholarship_modifier":(Math.floor(scholarship/2)),
-                "scholarship_tfmodifier":(Math.floor(scholarship/2) + +values.scholarship_tf),
+                "scholarship_modifier":scholarship_modifier,
+                "scholarship_tfmodifier":scholarship_modifier + parseInt(values.scholarship_tf),
                 
                 "insight":insight,
-                "insight_modifier":(Math.floor(insight/2)),
-                "insight_tfmodifier":(Math.floor(insight/2) + +values.insight_tf),
+                "insight_modifier":insight_modifier,
+                "insight_tfmodifier":insight_modifier + parseInt(values.insight_tf),
                 
                 "spirit":spirit,
-                "spirit_modifier":(Math.floor(spirit/2)),
-                "spirit_tfmodifier":(Math.floor(spirit/2) + +values.spirit_tf),
+                "spirit_modifier":spirit_modifier,
+                "spirit_tfmodifier":spirit_modifier + parseInt(values.spirit_tf),
                 
                 "personality":personality,
-                "personality_modifier":(Math.floor(personality/2)),
-                "personality_tfmodifier":(Math.floor(personality/2) + +values.personality_tf)
+                "personality_modifier":personality_modifier,
+                "personality_tfmodifier":personality_modifier + parseInt(values.personality_tf)
             });
         });
     }
@@ -1219,6 +1258,26 @@
         });
         
     });
+
+    on("sheet:opened change:impulsive_misc change:corporeal_misc change:cognitive_misc change:morale_misc", function(){
+        getAttrs([
+        "impulsive_misc",
+        "corporeal_misc",
+        "cognitive_misc",
+        "morale_misc"
+        ], function(values){
+            var impulsive = parseNumber(values.impulsive_misc);
+            var corporeal = parseNumber(values.corporeal_misc);
+            var cognitive = parseNumber(values.cognitive_misc);
+            var morale = parseNumber(values.morale_misc);
+            setAttrs({
+                "impulsive_misc_hidden": impulsive,
+                "corporeal_misc_hidden": corporeal,
+                "cognitive_misc_hidden": cognitive,
+                "morale_misc_hidden": morale
+            })
+        })
+    }); 
     /*
         Race Logic
     */
@@ -1301,7 +1360,63 @@
         Transformation logic
     */
 
-    function parseNumber(value){
+    function parseNumber(value, tier){
+        var result = 0;
+        const mathRegex = /^([*/+-])/g;
+        const tierRegex = /^(\([tT]\))/g;
+        const numberRegex = /^([0-9]+)/g;
+        /*
+            Math Flag:
+                0 - add
+                1 - sub
+                2 - mul
+                3 - div
+        */
+        var mathflag = 0;
+        while (value.length>0){
+            match = value.match(mathRegex);
+            if (match != null && match[0] != ''){
+                value = value.substring(match[0].length);
+                switch(match[0]){
+                    case '+':
+                        mathflag = 0;
+                        break;
+                    case '-':
+                        mathflag = 1;
+                        break;
+                    case '*':
+                        mathflag = 2;
+                        break;
+                    case '/':
+                        mathflag = 3;
+                        break;
+                }
+                continue
+            }
+            match = value.match(numberRegex);
+            if (match != null && match[0] != ''){
+                value = value.substring(match[0].length);
+                switch (mathflag){
+                    case 0: result += parseInt(match[0]); break;
+                    case 1: result -= parseInt(match[0]); break;
+                    case 2: result *= parseInt(match[0]); break;
+                    case 3: result /= parseInt(match[0]); break;
+                }
+                continue
+            }
+            match = value.match(tierRegex);
+            if (match != null && match[0] != ''){
+                /* Tier detected - Take the shot */
+                value = value.substring(match[0].length);
+                result *= tier;
+                continue;
+            }
+            value = value.substring(1);
+        }
+        return result;
+    }
+
+    function parseNumberAsString(value){
         var result = "";
         const tierRegex = /^(\([tT]\))/g;
         while (value.length>0){
@@ -1315,10 +1430,36 @@
             result += value.substring(0,1);
             value = value.substring(1);
         }
-        return result;
+        return "("+result+")";
     }
 
-    on("change:repeating_transformations:ag_misc change:repeating_transformations:fo_misc change:repeating_transformations:te_misc change:repeating_transformations:sc_misc change:repeating_transformations:in_misc change:repeating_transformations:sp_misc change:repeating_transformations:pe_misc",
+    /* ===== PARAMETERS ==========
+    destinations = the name of the attribute that stores the total quantity
+            can be a single attribute, or an array: ['total_cost', 'total_weight']
+            If more than one, the matching fields must be in the same order. 
+        section = name of repeating fieldset, without the repeating_
+        fields = the name of the attribute field to be summed
+            destination and fields both can be a single attribute: 'weight'
+            or an array of attributes: ['weight','number','equipped']
+    */
+    const repeatingSum = (destinations, section, fields) => {
+        if (!Array.isArray(destinations)) destinations = [destinations.replace(/\s/g, '').split(',')];
+        if (!Array.isArray(fields)) fields = [fields.replace(/\s/g, '').split(',')];
+        getSectionIDs(`repeating_${section}`, idArray => {
+            const attrArray = idArray.reduce((m, id) => [...m, ...(fields.map(field => `repeating_${section}_${id}_${field}`))], []);
+            getAttrs([...attrArray], v => {
+                const getValue = (section, id, field) => v[`repeating_${section}_${id}_${field}`] === 'on' ? 1 : parseFloat(v[`repeating_${section}_${id}_${field}`]) || 0;
+                const commonMultipliers = (fields.length <= destinations.length) ? [] : fields.splice(destinations.length, fields.length - destinations.length);
+                const output = {};
+                destinations.forEach((destination, index) => {
+                    output[destination] = idArray.reduce((total, id) => total + getValue(section, id, fields[index]) * commonMultipliers.reduce((subtotal, mult) => subtotal * getValue(section, id, mult), 1), 0);
+                });
+                setAttrs(output);
+            }); 
+        }); 
+    };
+
+    on("change:repeating_transformations:stacks change:repeating_transformations:shatter change:repeating_transformations:ag_misc change:repeating_transformations:fo_misc change:repeating_transformations:te_misc change:repeating_transformations:sc_misc change:repeating_transformations:in_misc change:repeating_transformations:sp_misc change:repeating_transformations:pe_misc",
     function(){
         getAttrs([
             "repeating_transformations_ag_misc",
@@ -1328,28 +1469,115 @@
             "repeating_transformations_in_misc",
             "repeating_transformations_sp_misc",
             "repeating_transformations_pe_misc",
+            "repeating_transformations_stacks",
+            "repeating_transformations_shatter",
             "tier_of_power"
         ], function(values){
-            var ag_misc = parseNumber(values.repeating_transformations_ag_misc, values.tier_of_power);
-            var fo_misc = parseNumber(values.repeating_transformations_fo_misc, values.tier_of_power);
-            var te_misc = parseNumber(values.repeating_transformations_te_misc, values.tier_of_power);
-            var sc_misc = parseNumber(values.repeating_transformations_sc_misc, values.tier_of_power);
-            var in_misc = parseNumber(values.repeating_transformations_in_misc, values.tier_of_power);
-            var sp_misc = parseNumber(values.repeating_transformations_sp_misc, values.tier_of_power);
-            var pe_misc = parseNumber(values.repeating_transformations_pe_misc, values.tier_of_power);
-            console.log(ag_misc);
+            var ag_misc = parseNumber(values.repeating_transformations_ag_misc, parseInt(values.tier_of_power));
+            var fo_misc = parseNumber(values.repeating_transformations_fo_misc, parseInt(values.tier_of_power));
+            var te_misc = parseNumber(values.repeating_transformations_te_misc, parseInt(values.tier_of_power));
+            var sc_misc = parseNumber(values.repeating_transformations_sc_misc, parseInt(values.tier_of_power));
+            var in_misc = parseNumber(values.repeating_transformations_in_misc, parseInt(values.tier_of_power));
+            var sp_misc = parseNumber(values.repeating_transformations_sp_misc, parseInt(values.tier_of_power));
+            var pe_misc = parseNumber(values.repeating_transformations_pe_misc, parseInt(values.tier_of_power));
+            var stacks = parseNumber(values.repeating_transformations_stacks, parseInt(values.tier_of_power));
+            var shatter = parseInt(values.repeating_transformations_shatter);
+            console.log(shatter);
             setAttrs({
-                "repeating_transformations_ag_misc_hidden":ag_misc,
-                "repeating_transformations_fo_misc_hidden":fo_misc,
-                "repeating_transformations_te_misc_hidden":te_misc,
-                "repeating_transformations_sc_misc_hidden":sc_misc,
-                "repeating_transformations_in_misc_hidden":in_misc,
-                "repeating_transformations_sp_misc_hidden":sp_misc,
-                "repeating_transformations_pe_misc_hidden":pe_misc
+                "repeating_transformations_agility":parseInt((ag_misc * stacks) * (1+(0.5*shatter))),
+                "repeating_transformations_force":parseInt((fo_misc * stacks) * (1+(0.5*shatter))),
+                "repeating_transformations_tenacity":parseInt((te_misc * stacks) * (1+(0.5*shatter))),
+                "repeating_transformations_scholarship":parseInt((sc_misc * stacks) * (1+(0.5*shatter))),
+                "repeating_transformations_insight":parseInt((in_misc * stacks) * (1+(0.5*shatter))),
+                "repeating_transformations_spirit":parseInt((sp_misc * stacks) * (1+(0.5*shatter))),
+                "repeating_transformations_personality":parseInt((pe_misc * stacks) * (1+(0.5*shatter)))
             })
         });
     });
-    on("change:repeating_transformations:active", function(){
+
+    on("change:repeating_transformations", function(){
+        getSectionIDs("transformations", function(idarray){
+            // Get the list of attributes we'll need
+            var attrGetList = [];
+            for(var i=0; i < idarray.length; i++){
+                attrGetList.push(`repeating_transformations_${idarray[i]}_active`);
+                attrGetList.push(`repeating_transformations_${idarray[i]}_type`);
+                attrGetList.push(`repeating_transformations_${idarray[i]}_agility`);
+                attrGetList.push(`repeating_transformations_${idarray[i]}_force`);
+                attrGetList.push(`repeating_transformations_${idarray[i]}_tenacity`);
+                attrGetList.push(`repeating_transformations_${idarray[i]}_scholarship`);
+                attrGetList.push(`repeating_transformations_${idarray[i]}_insight`);
+                attrGetList.push(`repeating_transformations_${idarray[i]}_spirit`);
+                attrGetList.push(`repeating_transformations_${idarray[i]}_personality`);
+            }
+            getAttrs(attrGetList, function(values){
+                var ag_total = 0;
+                var fo_total = 0;
+                var te_total = 0;
+                var sc_total = 0;
+                var in_total = 0;
+                var sp_total = 0;
+                var pe_total = 0;
+
+                var ag_manifest = 0;
+                var fo_manifest = 0;
+                var te_manifest = 0;
+                var sc_manifest = 0;
+                var in_manifest = 0;
+                var sp_manifest = 0;
+                var pe_manifest = 0;
+                for(var i=0; i < idarray.length; i++){
+                    if (values[`repeating_transformations_${idarray[i]}_type`]!="Manifested Power"){
+                        ag_total += (parseInt(values[`repeating_transformations_${idarray[i]}_agility`]) * parseInt(values[`repeating_transformations_${idarray[i]}_active`]));
+                        fo_total += (parseInt(values[`repeating_transformations_${idarray[i]}_force`]) * parseInt(values[`repeating_transformations_${idarray[i]}_active`]));
+                        te_total += (parseInt(values[`repeating_transformations_${idarray[i]}_tenacity`]) * parseInt(values[`repeating_transformations_${idarray[i]}_active`]));
+                        sc_total += (parseInt(values[`repeating_transformations_${idarray[i]}_scholarship`]) * parseInt(values[`repeating_transformations_${idarray[i]}_active`]));
+                        in_total += (parseInt(values[`repeating_transformations_${idarray[i]}_insight`]) * parseInt(values[`repeating_transformations_${idarray[i]}_active`]));
+                        sp_total += (parseInt(values[`repeating_transformations_${idarray[i]}_spirit`]) * parseInt(values[`repeating_transformations_${idarray[i]}_active`]));
+                        pe_total += (parseInt(values[`repeating_transformations_${idarray[i]}_personality`]) * parseInt(values[`repeating_transformations_${idarray[i]}_active`]));
+                    }else{
+                        ag_total += parseInt(values[`repeating_transformations_${idarray[i]}_agility`]/2);
+                        fo_total += parseInt(values[`repeating_transformations_${idarray[i]}_force`]/2);
+                        te_total += parseInt(values[`repeating_transformations_${idarray[i]}_tenacity`]/2);
+                        sc_total += parseInt(values[`repeating_transformations_${idarray[i]}_scholarship`]/2);
+                        in_total += parseInt(values[`repeating_transformations_${idarray[i]}_insight`]/2);
+                        sp_total += parseInt(values[`repeating_transformations_${idarray[i]}_spirit`]/2);
+                        pe_total += parseInt(values[`repeating_transformations_${idarray[i]}_personality`]/2);
+
+                        ag_manifest += parseInt(values[`repeating_transformations_${idarray[i]}_agility`]/2);
+                        fo_manifest += parseInt(values[`repeating_transformations_${idarray[i]}_force`]/2);
+                        te_manifest += parseInt(values[`repeating_transformations_${idarray[i]}_tenacity`]/2);
+                        sc_manifest += parseInt(values[`repeating_transformations_${idarray[i]}_scholarship`]/2);
+                        in_manifest += parseInt(values[`repeating_transformations_${idarray[i]}_insight`]/2);
+                        sp_manifest += parseInt(values[`repeating_transformations_${idarray[i]}_spirit`]/2);
+                        pe_manifest += parseInt(values[`repeating_transformations_${idarray[i]}_personality`]/2);
+                    }
+                }
+                setAttrs({
+                    'agility_tf': ag_total,
+                    'force_tf': fo_total,
+                    'tenacity_tf': te_total,
+                    'scholarship_tf': sc_total,
+                    'insight_tf': in_total,
+                    'spirit_tf': sp_total,
+                    'personality_tf': pe_total,
+                    
+                    'agility_manifest': ag_manifest,
+                    'force_manifest': fo_manifest,
+                    'tenacity_manifest': te_manifest,
+                    'scholarship_manifest': sc_manifest,
+                    'insight_manifest': in_manifest,
+                    'spirit_manifest': sp_manifest,
+                    'personality_manifest': pe_manifest
+                })
+                update_stats();
+            });
+        });
+    });
+    
+    // Change None to active
+    on("change:repeating_transformations:none", function(){
+
         getAttrs([
             "repeating_transformations_active",
             "repeating_transformations_agility",
