@@ -4,9 +4,8 @@
     <button class="select-btn" type="action" name="act_attributes" >Attributes</button>
     <button class="select-btn" type="action" name="act_race" >Race</button>
     <button class="select-btn" type="action" name="act_attacks" >Combat</button>
-    <button class="select-btn" type="action" name="act_abilities">Abilities</button>
+    <button class="select-btn" type="action" name="act_abilities">Infomation</button>
     <button class="select-btn" type="action" name="act_transformations">Transformations</button>
-    <button class="select-btn" type="action" name="act_details" >Details</button>
     <button class="select-btn" type="action" name="act_settings">Settings</button>
 </div>
 <input type='hidden' class='sheet-tabstoggle' name='attr_sheetTab'  value='attributes'  />
@@ -822,6 +821,14 @@
 </div>
 
 <div class='abilities'>
+    <div class="info-player"><label>Player:</label></div><div class="info-player-data"><input type='text' name="attr_player_name" placeholder="Player Name" /></div>
+    <div class="info-age"><label>Age:</label></div><div class="info-age-data"><input style="width:100%;" type='number' name="attr_age" value="0" /></div>
+    <div class="info-gender"><label>Gender:</label></div><div class="info-gender-data"><input type='text' name="attr_gender" placeholder="Gender" /></div>
+    <div class="info-skin"><label>Skin Tone:</label></div><div class="info-skin-data"><input type='text' name="attr_skin_tone" placeholder="Skin Tone" /></div>
+    <div class="info-birthday"><label>Birthday:</label></div><div class="info-birthday-data"><input type='text' name="attr_birthday" placeholder="YYYY/MM/DD" /></div>
+    <div class="info-hair"><label>Hair Colour:</label></div><div class="info-hair-data"><input type='text' name="attr_hair_color" placeholder="Hair Colour" /></div>
+    <div class="info-eye"><label>Eye Colour:</label></div><div class="info-eye-data"><input type='text' name="attr_eye_color" placeholder="Eye Colour" /></div>
+    
     <h1>Abilities</h1>
     <h2>Karma: <input type="number" name="attr_karma" max="10" value="5"></h2>
     <div style="border: 3px solid darkgray;">
@@ -892,13 +899,36 @@
         <h1>Transformations</h1>
         <h2>Stress Test<button class="stress-button" name="roll_stress_test" type="roll" value="/em [[1d10 + @{power_level} + floor(@{personality_modifier}/2)]]"></button></h2>
         <h2>Training Roll <input type="number" min="1" value="1" name="attr_intensity"><button class="stress-button" name="roll_training" type="roll" value="/em puts their body on the line in training, attempt [[@{intensity}d10!10+@{agility_modifier}+@{tenacity_modifier}+@{insight_modifier}+@{personality_modifier}]]>[[?{Condition Range? |Very Easy, 10*@{intensity}+floor(@{power_level}/5)*5|Easy, 20*@{intensity}+floor(@{power_level}/5)*5|Medium, 30*@{intensity}+floor(@{power_level}/5)*5|Hard, 40*@{intensity}+floor(@{power_level}/5)*5|Very Hard, 50*@{intensity}+floor(@{power_level}/5)*5|Nearly Impossible, 60*@{intensity}+floor(@{power_level}/5)*5}]] gaining [[@{power_level}*@{intensity}]] xp"></button></h2>    
+        
+        <div class="transformations-header">Aspects</div>
+        <input class="transformations-global-aspects" type="text" name="attr_aspects" value="" readonly />
     </div>
     
     <div class="transformations-content">
+
+        <input type="hidden" name="attr_enhanced_save" value="0" />
+        <input type="hidden" name="attr_high_speed_form" value="0" />
+        <input type="hidden" name="attr_durable_form" value="0" />
+        <input type="hidden" name="attr_armored_form" value="0" />
+        <input type="hidden" name="attr_perfect_ki_control" value="0" />
+        <input type="hidden" name="attr_size_decreasing" value="0" />
+        <input type="hidden" name="attr_size_increasing" value="0" />
+        <input type="hidden" name="attr_god_ki" value="0" />
+        <input type="hidden" name="attr_raging" value="0" />
+        <input type="hidden" name="attr_rampaging" value="0" />
+        <input type="hidden" name="attr_temporary_form" value="0" />
+        <input type="hidden" name="attr_draining" value="0" />
+        <input type="hidden" name="attr_long_transformation" value="0" />
+        <input type="hidden" name="attr_exhausting" value="0" />
+        <input type="hidden" name="attr_dedicated_transformation" value="0" />
+        <input type="hidden" name="attr_controlled_fury" value="0" />
+        <input type="hidden" name="attr_natural_form" value="0" />
+        <input type="hidden" name="attr_heartbeat" value="0" />
+        <input type="hidden" name="attr_bulky_form" value="0" />
+        <input type="hidden" name="attr_power_high" value="0" />
         <fieldset class="repeating_transformations">
             <div class="transformations-table">
                 <input class="transformations-expand" type="checkbox" name="attr_expand" value="1" checked>
-                
                 <input class="transformations-type" type="hidden" name="attr_type" />
 
                 <div class="transformations-header-active transformations-header transformations-hide-on-manifest">Active</div>
@@ -967,48 +997,16 @@
                 <input class="transformations-in-misc transformations-hide" type="text" name="attr_in_misc" value="+0" />
                 <input class="transformations-sp-misc transformations-hide" type="text" name="attr_sp_misc" value="+0" />
                 <input class="transformations-pe-misc transformations-hide" type="text" name="attr_pe_misc" value="+0" />
+
+                <div class="transformations-header-aspects transformations-hide transformations-header transformations-hide-on-manifest">Aspects</div>
+                <input class="transformations-aspects transformations-hide transformations-hide-on-manifest" type="text" name="attr_aspects" value=""/>
             </div>
         </fieldset>
     </div>
-    
-    <!--div class="transformations-page">
-        <div class="transformations-top">
-            <div style="grid-area: tn; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>Name:</h3></div>
-            <div style="grid-area: tag; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>AG:</h3></div>
-            <div style="grid-area: tfo; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>FO:</h3></div>
-            <div style="grid-area: tte; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>TE:</h3></div>
-            <div style="grid-area: tsc; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>SC:</h3></div>
-            <div style="grid-area: tin; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>IN:</h3></div>
-            <div style="grid-area: tsp; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>SP:</h3></div>
-            <div style="grid-area: tpe; border-right: 1px solid darkgray; border-bottom: 1px solid darkgray;"><h3>PE:</h3></div>
-        </div>
-
-        <div class="transformations-bot">
-            <fieldset class="repeating_transformations">
-                <div class="transformations-table" style="border-top: none;">
-                    <div class="tname"><input type="text" name="attr_name" style = "width: 100px;"><input type="checkbox" name="attr_active" value="1"></div>
-                    <div class="tagi"><input type="text" name="attr_agility" style = "width: 60px;" value="0"></div>
-                    <div class="tfor"><input type="text" name="attr_force" style = "width: 60px;" value="0"></div>
-                    <div class="tten"><input type="text" name="attr_tenacity" style = "width: 60px;" value="0"></div>
-                    <div class="tsch"><input type="text" name="attr_scholarship" style = "width: 60px;" value="0"></div>
-                    <div class="tins"><input type="text" name="attr_insight" style = "width: 60px;" value="0"></div>
-                    <div class="tspi"><input type="text" name="attr_spirit" style = "width: 60px;" value="0"></div>
-                    <div class="tper"><input type="text" name="attr_personality" style = "width: 60px;" value="0"></div>
-                </div>
-            </fieldset>
-        </div>
-    </div-->
-</div>
-
-<div class='details'>
-    <div class="info-player"><label>Player:</label></div><div class="info-player-data"><input type='text' name="attr_player_name" placeholder="Player Name" /></div>
-    <div class="info-age"><label>Age:</label></div><div class="info-age-data"><input style="width:100%;" type='number' name="attr_age" value="0" /></div>
-    <div class="info-gender"><label>Gender:</label></div><div class="info-gender-data"><input type='text' name="attr_gender" placeholder="Gender" /></div>
-    <div class="info-skin"><label>Skin Tone:</label></div><div class="info-skin-data"><input type='text' name="attr_skin_tone" placeholder="Skin Tone" /></div>
-    <div class="info-birthday"><label>Birthday:</label></div><div class="info-birthday-data"><input type='text' name="attr_birthday" placeholder="YYYY/MM/DD" /></div>
-    <div class="info-hair"><label>Hair Colour:</label></div><div class="info-hair-data"><input type='text' name="attr_hair_color" placeholder="Hair Colour" /></div>
-    <div class="info-eye"><label>Eye Colour:</label></div><div class="info-eye-data"><input type='text' name="attr_eye_color" placeholder="Eye Colour" /></div>
-    
+    <div class="transformations-foot">
+        <div>Legendary Traits</div>
+        <span name="attr_legendary_traits"></span>
+    </div>
 </div>
 
 <div class='settings'>
@@ -1030,7 +1028,7 @@
 <script type="text/worker">
     
 
-    const buttonlist = ["attributes", "race", "attacks", "abilities", "transformations", "details", "settings"];
+    const buttonlist = ["attributes", "race", "attacks", "abilities", "transformations", "settings"];
     buttonlist.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({
@@ -1433,32 +1431,6 @@
         return "("+result+")";
     }
 
-    /* ===== PARAMETERS ==========
-    destinations = the name of the attribute that stores the total quantity
-            can be a single attribute, or an array: ['total_cost', 'total_weight']
-            If more than one, the matching fields must be in the same order. 
-        section = name of repeating fieldset, without the repeating_
-        fields = the name of the attribute field to be summed
-            destination and fields both can be a single attribute: 'weight'
-            or an array of attributes: ['weight','number','equipped']
-    */
-    const repeatingSum = (destinations, section, fields) => {
-        if (!Array.isArray(destinations)) destinations = [destinations.replace(/\s/g, '').split(',')];
-        if (!Array.isArray(fields)) fields = [fields.replace(/\s/g, '').split(',')];
-        getSectionIDs(`repeating_${section}`, idArray => {
-            const attrArray = idArray.reduce((m, id) => [...m, ...(fields.map(field => `repeating_${section}_${id}_${field}`))], []);
-            getAttrs([...attrArray], v => {
-                const getValue = (section, id, field) => v[`repeating_${section}_${id}_${field}`] === 'on' ? 1 : parseFloat(v[`repeating_${section}_${id}_${field}`]) || 0;
-                const commonMultipliers = (fields.length <= destinations.length) ? [] : fields.splice(destinations.length, fields.length - destinations.length);
-                const output = {};
-                destinations.forEach((destination, index) => {
-                    output[destination] = idArray.reduce((total, id) => total + getValue(section, id, fields[index]) * commonMultipliers.reduce((subtotal, mult) => subtotal * getValue(section, id, mult), 1), 0);
-                });
-                setAttrs(output);
-            }); 
-        }); 
-    };
-
     on("change:repeating_transformations:stacks change:repeating_transformations:shatter change:repeating_transformations:ag_misc change:repeating_transformations:fo_misc change:repeating_transformations:te_misc change:repeating_transformations:sc_misc change:repeating_transformations:in_misc change:repeating_transformations:sp_misc change:repeating_transformations:pe_misc",
     function(){
         getAttrs([
@@ -1482,7 +1454,6 @@
             var pe_misc = parseNumber(values.repeating_transformations_pe_misc, parseInt(values.tier_of_power));
             var stacks = parseNumber(values.repeating_transformations_stacks, parseInt(values.tier_of_power));
             var shatter = parseInt(values.repeating_transformations_shatter);
-            console.log(shatter);
             setAttrs({
                 "repeating_transformations_agility":parseInt((ag_misc * stacks) * (1+(0.5*shatter))),
                 "repeating_transformations_force":parseInt((fo_misc * stacks) * (1+(0.5*shatter))),
@@ -1495,10 +1466,10 @@
         });
     });
 
-    on("change:repeating_transformations", function(){
+    on("sheet:opened change:power_level change:repeating_transformations", function(){
         getSectionIDs("transformations", function(idarray){
             // Get the list of attributes we'll need
-            var attrGetList = [];
+            var attrGetList = ["tier_of_power"];
             for(var i=0; i < idarray.length; i++){
                 attrGetList.push(`repeating_transformations_${idarray[i]}_active`);
                 attrGetList.push(`repeating_transformations_${idarray[i]}_type`);
@@ -1509,6 +1480,7 @@
                 attrGetList.push(`repeating_transformations_${idarray[i]}_insight`);
                 attrGetList.push(`repeating_transformations_${idarray[i]}_spirit`);
                 attrGetList.push(`repeating_transformations_${idarray[i]}_personality`);
+                attrGetList.push(`repeating_transformations_${idarray[i]}_aspects`);
             }
             getAttrs(attrGetList, function(values){
                 var ag_total = 0;
@@ -1526,7 +1498,183 @@
                 var in_manifest = 0;
                 var sp_manifest = 0;
                 var pe_manifest = 0;
+                
+                // Aspects
+                var enhanced_save = 0;
+                /*
+                 * Enhanced_save is a flagbyte
+                 * 1 = Impulsive
+                 * 2 = Corporeal
+                 * 4 = Cognitive
+                 * 8 = Morale
+                 */
+                var high_speed_form = 0; // Upto 3 levels
+                var durable_form = 0; // Multiple levels
+                var armored_form = false;
+                var perfect_ki_control = false; 
+                var size_decreasing = false;
+                var size_increasing = 0; // Levels
+                var god_ki = false;
+                var raging = false;
+                var rampaging = 0; // Upto 3 levels
+                var temporary_form = 0; // Levels
+                var draining = 0; // Levels
+                var long_transformation = 0; // Levels
+                var exhausting = false;
+                var dedicated_transformation = false;
+                var controlled_fury = false;
+                var natural_form = false;
+                var heartbeat = false;
+                var bulky_form = false;
+                var power_high = 0; // Levels
+
+                const enhanced_save_regex = /Enhanced Save +?\(([a-zA-Z\/]+)\)\.?,? ?/;
+                const high_speed_form_regex = /High-Speed Form \(Level (\d+)\)\.?,? ?/;
+                const durable_form_regex = /Durable Form \(Level (\d+)\)\.?,? ?/;
+                const armored_form_regex = /Armored Form\.?,? ?/;
+                const perfect_ki_control_regex = /Perfect Ki Control\.?,? ?/;
+                const size_decreasing_regex = /Size Decreasing\.?,? ?/;
+                const size_increasing_regex = /Size Increasing \(Level (\d+)\)\.?,? ?/;
+                const god_ki_regex = /God Ki\.?,? ?/;
+                const raging_regex = /Raging\.?,? ?/;
+                const rampaging_regex = /Rampaging \(Level (\d+)\)\.?,? ?/;
+                const temporary_form_regex = /Temporary Form \(Level (\d+)\)\.?,? ?/;
+                const draining_regex = /Draining \(Level (\d+)\)\.?,? ?/;
+                const long_transformation_regex = /Long Transformation \(Level (\d+)\)\.?,? ?/;
+                const exhausting_regex = /Exhausting\.?,? ?/;
+                const dedicated_transformation_regex = /Dedicated Transformation\.?,? ?/;
+                const controlled_fury_regex = /Controlled Fury\.?,? ?/;
+                const natural_form_regex = /Natural Form\.?,? ?/;
+                const heartbeat_regex = /Heartbeat\.?,? ?/;
+                const bulky_form_regex = /Bulky Form\.?,? ?/;
+                const power_high_regex = /Power High \(Level (\d+)\)\.?,? ?/;                
+
                 for(var i=0; i < idarray.length; i++){
+                    var aspects = values[`repeating_transformations_${idarray[i]}_aspects`];
+                    // parse Aspects
+                    if (values[`repeating_transformations_${idarray[i]}_active`]=="1")
+                    {
+                        match = aspects.match(enhanced_save_regex);
+                        if (match != null && match[0] != ""){
+                            if (match[1].includes("All"))
+                                enhanced_save = 15;
+                            else{
+                                if (match[1].includes("Impulsive")){
+                                    enhanced_save = enhanced_save | 1;
+                                }
+                                if (match[1].includes("Corporeal")){
+                                    enhanced_save = enhanced_save | 2;
+                                }
+                                if (match[1].includes("Cognitive")){
+                                    enhanced_save = enhanced_save | 4;
+                                }
+                                if (match[1].includes("Morale")){
+                                    enhanced_save = enhanced_save | 8;
+                                }
+                            }
+                        }
+                        match = aspects.match(high_speed_form_regex);
+                        if (match != null && match[0] != ""){
+                            var value = parseInt(match[1]);
+                            if (value>high_speed_form){
+                                high_speed_form = value;
+                            }
+                        }
+                        match = aspects.match(durable_form_regex);
+                        if (match != null && match[0] != ""){
+                            var value = parseInt(match[1]);
+                            if (value>durable_form){
+                                durable_form = value;
+                            }
+                        }
+                        match = aspects.match(armored_form_regex);
+                        if (match != null && match[0] != ""){
+                            armored_form = true;
+                        }
+                        match = aspects.match(perfect_ki_control_regex);
+                        if (match != null && match[0] != ""){
+                            perfect_ki_control = true;
+                        }
+                        match = aspects.match(size_decreasing_regex);
+                        if (match != null && match[0] != ""){
+                            size_decreasing = true;
+                        }
+                        match = aspects.match(size_increasing_regex);
+                        if (match != null && match[0] != ""){
+                            var value = parseInt(match[1]);
+                            if (value>size_increasing){
+                                size_increasing = value;
+                            }
+                        }
+                        match = aspects.match(god_ki_regex);
+                        if (match != null && match[0] != ""){
+                            god_ki = true;
+                        }
+                        match = aspects.match(raging_regex);
+                        if (match != null && match[0] != ""){
+                            raging = true;
+                        }
+                        match = aspects.match(rampaging_regex);
+                        if (match != null && match[0] != ""){
+                            var value = parseInt(match[1]);
+                            if (value>rampaging){
+                                rampaging = value;
+                            }
+                        }
+                        match = aspects.match(temporary_form_regex);
+                        if (match != null && match[0] != ""){
+                            var value = parseInt(match[1]);
+                            if (value>temporary_form){
+                                temporary_form = value;
+                            }
+                        }
+                        match = aspects.match(draining_regex);
+                        if (match != null && match[0] != ""){
+                            var value = parseInt(match[1]);
+                            if (value>draining){
+                                draining = value;
+                            }
+                        }
+                        match = aspects.match(long_transformation_regex);
+                        if (match != null && match[0] != ""){
+                            var value = parseInt(match[1]);
+                            if (value>long_transformation){
+                                long_transformation = value;
+                            }
+                        }
+                        match = aspects.match(exhausting_regex);
+                        if (match != null && match[0] != ""){
+                            exhausting = true;
+                        }
+                        match = aspects.match(dedicated_transformation_regex);
+                        if (match != null && match[0] != ""){
+                            dedicated_transformation = true;
+                        }
+                        match = aspects.match(controlled_fury_regex);
+                        if (match != null && match[0] != ""){
+                            controlled_fury = true;
+                        }
+                        match = aspects.match(natural_form_regex);
+                        if (match != null && match[0] != ""){
+                            natural_form = true;
+                        }
+                        match = aspects.match(heartbeat_regex);
+                        if (match != null && match[0] != ""){
+                            heartbeat = true;
+                        }
+                        match = aspects.match(bulky_form_regex);
+                        if (match != null && match[0] != ""){
+                            bulky_form = true;
+                        }
+                        match = aspects.match(power_high_regex);
+                        if (match != null && match[0] != ""){
+                            var value = parseInt(match[1]);
+                            if (value>power_high){
+                                power_high = value;
+                            }
+                        }
+                    }
+
                     if (values[`repeating_transformations_${idarray[i]}_type`]!="Manifested Power"){
                         ag_total += (parseInt(values[`repeating_transformations_${idarray[i]}_agility`]) * parseInt(values[`repeating_transformations_${idarray[i]}_active`]));
                         fo_total += (parseInt(values[`repeating_transformations_${idarray[i]}_force`]) * parseInt(values[`repeating_transformations_${idarray[i]}_active`]));
@@ -1553,6 +1701,51 @@
                         pe_manifest += parseInt(values[`repeating_transformations_${idarray[i]}_personality`]/2);
                     }
                 }
+
+                var aspects = "";
+                if (enhanced_save){
+                    var saves = [];
+                    if ((enhanced_save&1)==1)
+                        saves.push("Impulsive");
+                    if ((enhanced_save&2)==2)
+                        saves.push("Corporeal");
+                    if ((enhanced_save&4)==4)
+                        saves.push("Cognitive");
+                    if ((enhanced_save&8)==8)
+                        saves.push("Morale");
+                    if (saves.length==4)
+                        saves = ["All"];
+                    aspects += `Enhanced Save (${saves.join("/")}), `;
+                }
+                if (high_speed_form){
+                    aspects += `High Speed Form (Level ${high_speed_form}), `;
+                }
+                if (durable_form){
+                    aspects += `Durable Form (Level ${durable_form}), `;
+                }
+                if (armored_form){
+                    aspects += `Armored Form, `;
+                }
+                if (perfect_ki_control){
+                    aspects += `Perfect Ki Control, `;
+                }
+                if (size_decreasing){
+                    aspects += `Size Decreasing, `;
+                }
+                if (size_increasing){
+                    aspects += `Size Increasing (Level ${size_increasing}), `;
+                }
+                if (god_ki){
+                    aspects += `God Ki, `;
+                }
+                if (raging){
+                    aspects += `Raging, `;
+                }
+                if (rampaging){
+                    aspects += `Rampaging (Level ${rampaging}), `;
+                }
+                aspects = aspects.substring(0,aspects.length-2);
+
                 setAttrs({
                     'agility_tf': ag_total,
                     'force_tf': fo_total,
@@ -1568,7 +1761,9 @@
                     'scholarship_manifest': sc_manifest,
                     'insight_manifest': in_manifest,
                     'spirit_manifest': sp_manifest,
-                    'personality_manifest': pe_manifest
+                    'personality_manifest': pe_manifest,
+
+                    'aspects': aspects
                 })
                 update_stats();
             });

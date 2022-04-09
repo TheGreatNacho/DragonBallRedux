@@ -23,7 +23,6 @@
 .sheet-attacks,
 .sheet-abilities,
 .sheet-transformations,
-.sheet-details,
 .sheet-settings {
 	display: none;
 }
@@ -34,7 +33,6 @@
 .sheet-tabstoggle[value="attacks"] ~ div.sheet-attacks,
 .sheet-tabstoggle[value="abilities"] ~ div.sheet-abilities,
 .sheet-tabstoggle[value="transformations"] ~ div.sheet-transformations,
-.sheet-tabstoggle[value="details"] ~ div.sheet-details,
 .sheet-tabstoggle[value="settings"] ~ div.sheet-settings {
 	display: block;
 }
@@ -1081,13 +1079,18 @@ input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
     border-top-right-radius: 10px;
     text-align:center;
 }
+.sheet-transformations-global-aspects{
+    width:100%;
+    background:gray;
+    color: white;
+    text-align: center;
+    font-size:10px;
+}
 .sheet-transformations-content{
-    border:1px solid darkgray;
     background: dimgray;
 }
 .sheet-transformations-table{
     padding:5px;
-    margin:5px 0px;
     display:grid;
     background:darkgray;
     grid-template-areas: 
@@ -1097,7 +1100,9 @@ input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
     'none agility force tenacity scholarship insight spirit personality'
     'none header-stress-mod stress-mod header-shatter-limits shatter-limits header-type type type'
     'none header-ag-misc header-fo-misc header-te-misc header-sc-misc header-in-misc header-sp-misc header-pe-misc'
-    'none ag-misc fo-misc te-misc sc-misc in-misc sp-misc pe-misc';
+    'none ag-misc fo-misc te-misc sc-misc in-misc sp-misc pe-misc'
+    'none header-aspects header-aspects header-aspects header-aspects header-aspects header-aspects header-aspects'
+    'none aspects aspects aspects aspects aspects aspects aspects';
 }
 .sheet-transformations-expand{
     grid-area: expand;
@@ -1129,6 +1134,9 @@ input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
 }
 .sheet-transformations-stacks{
     grid-area: stacks;
+}
+input[type="number"].sheet-transformations-stacks{
+    width:100%;
 }
 .sheet-transformations-mastered{
     grid-area: mastered;
@@ -1294,6 +1302,16 @@ span.sheet-transformations-tier,
     grid-area: pe-misc;
     width:100%;
 }
+
+.sheet-transformations-header-aspects{
+    grid-area: header-aspects;
+}
+.sheet-transformations-aspects{
+    grid-area: aspects;
+    width:100%;
+}
+
+
 .sheet-transformations-hide{
     display: none;
 }
@@ -1318,6 +1336,22 @@ span.sheet-transformations-tier,
     background-position: center;
     background-repeat: no-repeat;
     background-color: white;
+}
+
+.sheet-transformations-foot{
+    background:dimgray;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+    color: white;
+    padding-bottom: 20px;
+}
+.sheet-transformations-foot span{
+    padding:5px 0px;
+    display:block;
+    font-size:10px;
+    width:100%;
+    background:darkgray;
 }
 /**/
 .sheet-ccol7{
