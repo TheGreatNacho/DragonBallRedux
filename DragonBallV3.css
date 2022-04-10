@@ -1128,6 +1128,36 @@ input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
 .sheet-transformations-active{
     grid-area: active;
 }
+.sheet-transformations-active input[type="checkbox"]{
+    height: 100%;
+    width: 52px;
+    opacity:0;
+}
+.sheet-transformations-active-span{
+    background:gray;
+    border: 1px solid white;
+    border-radius:16px;
+    position:absolute;
+    left: 16px;
+    width: 52px;
+    height: 26px;
+}
+.sheet-transformations-active-span:before{
+    background-color:#555;
+    content:"";
+    border-radius:16px;
+    position:absolute;
+    left: 1px;
+    top: 1px;
+    width: 24px;
+    height: 24px;
+}
+.sheet-transformations-active-input[type="checkbox"]:checked + .sheet-transformations-active-span{
+    background-color:darkgray;
+}
+.sheet-transformations-active-input[type="checkbox"]:checked + .sheet-transformations-active-span:before {
+    background:white;
+}
 .sheet-transformations-name{
     grid-area: name;
     width:100%;
@@ -1140,6 +1170,10 @@ input[type="number"].sheet-transformations-stacks{
 }
 .sheet-transformations-mastered{
     grid-area: mastered;
+}
+input[type="checkbox"].sheet-transformations-mastered{
+    height: 75%;
+    width: 100%;
 }
 .sheet-transformations-tier{
     grid-area: tier;
