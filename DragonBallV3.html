@@ -753,11 +753,11 @@
                     </h3>
                     <p><span name="attr_description"></span></p>
                     <ul>
-                        <li><b>Foundation. </b><span name="attr_foundation"></span></li>
-                        <li><b>Advantages. </b><span name="attr_advantages"></span></li>
-                        <li><b>Disadvantages. </b><span name="attr_disadvantages"></span></li>
-                        <li><b>Ki Point Cost. </b><span name="attr_kicost"></span></li>
-                        <li><b>Technique Point Cost. </b><span name="attr_tpcost"></span></li>
+                        <li><b>Foundation. </b><em><span name="attr_foundation"></span> (<span name="attr_profile"></span>)</em></li>
+                        <li><b>Advantages. </b><em><span name="attr_advantages"></span></em></li>
+                        <li><b>Disadvantages. </b><em><span name="attr_disadvantages"></span></em></li>
+                        <li><b>Ki Point Cost. </b><em><input class="combat-numberbox" type="number" name="attr_kicost" value="(@{kiprofile} + (@{advantage_count}*2) - @{disadvantage_count}) * (0.5 + (0.5*@{tier_of_power})) + @{ki_misc}" disabled="true"></em></li>
+                        <li><b>Technique Point Cost. </b><em><input class="combat-numberbox" type="number" name="attr_tpcost" value="0" disabled="true"></em></li>
                     </ul>
                 </div>
                 <div class="attack-signature-item-edit signature-style">
@@ -769,25 +769,36 @@
                             <option value="Ultimate Signature Attack">Ultimate Signature Attack</option>
                         </select>
                     </h3>
-                    <p><span name="attr_description"></span></p>
-                    <ul>
-                        <li><b>Foundation. </b><span name="attr_foundation"></span></li>
-                        <li><b>Advantages. </b><span name="attr_advantages"></span></li>
-                        <li><b>Disadvantages. </b><span name="attr_disadvantages"></span></li>
-                        <li><b>Ki Point Cost. </b><span name="attr_kicost"></span></li>
-                        <li><b>Technique Point Cost. </b><span name="attr_tpcost"></span></li>
-                    </ul>
-
-                    <input class="signature-edit" type="checkbox" name="attr_toggle_show" value="1" />
                     <!-- Make this an expanding section -->
-                    <input type="text" name="attr_description" value="Effect notes go here." />
-                    <select name="attr_foundation">
-                        <option value="Ki Manipulation">Ki Manipulation</option>
-                        <option value="Martial Arts">Martial Arts</option>
-                        <option value="Aura">Aura</option>
-                        <option value="Magic">Magic</option>
-                        <option value="Dynamic">Dynamic</option>
-                    </select>
+                    <p><input type="text" name="attr_description" value="Effect notes go here." /></p>
+                    <ul>
+                        <li><b>Foundation. </b><em><select name="attr_foundation">
+                            <option value="Ki Manipulation">Ki Manipulation</option>
+                            <option value="Martial Arts">Martial Arts</option>
+                            <option value="Aura">Aura</option>
+                            <option value="Magic">Magic</option>
+                            <option value="Dynamic">Dynamic</option>
+                        </select></em></li>
+                        <li><b>Profile. </b><input type="text" name="attr_profile" placeholder="Beam"></li>
+                        <li><b>Advantages. </b><em><span name="attr_advantages"></span></em></li>
+                        <li><b>Disadvantages. </b><em><span name="attr_disadvantages"></span></em></li>
+                        <li><b>Technique Point Cost. </b><em><span name="attr_tpcost"></span> TP</em></li>
+                        <div class="signature-kipoint-grid">
+                            <div class="ki-header combat-top-header">Ki Point Total</div>
+                            <div class="ki-total-header combat-middle-header">Total</div>
+                            <div class="ki-profile-header combat-middle-header">Profile</div>
+                            <div class="ki-advantages-header combat-middle-header">Advantage Count</div>
+                            <div class="ki-disadvantages-header combat-middle-header">Disadvantage Count</div>
+                            <div class="ki-misc-header combat-middle-header">Misc</div>
+
+                            <input type="number" name="attr_kicost" value="(@{kiprofile} + (@{advantage_count}*2) - @{disadvantage_count}) * (0.5 + (0.5*@{tier_of_power})) + @{ki_misc}" disabled="true" />
+                            <input type="number" name="attr_kiprofile" value="0">
+                            <input type="number" name="attr_advantage_count" value="0">
+                            <input type="number" name="attr_disadvantage_count" value="0">
+                            <input type="number" name="attr_ki_misc" value="0">
+                            
+                        </div>
+                    </ul>
                 </div>
             </fieldset>
         </div>

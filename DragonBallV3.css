@@ -1014,6 +1014,65 @@ pulled from pathfinder sheet
 .sheet-signature-edit:checked ~ .sheet-attack-signature-item-display{
     display:none;
 }
+.sheet-signature-kipoint-grid{
+    display:grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-areas:
+    'ki_header ki_header ki_header ki_header ki_header'
+    'ki_total_header ki_profile_header ki_advantages_header ki_disadvantages_header ki_misc_header'
+    'ki_total ki_profile ki_advantages ki_disadvantages ki_misc';
+}
+.sheet-ki-header{
+    grid-area: ki_header;
+}
+.sheet-ki-total-header{
+    grid-area: ki_total_header;
+}
+.sheet-ki-total{
+    grid-area: ki_total;
+}
+.sheet-ki-profile-header{
+    grid-area: ki_profile_header;
+}
+.sheet-ki-profile{
+    grid-area: ki_profile;
+}
+.sheet-ki-advantages-header{
+    grid-area: ki_advantages_header;
+}
+.sheet-ki-advantages{
+    grid-area: ki_advantages;
+}
+.sheet-ki-disadvantages-header{
+    grid-area: ki_disadvantages_header;
+}
+.sheet-ki-disadvantages{
+    grid-area: ki_disadvantages;
+}
+.sheet-ki-misc-header{
+    grid-area:ki_misc_header;
+}
+.sheet-ki-misc{
+    grid-area:ki_misc;
+}
+
+.sheet-combat-middle-header{
+    background: dimgray;
+    color:white;
+    text-align:center;
+}
+.sheet-combat-numberbox{
+    background:none;
+    border-style:none;
+}
+.sheet-combat-data{
+    display:block;
+    background:darkgray;
+    color: white;
+    font-weight: bold;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
 .sheet-attack-footer{
     grid-area: footer;
     border-top: 3px double darkgray;
@@ -1079,6 +1138,7 @@ button.sheet-signature-button[type="roll"]{
     background-position: center;
     background-color: white;
 }
+.sheet-combat-top-header,
 .sheet-abilities-top-header{
     background: dimgray;
     color:white;
@@ -1086,6 +1146,7 @@ button.sheet-signature-button[type="roll"]{
     border-top-right-radius: 10px;
     text-align:center;
 }
+.sheet-combat-left-header,
 .sheet-abilities-left-header{
     background: dimgray;
     color:white;
