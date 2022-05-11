@@ -745,12 +745,49 @@
         <div class="attack-signature">Signature</div>
         <div class="attack-signature-content">
             <fieldset class="repeating_signatures">
-                <input class="signature-edit" type="checkbox" name="attr_toggle_show" value="1" />
-                <div class="attack-signature-item-display">
-                    Display
+                <input style="display:none" class="signature-edit" type="checkbox" name="attr_toggle_show" value="1" />
+                <div class="attack-signature-item-display signature-style">
+                    <h3>
+                        <input class="signature-edit" type="checkbox" name="attr_toggle_show" value="1" />
+                        <button class="signature-button" type="roll" name="roll_signature"><span name="attr_name"></span> - <em><span name="attr_type"></span></em></button>
+                    </h3>
+                    <p><span name="attr_description"></span></p>
+                    <ul>
+                        <li><b>Foundation. </b><span name="attr_foundation"></span></li>
+                        <li><b>Advantages. </b><span name="attr_advantages"></span></li>
+                        <li><b>Disadvantages. </b><span name="attr_disadvantages"></span></li>
+                        <li><b>Ki Point Cost. </b><span name="attr_kicost"></span></li>
+                        <li><b>Technique Point Cost. </b><span name="attr_tpcost"></span></li>
+                    </ul>
                 </div>
-                <div class="attack-signature-item-edit">
-                    Editing
+                <div class="attack-signature-item-edit signature-style">
+                    <h3>
+                        <input class="signature-edit" type="checkbox" name="attr_toggle_show" value="1" />
+                        <input type="text" name="attr_name" placeholder="Name"> -
+                        <select name="attr_type">
+                            <option value="Super Signature Attack">Super Signature Attack</option>
+                            <option value="Ultimate Signature Attack">Ultimate Signature Attack</option>
+                        </select>
+                    </h3>
+                    <p><span name="attr_description"></span></p>
+                    <ul>
+                        <li><b>Foundation. </b><span name="attr_foundation"></span></li>
+                        <li><b>Advantages. </b><span name="attr_advantages"></span></li>
+                        <li><b>Disadvantages. </b><span name="attr_disadvantages"></span></li>
+                        <li><b>Ki Point Cost. </b><span name="attr_kicost"></span></li>
+                        <li><b>Technique Point Cost. </b><span name="attr_tpcost"></span></li>
+                    </ul>
+
+                    <input class="signature-edit" type="checkbox" name="attr_toggle_show" value="1" />
+                    <!-- Make this an expanding section -->
+                    <input type="text" name="attr_description" value="Effect notes go here." />
+                    <select name="attr_foundation">
+                        <option value="Ki Manipulation">Ki Manipulation</option>
+                        <option value="Martial Arts">Martial Arts</option>
+                        <option value="Aura">Aura</option>
+                        <option value="Magic">Magic</option>
+                        <option value="Dynamic">Dynamic</option>
+                    </select>
                 </div>
             </fieldset>
         </div>
@@ -787,7 +824,7 @@
         </fieldset>
     </div>
     <br>
-    <div class="custom-attacks">
+    <!-- <div class="custom-attacks">
         <div class="custom-attacks-top">
             <div class="custom-attacks-hcol1">
                 <h2 style="border: 1px solid darkgray;">Name:</h2>
@@ -817,80 +854,99 @@
                 </div>
             </fieldset>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <div class='abilities'>
-    <div class="info-player"><label>Player:</label></div><div class="info-player-data"><input type='text' name="attr_player_name" placeholder="Player Name" /></div>
-    <div class="info-age"><label>Age:</label></div><div class="info-age-data"><input style="width:100%;" type='number' name="attr_age" value="0" /></div>
-    <div class="info-gender"><label>Gender:</label></div><div class="info-gender-data"><input type='text' name="attr_gender" placeholder="Gender" /></div>
-    <div class="info-skin"><label>Skin Tone:</label></div><div class="info-skin-data"><input type='text' name="attr_skin_tone" placeholder="Skin Tone" /></div>
-    <div class="info-birthday"><label>Birthday:</label></div><div class="info-birthday-data"><input type='text' name="attr_birthday" placeholder="YYYY/MM/DD" /></div>
-    <div class="info-hair"><label>Hair Colour:</label></div><div class="info-hair-data"><input type='text' name="attr_hair_color" placeholder="Hair Colour" /></div>
-    <div class="info-eye"><label>Eye Colour:</label></div><div class="info-eye-data"><input type='text' name="attr_eye_color" placeholder="Eye Colour" /></div>
+    <div class="abilities-head">
     
-    <h1>Abilities</h1>
-    <h2>Karma: <input type="number" name="attr_karma" max="10" value="5"></h2>
+        <h1 class="abilities-header">Information</h1>
+        <span class="abilities-player-header abilities-left-header">Player</span>
+        <input class="abilities-player" type="text" name="attr_player_name" placeholder="Player Name" />
+        <span class="abilities-age-header abilities-top-header">Age</span>
+        <input class="abilities-age" type="text" name="attr_age" placeholder="25" />
+        <span class="abilities-gender-header abilities-left-header">Gender</span>
+        <input class="abilities-gender" type="text" name="attr_gender" placeholder="Gender" />
+        <span class="abilities-hair-header abilities-left-header">Hair Colour</span>
+        <input class="abilities-hair" type="text" name="attr_hair" placeholder="Brown" />
+        <span class="abilities-eye-header abilities-left-header">Eye Colour</span>
+        <input class="abilities-eye" type="text" name="attr_eye" placeholder="Hazelnut" />
+        <span class="abilities-backstory-header abilities-top-header">Backstory</span>
+        <div class="auto-expand abilities-backstory">
+            <span name="attr_backstory"></span>
+            <textarea name="attr_backstory" rows="10" placeholder="Backstory"></textarea>
+        </div>
+        
+        <!-- <label class="abilities-player">Player: <input type='text' name="attr_player_name" placeholder="Player Name" /></label>
+        <label class="abilities-age">Age: <input type='number' name="attr_age" value="0" /></label>
+        <label class="abilities-gender">Gender: <input type='text' name="attr_gender" placeholder="Gender" /></label>
+        <label class="abilities-skin">Skin Tone: <input type='text' name="attr_skin_tone" placeholder="Skin Tone" /></label>
+        <div class="abilities-birthday"><label>Birthday:</label></div><div class="abilities-birthday-data"><input type='text' name="attr_birthday" placeholder="YYYY/MM/DD" /></div>
+        <div class="abilities-hair"><label>Hair Colour:</label></div><div class="abilities-hair-data"><input type='text' name="attr_hair_color" placeholder="Hair Colour" /></div>
+        <div class="abilities-eye"><label>Eye Colour:</label></div><div class="abilities-eye-data"><input type='text' name="attr_eye_color" placeholder="Eye Colour" /></div> -->
+        
+    </div>
+    
+    <!-- <h2>Karma: <input type="number" name="attr_karma" max="10" value="5"></h2>
     <div style="border: 3px solid darkgray;">
         <h2>Z Soul: <input type="text" name="attr_z_soul"></h2>
         <h2>Z Soul: <input type="text" name="attr_z_soul2"></h2>
         <h2>Z Soul: <input type="text" name="attr_z_soul3"></h2>
     </div>
+    <br> -->
     <br>
-
-    <div style="border: 3px solid darkgray; border-collapse: collapse;">
-        <h2 style="border: 1px solid darkgray;">Equipment</h2>
-        <fieldset class="repeating_equipment" >
-            <div class="equipmentTable">
-                <div style="grid-area: gear1;"><h3 style="color: darkgray;">Name: <input type="text" name="attr_gear_name" style="width: 150px;"></h3></div>
-                <div style="grid-area: gear2;"><h3 style="color: darkgray;">Name: <input type="text" name="attr_gear_name2" style="width: 150px;"></h3></div>
-                <div style="grid-area: gear3;"><h3 style="color: darkgray;">Name: <input type="text" name="attr_gear_name3" style="width: 150px;"></h3></div>
-            </div>
-        </fieldset>
-    </div>
-
-    <br>
-
-    <div class="talent-table">
-        <h2>Talents</h2>
-        <fieldset class="repeating_talents">
-            <input class="talent-edit" type="checkbox" name="attr_toggle-show" value="1" checked />
-            <div class="talent-verbose">
-                <span class="talent-name">Name:</span><input class="talent-name-data" type="text" name="attr_name" style="width:100%"; placeholder="Name"/>
-                <span class="talent-type">Type:</span>
-                <select class="talent-type-data" name="attr_type">
-                    <option value="Adaption">Adaption</option>
-                    <option value="Apparel">Apparel</option>
-                    <option value="Health">Health</option>
-                    <option value="Minion">Minion</option>
-                    <option value="Mobility">Mobility</option>
-                    <option value="Pose">Pose</option>
-                    <option value="Racial">Racial</option>
-                    <option value="Rage">Rage</option>
-                    <option value="Ranged">Ranged</option>
-                    <option value="Specialization">Specialization</option>
-                    <option value="Speed">Speed</option>
-                    <option value="Tactical">Tactical</option>
-                    <option value="Taunt">Taunt</option>
-                    <option value="Technique">Technique</option>
-                    <option value="Transformation">Transformation</option>
-                    <option value="Unarmed Combat">Unarmed Combat</option>
-                    <option value="Weapon">Weapon</option>
-                    <option value="Miscellaneous">Miscellaneous</option>
-                </select>
-                <span class="talent-short-desc">Short Description:</span><input class="talent-short-desc-data" type="text" name="attr_short_description" placeholder="Short Description"/>
-                <span class="talent-prereqs">Prerequisites:</span><input class="talent-prereqs-data" name="attr_prerequisites" placeholder="Prerequisites" type="text"/>
-                <span class="talent-description">Description:</span>
-                <div class="auto-expand talent-description-data">
-	                <span name="attr_description"></span>
-                    <textarea name="attr_description" rows="5" placeholder="Description"></textarea>
+    <div class="abilities-group">
+        <div class="abilities-equipment">
+                <h2>Equipment</h2>
+                <fieldset class="repeating_equipment" >
+                    <div class="equipmentTable">
+                        <div style="grid-area: gear1;"><h3 style="color: darkgray;">Name: <input type="text" name="attr_gear_name" style="width: 150px;"></h3></div>
+                        <div style="grid-area: gear2;"><h3 style="color: darkgray;">Name: <input type="text" name="attr_gear_name2" style="width: 150px;"></h3></div>
+                        <div style="grid-area: gear3;"><h3 style="color: darkgray;">Name: <input type="text" name="attr_gear_name3" style="width: 150px;"></h3></div>
+                    </div>
+                </fieldset>
+        </div>
+        <div class="talent-table">
+            <h2>Talents</h2>
+            <fieldset class="repeating_talents">
+                <input class="talent-edit" type="checkbox" name="attr_toggle-show" value="1" checked />
+                <div class="talent-verbose">
+                    <span class="talent-name">Name:</span><input class="talent-name-data" type="text" name="attr_name" style="width:100%"; placeholder="Name"/>
+                    <span class="talent-type">Type:</span>
+                    <select class="talent-type-data" name="attr_type">
+                        <option value="Adaption">Adaption</option>
+                        <option value="Apparel">Apparel</option>
+                        <option value="Health">Health</option>
+                        <option value="Minion">Minion</option>
+                        <option value="Mobility">Mobility</option>
+                        <option value="Pose">Pose</option>
+                        <option value="Racial">Racial</option>
+                        <option value="Rage">Rage</option>
+                        <option value="Ranged">Ranged</option>
+                        <option value="Specialization">Specialization</option>
+                        <option value="Speed">Speed</option>
+                        <option value="Tactical">Tactical</option>
+                        <option value="Taunt">Taunt</option>
+                        <option value="Technique">Technique</option>
+                        <option value="Transformation">Transformation</option>
+                        <option value="Unarmed Combat">Unarmed Combat</option>
+                        <option value="Weapon">Weapon</option>
+                        <option value="Miscellaneous">Miscellaneous</option>
+                    </select>
+                    <span class="talent-short-desc">Short Description:</span><input class="talent-short-desc-data" type="text" name="attr_short_description" placeholder="Short Description"/>
+                    <span class="talent-prereqs">Prerequisites:</span><input class="talent-prereqs-data" name="attr_prerequisites" placeholder="Prerequisites" type="text"/>
+                    <span class="talent-description">Description:</span>
+                    <div class="auto-expand talent-description-data">
+                        <span name="attr_description"></span>
+                        <textarea name="attr_description" rows="5" placeholder="Description"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="talent-simple">
-                <button class="ability talent-name" type="roll" name="roll_talent" value="&{template:default} {{name=@{name}}} {{description=@{description}}}"><b><span name="attr_name"></span> (<span name="attr_type"></span>)</b></button>
-                <span class="talent-short-desc"name="attr_short_description"></span>
-            </div>
-        </fieldset>
+                <div class="talent-simple">
+                    <button class="ability talent-name" type="roll" name="roll_talent" value="&{template:default} {{name=@{name}}} {{description=@{description}}}"><b><span name="attr_name"></span> (<span name="attr_type"></span>)</b></button>
+                    <span class="talent-short-desc"name="attr_short_description"></span>
+                </div>
+            </fieldset>
+        </div>
     </div>
 </div>
 
@@ -984,7 +1040,7 @@
                     <option value="" selected></option>
                     <option value="Manifested Power">Manifested Power</option>
                     <option value="Alternate Form">Alternate Form</option>
-                    <option value="Enchantment Power">Enchantment Power</option>
+                    <option value="Enhancement Power">Enhancement Power</option>
                     <option value="Legendary Form">Legendary Form</option>
                 </select>
 
@@ -1267,12 +1323,15 @@
         "impulsive_misc",
         "corporeal_misc",
         "cognitive_misc",
-        "morale_misc"
+        "morale_misc",
+        "tier_of_power"
         ], function(values){
-            var impulsive = parseNumber(values.impulsive_misc);
-            var corporeal = parseNumber(values.corporeal_misc);
-            var cognitive = parseNumber(values.cognitive_misc);
-            var morale = parseNumber(values.morale_misc);
+            var tier = parseInt(values.tier_of_power);
+            var impulsive = parseNumber(values.impulsive_misc, tier);
+            var corporeal = parseNumber(values.corporeal_misc, tier);
+            var cognitive = parseNumber(values.cognitive_misc, tier);
+            var morale = parseNumber(values.morale_misc, tier);
+            console.log(cognitive);
             setAttrs({
                 "impulsive_misc_hidden": impulsive,
                 "corporeal_misc_hidden": corporeal,

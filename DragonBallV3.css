@@ -1024,6 +1024,7 @@ pulled from pathfinder sheet
 .sheet-spellbook h2{
     text-align:center;
 }
+.sheet-signature-style h3,
 .sheet-spell h3{
     color: #cf2e2e;
     border-top: 1px solid #ddd;
@@ -1031,13 +1032,16 @@ pulled from pathfinder sheet
     padding: 18px;
     margin: 24px;
 }
+.sheet-signature-style p,
 .sheet-spell p{
     margin-left: 24px;
 }
+.sheet-signature-style ul,
 .sheet-spell ul{
     margin-left: 24px;
     padding: 0 0 0 12px;
 }
+.sheet-signature-style li,
 .sheet-spell li{
     list-style:inside;
     margin-left:6px;
@@ -1053,7 +1057,15 @@ input.sheet-spell-edit[value="on"] ~ .sheet-spell-edit{
 input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
     display:grid;
 }
-
+button.sheet-signature-button[type="roll"]{
+    width: fit-content;
+    background: none;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: #cd2e2e;
+}
+/* Information Section */
 
 .sheet-equipmentTable{
     display: grid;
@@ -1067,6 +1079,205 @@ input.sheet-spell-edit[value="0"] ~ .sheet-spell-display{
     background-position: center;
     background-color: white;
 }
+.sheet-abilities-top-header{
+    background: dimgray;
+    color:white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align:center;
+}
+.sheet-abilities-left-header{
+    background: dimgray;
+    color:white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align:center;
+}
+.sheet-abilities-head{
+    text-align: center;
+    grid-template-areas:
+    'header header header header'
+    'player-header player player age-header'
+    'gender-header gender gender age'
+    'hair-header hair eye-header eye'
+    'skin-header skin birthday-header birthday'
+    'backstory-header backstory-header backstory-header backstory-header'
+    'backstory backstory backstory backstory';
+    display:grid;
+}
+
+.sheet-abilities-header{
+    grid-area:header;
+}
+.sheet-abilities-player-header{
+    grid-area:player-header;
+}
+.sheet-abilities-player{
+    grid-area:player;
+    width:100%;
+}
+.sheet-abilities-age-header{
+    grid-area:age-header;
+}
+.sheet-abilities-age{
+    grid-area:age;
+    width:100%;
+}
+.sheet-abilities-gender-header{
+    grid-area:gender-header;
+}
+.sheet-abilities-gender{
+    grid-area:gender;
+    width:100%;
+}
+.sheet-abilities-hair-header{
+    grid-area:hair-header;
+}
+.sheet-abilities-hair{
+    grid-area:hair;
+    width:100%;
+}
+.sheet-abilities-eye-header{
+    grid-area:eye-header;
+}
+.sheet-abilities-eye{
+    grid-area:eye;
+    width:100%;
+}
+.sheet-abilities-backstory-header{
+    grid-area:backstory-header;
+}
+.sheet-abilities-backstory{
+    grid-area: backstory;
+    width:100%;
+}
+
+.sheet-abilities-player input[type="text"],
+.sheet-abilities-age input[type="number"],
+.sheet-abilities-gender input[type="text"],
+.sheet-abilities-skin input[type="text"]{
+    width:50%;
+}
+
+.sheet-abilities-group{
+    grid-template-areas:'equipment talents';
+    display:grid;
+}
+.sheet-abilities-equipment{
+    grid-area:equipment;
+    border: 1px solid darkgray;
+    padding: 5px;
+}
+.sheet-abilities-equipment h2{
+    text-align:center;
+}
+
+.sheet-talent-table{
+    grid-area:talents;
+    border: 1px solid darkgray;
+    padding: 5px;
+}
+.sheet-talent-table h2{
+    text-align:center;
+}
+
+.sheet-talent-verbose{
+    display:none;
+    grid-template-areas:
+    'talent-name talent-name-data talent-name-data talent-type talent-type-data'
+    'talent-short-desc talent-short-desc-data talent-short-desc-data talent-short-desc-data talent-short-desc-data'
+    'talent-prereqs talent-prereqs-data talent-prereqs-data talent-prereqs-data talent-prereqs-data'
+    'talent-description talent-description talent-description talent-description talent-description'
+    'talent-description-data talent-description-data talent-description-data talent-description-data talent-description-data'
+    'talent-notes talent-notes talent-notes talent-notes talent-notes'
+    'talent-notes-data talent-notes-data talent-notes-data talent-notes-data talent-notes-data';
+    border: 1px inset darkgray;
+}
+
+.sheet-talent-simple{
+    display:none;
+    grid-template-areas:
+    'talent-name talent-short-desc';
+    border: 1px inset darkgray;
+}
+
+.sheet-talent-edit:checked ~ .sheet-talent-verbose{
+    display:grid;
+}
+
+.sheet-talent-edit:not(:checked) ~ .sheet-talent-simple{
+    display: grid;
+}
+
+.sheet-talent-name{
+    grid-area: talent-name;
+}
+.sheet-talent-name-data{
+    grid-area: talent-name-data;
+}
+.sheet-talent-type{
+    grid-area: talent-type;
+}
+.sheet-talent-type-data{
+    grid-area: talent-type-data;
+    margin:0px;
+}
+.sheet-talent-short-desc{
+    grid-area: talent-short-desc;
+}
+.sheet-talent-short-desc-data{
+    grid-area: talent-short-desc-data;
+    width:100%;
+}
+.sheet-talent-prereqs{
+    grid-area: talent-prereqs;
+}
+.sheet-talent-prereqs-data{
+    grid-area: talent-prereqs-data;
+    width:100%;
+}
+.sheet-talent-description{
+    grid-area: talent-description;
+    text-align:center;
+}
+.sheet-talent-description-data{
+    grid-area: talent-description-data;
+    font-size:10px;
+    resize:vertical;
+    min-height:24px;
+}
+.sheet-auto-expand {
+	position: relative;
+	cursor: text;
+	word-wrap: break-word;
+}
+.sheet-auto-expand span {
+	visibility: hidden;
+	white-space: pre-wrap;
+	display: block;
+}
+.sheet-auto-expand textarea {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	margin: 0;
+	overflow: hidden;
+	resize: none;
+    min-height:18px;
+	height: 100%;
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	letter-spacing: inherit;
+	padding: inherit;
+	text-align: inherit;
+	text-transform: inherit;
+}
+
 
 /* Tranformation section */
 .sheet-transformations-head{
@@ -1491,112 +1702,6 @@ span.sheet-transformations-tier,
     'custom-attacks-top'
     'custom-attacks-bottom';
     border: 1px solid darkgray;
-}
-
-
-.sheet-talent-table{
-    border: 1px solid darkgray;
-    padding: 5px;
-}
-.sheet-talent-table h2{
-    text-align:center;
-}
-
-.sheet-talent-verbose{
-    display:none;
-    grid-template-areas:
-    'talent-name talent-name-data talent-name-data talent-type talent-type-data'
-    'talent-short-desc talent-short-desc-data talent-short-desc-data talent-short-desc-data talent-short-desc-data'
-    'talent-prereqs talent-prereqs-data talent-prereqs-data talent-prereqs-data talent-prereqs-data'
-    'talent-description talent-description talent-description talent-description talent-description'
-    'talent-description-data talent-description-data talent-description-data talent-description-data talent-description-data'
-    'talent-notes talent-notes talent-notes talent-notes talent-notes'
-    'talent-notes-data talent-notes-data talent-notes-data talent-notes-data talent-notes-data';
-    border: 1px inset darkgray;
-}
-
-.sheet-talent-simple{
-    display:none;
-    grid-template-areas:
-    'talent-name talent-short-desc';
-    border: 1px inset darkgray;
-}
-
-.sheet-talent-edit:checked ~ .sheet-talent-verbose{
-    display:grid;
-}
-
-.sheet-talent-edit:not(:checked) ~ .sheet-talent-simple{
-    display: grid;
-}
-
-.sheet-talent-name{
-    grid-area: talent-name;
-}
-.sheet-talent-name-data{
-    grid-area: talent-name-data;
-}
-.sheet-talent-type{
-    grid-area: talent-type;
-}
-.sheet-talent-type-data{
-    grid-area: talent-type-data;
-    margin:0px;
-}
-.sheet-talent-short-desc{
-    grid-area: talent-short-desc;
-}
-.sheet-talent-short-desc-data{
-    grid-area: talent-short-desc-data;
-    width:100%;
-}
-.sheet-talent-prereqs{
-    grid-area: talent-prereqs;
-}
-.sheet-talent-prereqs-data{
-    grid-area: talent-prereqs-data;
-    width:100%;
-}
-.sheet-talent-description{
-    grid-area: talent-description;
-    text-align:center;
-}
-.sheet-talent-description-data{
-    grid-area: talent-description-data;
-    font-size:10px;
-    resize:vertical;
-    min-height:24px;
-}
-.sheet-auto-expand {
-	position: relative;
-	cursor: text;
-	word-wrap: break-word;
-}
-.sheet-auto-expand span {
-	visibility: hidden;
-	white-space: pre-wrap;
-	display: block;
-}
-.sheet-auto-expand textarea {
-	position: absolute;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	margin: 0;
-	overflow: hidden;
-	resize: none;
-    min-height:18px;
-	height: 100%;
-	width: 100%;
-	display: block;
-	box-sizing: border-box;
-	background: transparent;
-	color: inherit;
-	font: inherit;
-	letter-spacing: inherit;
-	padding: inherit;
-	text-align: inherit;
-	text-transform: inherit;
 }
 
 .sheet-settings-table{
